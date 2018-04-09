@@ -10,6 +10,8 @@ package paquete;
  * @author Marcus
  */
 public class Usuario {
+   int id;
+   String correo;
    
     
 }
