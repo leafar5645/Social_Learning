@@ -40,6 +40,7 @@ public class editPR extends HttpServlet {
         try {
             res = user.EditPR(correo, nomb ,id );
             
+            
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

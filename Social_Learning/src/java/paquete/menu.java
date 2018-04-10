@@ -31,9 +31,10 @@ public class menu extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet menu</title>");            
             out.println("</head>");
-            out.println("<frameset cols='30%,*'>");
-            out.println("<frame src='barraR'>");
+            out.println("<frameset cols='75%,*'>");
+           
             out.println("<frame src='subMenuR' name='objetivo'>");
+             out.println("<frame src='barraR'>");
             out.println("</html>");
     
 

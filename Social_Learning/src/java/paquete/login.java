@@ -28,7 +28,7 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sesion= request.getSession();
         int res=0;
-        System.out.println("algo pasa");
+       
         String correo = request.getParameter("correo");
         String pass = request.getParameter("pass");
         Usuario user = new  Usuario();
