@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,16 +32,69 @@ public class subMenuR extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            HttpSession sesion=request.getSession();
+            
+             Usuario user = (Usuario) sesion.getAttribute("AlumnoR");
+             String nomb =user.getNombre();
+             String tipo =user.getTipo();
+             String correo=user.getCorreo();
+             int id=user.getId();
+              if (tipo.equalsIgnoreCase("p")) 
+              {
+                  tipo="Profesor";
+              }
+              else
+              {
+              tipo="Alumno";
+              }
+             if(request.getParameter("editR")==null || request.getParameter("editR").equalsIgnoreCase("cancelar"))
+             {
+            
+             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet subMenuR</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet subMenuR at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Bienvenido " +tipo + "</h1><br/>");
+            out.println("<h2>Este es tu perfil</h2><br/>");
+            out.println("<b>Id: </b> "+id+"<br/>");
+            out.println("<b>Nombre: </b> "+ nomb+ "<br/>");
+            out.println("<b>correo: </b> "+ correo+ "<br/>");
+            out.println("<form action='subMenuR' method='get' >"
+                    + " <input type='submit' name='editR' value='Editar' />"
+                    + "<form/> ");
+            
             out.println("</body>");
             out.println("</html>");
+             }
+             else
+                 
+             {
+                  out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet subMenuR</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Edite su perfil  " +tipo + "</h1><br/>");
+            out.println("<form action='editPR' method='get' >");
+            out.println("<b>Nombre: </b> <input type='text' value='"+ nomb+ "' name='nombre' /><br/>");
+            out.println("<b>correo: </b> <input type='text' value='"+ correo+ "' name='correo' /><br/>");
+            
+                 out.println( " <input type='submit' value='Cambiar' />"
+                    + "</form> ");
+                 
+                 
+               out.println("<form action='subMenuR' method='get' >"
+                    + " <input type='submit' name='editR' value='cancelar' />"
+                    + "<form/> ");
+               
+            out.println("</body>");
+            out.println("</html>");
+             }
+             
         }
     }
 

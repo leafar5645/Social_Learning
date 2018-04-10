@@ -10,3 +10,4 @@ create table exmaenpreguntas(idpregunta int not null, idexamen int not null , fo
 create table publicacion(idpubli int not null primary key , idcurso int not null , idusuario int not null , likes int  , contenido varchar(500), mediaUrl varchar(200) , validacion boolean , foreign key(idcurso) references curso(idcurso), foreign key(idusuario) references usuario(idusuario));
 create table comentarios(idcomen int not  null primary key , texto varchar (150) , idusuario int not null , idpubli int not null , foreign key (idusuario)references usuario(idusuario) ,foreign key (idpubli) references publicacion (idpubli) );
 insert into usuario values(01 , "rafa@gmail.com" , "1234" , "Rafael Hernandez Ruiz" , "P"); 
+insert into usuario values(02 , "Mau@gmail.com" , "1234" , "Mauricio Romero Ponce" , "A"); 

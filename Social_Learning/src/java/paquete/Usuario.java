@@ -74,7 +74,7 @@ public class Usuario {
         Connection con=conexion.getConnection();
            Statement st = null  ;
             ResultSet result = null;
-            System.out.println("algo pasa");
+            
         try
         {
          st = con.createStatement();
@@ -85,6 +85,8 @@ public class Usuario {
                 this.nombre=result.getString("nombre");
                 this.tipo=result.getString("tipo");
                 this.id=result.getInt("idusuario");
+                this.correo=correos;
+                this.pass=passs;
             }
         }
         catch(SQLException e)
@@ -97,6 +99,31 @@ public class Usuario {
         
         
         return res;
+    }
+    public int EditPR (String correos , String nombres , int ids) throws SQLException
+    {
+    int res=0;    
+    conexion  = new Conexion_Base();
+    Connection con =conexion.getConnection();
+    Statement st = null  ;
+           
+            
+        try
+        {
+         st = con.createStatement();
+         res =st.executeUpdate("Update usuario set nombre='"+nombres+"',  correo='"+ correos+"' where idusuario='"+ids+"';");
+         this.correo=correos;
+         this.nombre=nombres;
+        }
+        catch(SQLException e)
+        {
+            System.out.println("e");
+        }
+        con.close();
+        st.close();
+        
+    
+    return res;
     }
   
     

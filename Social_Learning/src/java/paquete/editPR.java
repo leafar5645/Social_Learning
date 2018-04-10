@@ -20,37 +20,41 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marcus
  */
-public class login extends HttpServlet {
+public class editPR extends HttpServlet {
 
+ 
 
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion= request.getSession();
+         HttpSession sesion= request.getSession();
         int res=0;
-        System.out.println("algo pasa");
+       
         String correo = request.getParameter("correo");
-        String pass = request.getParameter("pass");
-        Usuario user = new  Usuario();
+        String nomb = request.getParameter("nombre");
+        Usuario user =(Usuario) sesion.getAttribute("AlumnoR");
+        int id = user.getId();
+        
        
         try {
-            res = user.loginR(correo, pass);
+            res = user.EditPR(correo, nomb ,id );
+            
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (res==1)
         {
          sesion.setAttribute("AlumnoR", user);
-         response.sendRedirect("menu");
+         response.sendRedirect("subMenuR");
         }
         else
         {
-            response.sendRedirect("index.html");
+            response.sendRedirect("subMenuR");
         }
-        
-      
+     
     }
 
- 
+
 
 }
