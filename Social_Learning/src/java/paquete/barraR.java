@@ -39,6 +39,9 @@ public class barraR extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet barraR at " + request.getContextPath() + "</h1>");
+            
+            out.println("<br/> <form action='logout' method='get' > <input type='submit' value='Salir'/> </form> ");
+            
             out.println("</body>");
             out.println("</html>");
         }
