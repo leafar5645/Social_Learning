@@ -82,6 +82,11 @@ public class subMenuR extends HttpServlet {
             out.println("<form action='editPR' method='get' >");
             out.println("<b>Nombre: </b> <input type='text' value='"+ nomb+ "' name='nombre' /><br/>");
             out.println("<b>correo: </b> <input type='text' value='"+ correo+ "' name='correo' /><br/>");
+            out.println("<b><h3>*Si no escribe nada en estos campos no se cambiara la contraseña</b></h3>");
+            out.println("<b>Nueva contraseña: </b> <input type='text' value='' name='conN' /><br/>");
+            out.println("<b>Escribala de nuevo: </b> <input type='text' value='' name='conN2' /><br/>");
+            out.println("<b><h3>*Requisito para cualquier cambio </b></h3>");
+            out.println("<b>Contraseña actual: </b> <input type='text' value='' name='con' required /><br/>");
             
                  out.println( " <input type='submit' value='Cambiar' />"
                     + "</form> ");

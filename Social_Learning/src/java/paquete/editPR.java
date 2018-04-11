@@ -33,12 +33,15 @@ public class editPR extends HttpServlet {
        
         String correo = request.getParameter("correo");
         String nomb = request.getParameter("nombre");
+        String con = request.getParameter("con");
+        String conN= request.getParameter("conN");
+        String conN2 =request.getParameter("conN2");
         Usuario user =(Usuario) sesion.getAttribute("AlumnoR");
         int id = user.getId();
         
        
         try {
-            res = user.EditPR(correo, nomb ,id );
+            res = user.EditPR(correo, nomb ,id, conN, conN2, con );
             
             
         } catch (SQLException ex) {
@@ -51,7 +54,33 @@ public class editPR extends HttpServlet {
         }
         else
         {
-            response.sendRedirect("subMenuR");
+            PrintWriter out=response.getWriter();
+             response.setContentType("text/html;charset=UTF-8");
+                          out.println("<!DOCTYPE html>");
+            out.println("<html>");
+   out.println("<body bgcolor='#A2E375'>");
+out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
+     out.println("<script>");
+       out.println(" swal({\n" +
+"  title: 'Error',\n" +
+"  text: \"Contraseña incorrecta !\",\n" +
+"  type: 'error',\n" +
+"  showCancelButton: false,\n" +
+"  confirmButtonColor: '#d33',\n" +
+"  cancelButtonColor: '#d33',\n" +
+"  confirmButtonText: 'OK'\n" +
+"}).then(function (result) {\n" +
+"  if (result.value) {\n" +
+"   window.location.href=\"subMenuR\";"+
+"  }else{ window.location.href=\"subMenuR\";}\n" +
+"})");
+   
+       out.println("</script>");
+       
+       out.println("</body>");
+
+            out.println("</html>");
+           ;
         }
      
     }

@@ -100,20 +100,32 @@ public class Usuario {
         
         return res;
     }
-    public int EditPR (String correos , String nombres , int ids) throws SQLException
+    public int EditPR (String correos , String nombres , int ids, String conN , String conN2 , String contra) throws SQLException
     {
     int res=0;    
     conexion  = new Conexion_Base();
     Connection con =conexion.getConnection();
     Statement st = null  ;
-           
+    String sql;
+    if(conN!=null && conN.equals(conN2))
+    {
+       
+          sql="Update usuario set nombre='"+nombres+"',  correo='"+ correos+"' , pass='"+conN+"' where idusuario='"+ids+"' and pass='"+contra+"';";
+    }
+    else
+    {
+         sql="Update usuario set nombre='"+nombres+"',  correo='"+ correos+"'  where idusuario='"+ids+"' and pass='"+contra+"';";
+    }
             
         try
         {
          st = con.createStatement();
-         res =st.executeUpdate("Update usuario set nombre='"+nombres+"',  correo='"+ correos+"' where idusuario='"+ids+"';");
+         res =st.executeUpdate(sql);
+         if(res==1)
+         {
          this.correo=correos;
          this.nombre=nombres;
+         }
         }
         catch(SQLException e)
         {
