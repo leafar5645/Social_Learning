@@ -107,7 +107,7 @@ public class Usuario {
     Connection con =conexion.getConnection();
     Statement st = null  ;
     String sql;
-    if(conN!=null && conN.equals(conN2))
+    if(!conN.equalsIgnoreCase("") && conN.equals(conN2))
     {
        
           sql="Update usuario set nombre='"+nombres+"',  correo='"+ correos+"' , pass='"+conN+"' where idusuario='"+ids+"' and pass='"+contra+"';";
