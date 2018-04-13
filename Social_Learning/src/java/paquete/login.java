@@ -26,9 +26,11 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out=response.getWriter();
+             response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion= request.getSession();
         int res=0;
-        System.out.println("algo pasa");
+       
         String correo = request.getParameter("correo");
         String pass = request.getParameter("pass");
         Usuario user = new  Usuario();
@@ -45,7 +47,32 @@ public class login extends HttpServlet {
         }
         else
         {
-            response.sendRedirect("index.html");
+     //out.println("<html><head></head><body onload=\"alert('Ingreso Correcto'); window.location='index.html' \"></body></html>");
+           // response.sendRedirect("index.html");
+                        out.println("<!DOCTYPE html>");
+            out.println("<html>");
+   out.println("<body bgcolor='#A2E375'>");
+out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
+     out.println("<script>");
+       out.println(" swal({\n" +
+"  title: 'Error',\n" +
+"  text: \"Usuario o contraseña incorrecta !\",\n" +
+"  type: 'error',\n" +
+"  showCancelButton: false,\n" +
+"  confirmButtonColor: '#d33',\n" +
+"  cancelButtonColor: '#d33',\n" +
+"  confirmButtonText: 'OK'\n" +
+"}).then(function (result) {\n" +
+"  if (result.value) {\n" +
+"   window.location.href=\"index.html\";"+
+"  }else{ window.location.href=\"index.html\";}\n" +
+"})");
+   
+       out.println("</script>");
+       
+       out.println("</body>");
+
+            out.println("</html>");
         }
         
       
