@@ -5,6 +5,7 @@
  */
 package paquete;
 
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,6 +35,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import org.jcp.xml.dsig.internal.dom.Utils;
 
 /**
  *
@@ -53,13 +56,14 @@ public class AltaUserR extends HttpServlet {
      String tipo= request.getParameter("tipo");
         Part filePart = request.getPart("foto"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.
      
-    String path=request.getRealPath("/UsuariosFotos");
+   String path=request.getRealPath("/UsuariosFotosR");
+ 
+
     Random r = new Random();
 int num = r.nextInt(1000000)+743;
- File file = new File(path + "/" + tipo + num+ ".jpg" ); //La clase file tiene 3 constructores  File (String path).  Crea una nueva instancia de tipo file  convirtiendo la cadena de nombre de ruta dada en una ruta de acceso abstracta.
+ File file = new File(path+"/" +tipo + num+ ".jpg" ); //La clase file tiene 3 constructores  File (String path).  Crea una nueva instancia de tipo file  convirtiendo la cadena de nombre de ruta dada en una ruta de acceso abstracta.
                        
-  
-    
+      
     InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
         Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
         String  fotod=(""+tipo+num+"");

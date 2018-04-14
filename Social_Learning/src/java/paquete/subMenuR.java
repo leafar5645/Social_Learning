@@ -65,7 +65,7 @@ public class subMenuR extends HttpServlet {
             out.println("<body class> <div id=\"wrapper\">");
             out.println("<h1>Bienvenido " +tipo + "</h1><br/>");
             out.println("<h2>Este es tu perfil</h2><br/>  <section id=\"main\">");
-            out.println("<img src='UsuariosFotos/"+nomf+".jpg'> <br>");
+            out.println("<img src='UsuariosFotosR/"+nomf+".jpg'> <br>");
             out.println("<b>Id: </b> "+id+"<br/>");
             out.println("<b>Nombre: </b> "+ nomb+ "<br/>");
             out.println("<b>correo: </b> "+ correo+ "<br/>");
