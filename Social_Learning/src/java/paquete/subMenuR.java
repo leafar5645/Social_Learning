@@ -38,7 +38,10 @@ public class subMenuR extends HttpServlet {
              String nomb =user.getNombre();
              String tipo =user.getTipo();
              String correo=user.getCorreo();
+             String nomf=user.getFoto();
              int id=user.getId();
+          
+            
               if (tipo.equalsIgnoreCase("p")) 
               {
                   tipo="Profesor";
@@ -62,6 +65,7 @@ public class subMenuR extends HttpServlet {
             out.println("<body class> <div id=\"wrapper\">");
             out.println("<h1>Bienvenido " +tipo + "</h1><br/>");
             out.println("<h2>Este es tu perfil</h2><br/>  <section id=\"main\">");
+            out.println("<img src='UsuariosFotos/"+nomf+".jpg'> <br>");
             out.println("<b>Id: </b> "+id+"<br/>");
             out.println("<b>Nombre: </b> "+ nomb+ "<br/>");
             out.println("<b>correo: </b> "+ correo+ "<br/>");
@@ -78,10 +82,13 @@ public class subMenuR extends HttpServlet {
                   out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet subMenuR</title>");            
+            out.println("<meta charset=\"UTF-8\">\n" +
+"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
+"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
             out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Edite su perfil  " +tipo + "</h1><br/>");
+           out.println("<body class> <div id=\"wrapper\">");
+            out.println("<h1>Edite su perfil  " +tipo + "</h1><br/> <section id=\"main\">");
             out.println("<form action='editPR' method='get' >");
             out.println("<b>Nombre: </b> <input type='text' value='"+ nomb+ "' name='nombre' /><br/>");
             out.println("<b>correo: </b> <input type='text' value='"+ correo+ "' name='correo' /><br/>");
@@ -92,14 +99,15 @@ public class subMenuR extends HttpServlet {
             out.println("<b>Contraseña actual: </b> <input type='text' value='' name='con' required /><br/>");
             
                  out.println( " <input type='submit' value='Cambiar' />"
-                    + "</form> ");
+                    + "</form><br> ");
+                 
                  
                  
                out.println("<form action='subMenuR' method='get' >"
                     + " <input type='submit' name='editR' value='cancelar' />"
                     + "<form/> ");
                
-            out.println("</body>");
+           out.println("</section </div> </body>");
             out.println("</html>");
              }
              

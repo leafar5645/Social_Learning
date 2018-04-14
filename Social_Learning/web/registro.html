@@ -23,7 +23,7 @@ and open the template in the editor.
         <br/>
         <section id="main" >
              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <form action="AltaUserR" method ="get">
+             <form action="AltaUserR" method ="post" enctype="multipart/form-data">
             <input type="text" name="nombre" placeholder="Nombre" required/>
         <br/>
         <input type="email" name="correo" placeholder="Correo" required/>
@@ -36,6 +36,8 @@ and open the template in the editor.
             <option value="A">Alumno</option>
         </select>
         <br/>
+        <input type="file" name="foto" value="elige tu foto de perfil" accept=".jpg">
+        <br>
         
         <ul class="icons"> <li> <a href="#" title="Registrar" onclick="$(this).closest('form').submit()" name="destroy" value="alta" class="fa-sign-in">Registar</a> </li></ul>
             </form>

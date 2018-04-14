@@ -21,6 +21,15 @@ public class Usuario {
    String nombre;
    String tipo;
    Conexion_Base conexion;
+   String foto;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
  
 
     public Usuario() {
@@ -87,6 +96,7 @@ public class Usuario {
                 this.id=result.getInt("idusuario");
                 this.correo=correos;
                 this.pass=passs;
+                this.foto=result.getString("img");
             }
         }
         catch(SQLException e)
@@ -100,7 +110,7 @@ public class Usuario {
         
         return res;
     }
-    public int AltaUR (String correos , String nombres , String contra ,String type )
+    public int AltaUR (String correos , String nombres , String contra ,String type, String foto )
     {
         int res=0;
         conexion = new Conexion_Base();
@@ -115,7 +125,7 @@ public class Usuario {
            if (resul.next()){
                int ids  =resul.getInt(1);
                ids=ids+1;
-            res=st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"'  );");
+            res=st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
             
            }
         }
