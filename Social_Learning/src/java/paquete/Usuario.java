@@ -100,6 +100,32 @@ public class Usuario {
         
         return res;
     }
+    public int AltaUR (String correos , String nombres , String contra ,String type )
+    {
+        int res=0;
+        conexion = new Conexion_Base();
+        Connection con = conexion.getConnection();
+        Statement st=null;
+        ResultSet resul=null;
+        
+        try
+        {
+            st=con.createStatement();
+           resul=st.executeQuery("select max(idusuario) from usuario;");
+           if (resul.next()){
+               int ids  =resul.getInt(1);
+               ids=ids+1;
+            res=st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"'  );");
+            
+           }
+        }
+        catch(SQLException e)
+        {
+            System.out.println("" + e);
+        }
+        
+        return res;
+    }
     public int EditPR (String correos , String nombres , int ids, String conN , String conN2 , String contra) throws SQLException
     {
     int res=0;    

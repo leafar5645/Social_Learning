@@ -22,7 +22,11 @@
     </servlet>
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>logout</servlet-class>
+        <servlet-class>paquete.logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaUserR</servlet-name>
+        <servlet-class>paquete.AltaUserR</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaUserR</servlet-name>
+        <url-pattern>/AltaUserR</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

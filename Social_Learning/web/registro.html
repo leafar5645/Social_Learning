@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+              <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="assets/css/main.css">
+    <!-- <link rel="stylesheet" href="assets2/css/main.css">-->
+      
+    </head>
+    <body class>
+        <div id="wrapper">
+        <h1>Bienvenido a nuestro sitio</h1>
+        <br/>
+        <br/>
+        <h3>Por favor registrate para tener acceso a todo el sitio</h3>
+        <br/>
+        <br/>
+        <section id="main" >
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <form action="AltaUserR" method ="get">
+            <input type="text" name="nombre" placeholder="Nombre" required/>
+        <br/>
+        <input type="email" name="correo" placeholder="Correo" required/>
+        <br/>
+        <input type="text"  name="contra" placeholder="Contraseña" required/>
+        <br/>
+        <select name="tipo" required>
+            <option value="" disabled selected>selecciona  tu rol</option>
+            <option value="P">Profesor</option>
+            <option value="A">Alumno</option>
+        </select>
+        <br/>
+        
+        <ul class="icons"> <li> <a href="#" title="Registrar" onclick="$(this).closest('form').submit()" name="destroy" value="alta" class="fa-sign-in">Registar</a> </li></ul>
+            </form>
+        </section>
+        </div>
+    </body>
+</html>
