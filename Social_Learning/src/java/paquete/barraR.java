@@ -35,14 +35,17 @@ public class barraR extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet barraR</title>");            
+            out.println("<meta charset=\"UTF-8\">\n" +
+"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
+"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
             out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet barraR at " + request.getContextPath() + "</h1>");
+            out.println("<body class> <div id=\"wrapper\">");
+         
             
-            out.println("<br/> <form action='logout' method='get' > <input type='submit' value='Salir'/> </form> ");
+            out.println("<br/> <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script> <br/> <br/><br/><br/><br/><form action='logout' method='get' > <ul class=\"icons\"> <li> <a href=\"#\" title=\"Salir\" onclick=\"$(this).closest('form').submit()\" name=\"destroy\" value=\"alta\" class=\"fa-sign-out\">Salir</a> </li></ul> </form> ");
             
-            out.println("</body>");
+            out.println("</div></body>");
             out.println("</html>");
         }
     }

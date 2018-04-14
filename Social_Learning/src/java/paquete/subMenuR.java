@@ -54,11 +54,14 @@ public class subMenuR extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet subMenuR</title>");            
+            out.println("<meta charset=\"UTF-8\">\n" +
+"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
+"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
             out.println("</head>");
-            out.println("<body>");
+            out.println("<body class> <div id=\"wrapper\">");
             out.println("<h1>Bienvenido " +tipo + "</h1><br/>");
-            out.println("<h2>Este es tu perfil</h2><br/>");
+            out.println("<h2>Este es tu perfil</h2><br/>  <section id=\"main\">");
             out.println("<b>Id: </b> "+id+"<br/>");
             out.println("<b>Nombre: </b> "+ nomb+ "<br/>");
             out.println("<b>correo: </b> "+ correo+ "<br/>");
@@ -66,7 +69,7 @@ public class subMenuR extends HttpServlet {
                     + " <input type='submit' name='editR' value='Editar' />"
                     + "<form/> ");
             
-            out.println("</body>");
+            out.println("</section </div> </body>");
             out.println("</html>");
              }
              else
