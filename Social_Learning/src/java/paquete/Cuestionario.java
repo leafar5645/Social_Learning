@@ -23,6 +23,31 @@ public class Cuestionario {
      Conexion_Base conexion;
     Timestamp fecha = new Timestamp(System.currentTimeMillis());
     String [][] cuestionario = new String[5][10];
+
+    public int getIdC() {
+        return idC;
+    }
+
+    public void setIdC(int idC) {
+        this.idC = idC;
+    }
+
+    public int getCalif() {
+        return calif;
+    }
+
+    public void setCalif(int calif) {
+        this.calif = calif;
+    }
+
+    public String[][] getCuestionario() {
+        return cuestionario;
+    }
+
+    public void setCuestionario(String[][] cuestionario) {
+        this.cuestionario = cuestionario;
+    }
+    
     public int GeneraC (int idt)
     {
         int res=0;
@@ -41,6 +66,7 @@ public class Cuestionario {
            resul=st.executeQuery("select max(idpregunta) from usuario where idt='"+idt+"';");
            if (resul.next()){
                int ids  =resul.getInt(1);
+               ids=ids-1;
                if(ids>=10)
                {
                     p=(int) (Math.random()*ids)+1;
@@ -87,6 +113,49 @@ public class Cuestionario {
         {
             System.out.println("" + e);
         }
+        return res;
+    }
+    
+    public int permitir (int idt, int idA) throws SQLException
+    {
+        int res=0;
+        int res2=0;
+        int ide=0;
+        int calif=0;
+         conexion = new Conexion_Base();
+        Connection con=conexion.getConnection();
+           Statement st = null  ;
+            ResultSet result = null;
+            
+            
+        try
+        {
+         st = con.createStatement();
+             result = st.executeQuery("select * from examen where idalumno ='"+idA+"' and idt ='"+idt+"';");
+            if(result.next())
+            {
+                res=1;
+              
+            }
+            else
+            {
+                 st=con.createStatement();
+           result=st.executeQuery("select max(idexamen) from examen;");
+           if (result.next()){
+               ide  =result.getInt(1);
+               ide=ide+1;
+                res=st.executeUpdate("insert into examen  values('"+ide+"','" + calif+ "','" +idA+"','" + idt+"','"+fecha+"' );");
+            }
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println("e");
+        }
+        con.close();
+        st.close();
+        result.close();
+        
         return res;
     }
     

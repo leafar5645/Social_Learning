@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 /**
  *
@@ -48,9 +49,29 @@ public class Pregunta {
     {
         
       conexion = new Conexion_Base();
+      int z=0 , w =0, p =0;
+       int [] entero = new int [4];
         Connection con = conexion.getConnection();
         Statement st=null;
-        ResultSet result=null;  
+        ResultSet result=null;
+         Random r = new Random();
+p = r.nextInt(4)+1;
+while(w<4)
+       {
+           while(z<4)
+           {
+               if(entero[z]==p)
+               {
+                   p= r.nextInt(4)+1;
+                   z=-1;
+               }
+               z=z+1;
+           }
+           entero[w]=p;
+           p= r.nextInt(4)+1;
+          z=0; 
+         w=w+1;  
+       }
          try
         {
          st = con.createStatement();
@@ -60,10 +81,10 @@ public class Pregunta {
              this.idP=IDp;
              this.idT=IDt;
              this.pregunta[0]=result.getString("pregunta");
-             this.pregunta[1]=result.getString("respuesta");
-             this.pregunta[2]=result.getString("a");
-             this.pregunta[3]=result.getString("b");
-             this.pregunta[4]=result.getString("c");
+             this.pregunta[entero[0]]=result.getString("respuesta");
+             this.pregunta[entero[1]]=result.getString("a");
+             this.pregunta[entero[2]]=result.getString("b");
+             this.pregunta[entero[3]]=result.getString("c");
                          }
         }
         catch(SQLException e)
@@ -77,3 +98,4 @@ public class Pregunta {
     } 
     
 }
+
