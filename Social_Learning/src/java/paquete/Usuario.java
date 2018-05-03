@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import Conexion_Base.java;
 /**
  *
  * @author Marcus
@@ -30,13 +30,13 @@ public class Usuario {
     public void setFoto(String foto) {
         this.foto = foto;
     }
- 
+
 
     public Usuario() {
-       
+
     }
-    
-   
+
+
 
    public int getId() {
         return id;
@@ -83,7 +83,7 @@ public class Usuario {
         Connection con=conexion.getConnection();
            Statement st = null  ;
             ResultSet result = null;
-            
+
         try
         {
          st = con.createStatement();
@@ -106,8 +106,8 @@ public class Usuario {
         con.close();
         st.close();
         result.close();
-        
-        
+
+
         return res;
     }
     public int AltaUR (String correos , String nombres , String contra ,String type, String foto )
@@ -117,7 +117,7 @@ public class Usuario {
         Connection con = conexion.getConnection();
         Statement st=null;
         ResultSet resul=null;
-        
+
         try
         {
             st=con.createStatement();
@@ -126,33 +126,33 @@ public class Usuario {
                int ids  =resul.getInt(1);
                ids=ids+1;
             res=st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
-            
+
            }
         }
         catch(SQLException e)
         {
             System.out.println("" + e);
         }
-        
+
         return res;
     }
     public int EditPR (String correos , String nombres , int ids, String conN , String conN2 , String contra) throws SQLException
     {
-    int res=0;    
+    int res=0;
     conexion  = new Conexion_Base();
     Connection con =conexion.getConnection();
     Statement st = null  ;
     String sql;
     if(!conN.equalsIgnoreCase("") && conN.equals(conN2))
     {
-       
+
           sql="Update usuario set nombre='"+nombres+"',  correo='"+ correos+"' , pass='"+conN+"' where idusuario='"+ids+"' and pass='"+contra+"';";
     }
     else
     {
          sql="Update usuario set nombre='"+nombres+"',  correo='"+ correos+"'  where idusuario='"+ids+"' and pass='"+contra+"';";
     }
-            
+
         try
         {
          st = con.createStatement();
@@ -169,10 +169,10 @@ public class Usuario {
         }
         con.close();
         st.close();
-        
-    
+
+
     return res;
     }
-  
-    
+
+
 }
