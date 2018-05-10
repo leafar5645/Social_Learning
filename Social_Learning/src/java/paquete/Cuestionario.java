@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.Random;
 
 /**
  *
@@ -63,14 +64,15 @@ public class Cuestionario {
         try
         {
             st=con.createStatement();
-           resul=st.executeQuery("select max(idpregunta) from usuario where idt='"+idt+"';");
+           resul=st.executeQuery("select max(idpregunta) from pregunta where idt='"+idt+"';");
            if (resul.next()){
                int ids  =resul.getInt(1);
-               ids=ids-1;
+              
                if(ids>=10)
                {
-                    p=(int) (Math.random()*ids)+1;
-        
+                   
+         Random r = new Random();
+p = r.nextInt(ids)+1;
         
       
        while(w<10)
@@ -79,13 +81,13 @@ public class Cuestionario {
            {
                if(entero[z]==p)
                {
-                   p=(int) (Math.random()* ids)+1;
+                  p = r.nextInt(ids)+1;
                    z=-1;
                }
                z=z+1;
            }
            entero[w]=p;
-           p=(int) (Math.random()*ids)+1;
+           p = r.nextInt(ids)+1;
           z=0; 
          w=w+1;  
        }

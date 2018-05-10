@@ -41,6 +41,10 @@ public class barraR extends HttpServlet {
 "    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
             out.println("</head>");
             out.println("<body class> <div id=\"wrapper\">");
+             out.println("<h1 class=\"style2\"><font color=\"Green\"> <font weigh='800'>");
+            out.println("<a href='index.html'>Buscar curso</a> <br><br>");
+            out.println("<a href='index.html'>Mis cursos</a> <br><br> ");
+            out.println("</font></h1></center>");
          
             
             out.println("<br/> <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script> <br/> <br/><br/><br/><br/><form action='logout' method='get' > <ul class=\"icons\"> <li> <a href=\"#\" title=\"Salir\" onclick=\"$(this).closest('form').submit()\" name=\"destroy\" value=\"alta\" class=\"fa-sign-out\">Salir</a> </li></ul> </form> ");

@@ -9,6 +9,6 @@ create table publicacion(idpubli int not null primary key , idcurso int not null
 create table comentarios(idcomen int not  null primary key , texto varchar (150) , idusuario int not null , idpubli int not null , foreign key (idusuario)references usuario(idusuario) ,foreign key (idpubli) references publicacion (idpubli) );
 create table tema (idt int not null , nombre varchar(100), texto varchar(5000), idcurso int not null , foreign key (idcurso) references curso (idcurso), primary key(idt )   );
 create table examen (idexamen int not null, calif int , idalumno int , idt int , fecha timeStamp, foreign key (idalumno)references usuario(idusuario) , foreign key(idt)references tema(idt) , primary key (idexamen , idalumno, idt) );
-create table  pregunta (idpregunta int not null, idt int not null, pregunta varchar(300) , respuesta varchar(300) , foreign key(idt) references tema(idt) , primary key(idpregunta, idt) );
+create table  pregunta (idpregunta int not null, idt int not null, pregunta varchar(300) , respuesta varchar(300), a varchar(300) , b varchar(300), c varchar(300) , foreign key(idt) references tema(idt) , primary key(idpregunta, idt) );
 
 select* from usuario;
