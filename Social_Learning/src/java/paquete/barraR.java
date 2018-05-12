@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,6 +31,9 @@ public class barraR extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //recuperamos alumno para conocer el tipo de usuario y dar el menu apropiado
+        HttpSession session= request.getSession();
+        Usuario user =(Usuario) session.getAttribute("AlumnoR");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -44,6 +48,8 @@ public class barraR extends HttpServlet {
              out.println("<h1 class=\"style2\"><font color=\"Green\"> <font weigh='800'>");
             out.println("<a href='index.html'>Buscar curso</a> <br><br>");
             out.println("<a href='index.html'>Mis cursos</a> <br><br> ");
+            if((user.getTipo()).equalsIgnoreCase("p"))
+                    out.println("<a href='NuevoCurso.html' target='objetivo'>Nuevo Curso</a> <br><br>");
             out.println("</font></h1></center>");
          
             

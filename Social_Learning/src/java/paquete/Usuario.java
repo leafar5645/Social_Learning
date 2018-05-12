@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import Conexion_Base.java;
+//import Conexion_Base.java;
 /**
  *
  * @author Marcus
@@ -125,7 +125,7 @@ public class Usuario {
            if (resul.next()){
                int ids  =resul.getInt(1);
                ids=ids+1;
-            res=st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
+            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
 
            }
         }
