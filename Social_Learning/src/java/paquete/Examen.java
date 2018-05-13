@@ -78,6 +78,7 @@ public class Examen extends HttpServlet {
           c.GeneraC(idt);
           String [][] cuestionario = new String[5][10];
           cuestionario=c.getCuestionario(); 
+          sesion.setAttribute("Cuestionario", c);
           
             out.println(" <body class onload=\"carga()\" >\n" +
 "   <center>\n" +

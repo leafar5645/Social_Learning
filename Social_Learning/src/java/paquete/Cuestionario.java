@@ -21,9 +21,19 @@ public class Cuestionario {
     int calif;
     int idA;
     int idT;
+    int  preguntas [] = new int[10];
      Conexion_Base conexion;
-    Timestamp fecha = new Timestamp(System.currentTimeMillis());
+         Timestamp fecha = new Timestamp(System.currentTimeMillis());
     String [][] cuestionario = new String[5][10];
+
+    public int[] getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(int[] preguntas) {
+        this.preguntas = preguntas;
+    }
+
 
     public int getIdC() {
         return idC;
@@ -52,6 +62,7 @@ public class Cuestionario {
     public int GeneraC (int idt)
     {
         int res=0;
+        this.idT=idt;
         Pregunta [] pregs = new Pregunta[10];
         int z=0 , w =0, p =0;
         int [] entero = new int [10];
@@ -90,6 +101,7 @@ p = r.nextInt(ids)+1;
            p = r.nextInt(ids)+1;
           z=0; 
          w=w+1;  
+         this.preguntas=entero;
        }
        for (int n =0; n<10 ;n++)
        {
@@ -136,7 +148,7 @@ p = r.nextInt(ids)+1;
              result = st.executeQuery("select * from examen where idalumno ='"+idA+"' and idt ='"+idt+"';");
             if(result.next())
             {
-                res=1;
+                res2=1;
               
             }
             else
@@ -157,6 +169,29 @@ p = r.nextInt(ids)+1;
         con.close();
         st.close();
         result.close();
+        
+        return res2;
+    }
+    public int califica (int idp , String resp)
+    {
+        int res=0;
+         conexion = new Conexion_Base();
+        Connection con=conexion.getConnection();
+           Statement st = null  ;
+            ResultSet result = null;
+            try
+            {
+             st = con.createStatement();
+             result = st.executeQuery("select * from pregunta where ipregunta ='"+idp+"' and idt ='"+idT+"' and respuesta= '"+resp+"';");
+             if(result.next())
+             {
+                 res=1;
+             }
+            } catch(Exception e)
+            {
+                System.out.println("" + e.getMessage());
+            }
+            
         
         return res;
     }
