@@ -9,11 +9,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-<<<<<<< HEAD
-=======
+
 import java.util.ArrayList;
 //import Conexion_Base.java;
->>>>>>> origin/master
+
 /**
  *
  * @author Marcus
