@@ -9,6 +9,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+//import Conexion_Base.java;
+>>>>>>> origin/master
 /**
  *
  * @author Marcus
@@ -21,7 +26,7 @@ public class Usuario {
    String tipo;
    Conexion_Base conexion;
    String foto;
-
+   ArrayList<Curso> cursos;
     public String getFoto() {
         return foto;
     }
@@ -76,6 +81,9 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
     public int  loginR( String correos , String passs) throws SQLException{
         int res=0;
         conexion = new Conexion_Base();
@@ -124,7 +132,7 @@ public class Usuario {
            if (resul.next()){
                int ids  =resul.getInt(1);
                ids=ids+1;
-            res=st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
+            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
 
            }
         }
@@ -171,6 +179,37 @@ public class Usuario {
 
 
     return res;
+    }
+    
+    public boolean buscarCursos()
+    {
+        Statement sta =null;
+       String sql=null;
+       ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+        cursos= new ArrayList<Curso>();
+       try
+       {
+        sta=con.createStatement();
+        System.out.println("hola1");
+        resul=sta.executeQuery("select * from curso where idcreador="+id+";");
+        System.out.println("hola");
+        while(resul.next())
+        {
+            Curso aux = new Curso(resul.getInt("idcurso"),resul.getNString("nombre"),resul.getInt("numinscritos"),resul.getNString("descripcion"));
+            if(aux!=null)
+            cursos.add(aux);
+        }
+        return true;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Buqueda de Cursoso"+e);
+           return false;
+           
+       }
+        
     }
 
 

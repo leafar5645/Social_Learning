@@ -5,7 +5,7 @@
  */
 package paquete;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
+//import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
