@@ -47,7 +47,7 @@ public class barraR extends HttpServlet {
             out.println("<body class> <div id=\"wrapper\">");
              out.println("<h1 class=\"style2\"><font color=\"Green\"> <font weigh='800'>");
             out.println("<a href='index.html'>Buscar curso</a> <br><br>");
-            out.println("<a href='index.html'>Mis cursos</a> <br><br> ");
+            out.println("<a href='MisCursos' target='objetivo'>Mis cursos</a> <br><br> ");
             if((user.getTipo()).equalsIgnoreCase("p"))
                     out.println("<a href='NuevoCurso.html' target='objetivo'>Nuevo Curso</a> <br><br>");
             out.println("</font></h1></center>");

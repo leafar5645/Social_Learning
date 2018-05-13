@@ -69,6 +69,7 @@ CREATE TABLE `curso` (
 
 LOCK TABLES `curso` WRITE;
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
+INSERT INTO `curso` VALUES (1,'adasd',1,0,'asdsdsd'),(2,'curso1',1,0,'sdfsd'),(3,'asdd',1,0,'asdsd'),(4,'sdasd',1,0,'asd'),(5,'curso2',1,0,'prueba'),(6,'curso2especial',1,0,'el perro\r\nsds'),(7,'curso superespacial',1,0,'especial\r\nespecial');
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,6 +177,7 @@ CREATE TABLE `tema` (
   `nombre` varchar(100) DEFAULT NULL,
   `texto` varchar(5000) DEFAULT NULL,
   `idcurso` int(11) NOT NULL,
+  `recurso` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idt`),
   KEY `idcurso` (`idcurso`),
   CONSTRAINT `tema_ibfk_1` FOREIGN KEY (`idcurso`) REFERENCES `curso` (`idcurso`)
@@ -188,6 +190,7 @@ CREATE TABLE `tema` (
 
 LOCK TABLES `tema` WRITE;
 /*!40000 ALTER TABLE `tema` DISABLE KEYS */;
+INSERT INTO `tema` VALUES (1,'tema2','dasd\rsdasd\rsdasdas\rasdsd',2,'0'),(2,'sdfsf','ffffffffffffffsdfsdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdfsfsdfsdfsdf',2,'0'),(3,'dsadas','aaaaaaaaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddd',2,'0'),(4,'hola','aaaaaaaaaaaaaaaaaaaaaaaaaaa\rdddddddddddddddddddddddd',2,'0'),(5,'asdsd','aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\rSLATOdddddddddddddddddddddddddd',3,'0'),(6,'adsdasda','sdfgsdffffffffffff',4,'0'),(7,'dasdas','sdadsadasd\r\nsadsdsads',4,'0'),(8,'asdasd','sdadsdasd',5,'0'),(9,'asdasd','sadsdasd',5,'0'),(10,'tema1','asddasdasd',6,'0'),(11,'tema2','asdsdasdasd',6,'0'),(12,'tema3','sadasdasd',6,'0'),(13,'tema1','tea\r\ncoasa\r\nmas cosas\r\nmas cosas',7,'apoyo13.mp4');
 /*!40000 ALTER TABLE `tema` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +219,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'humberto@gmail.com','beto','Humberto','P','P335506');
+INSERT INTO `usuario` VALUES (1,'humberto@gmail.com','beto','Humberto','P','P335506'),(2,'pepe@pepe.com','pepe','pepe','P','P874621');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,12 +231,12 @@ DROP TABLE IF EXISTS `usuariocurso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuariocurso` (
-  `idusuario` int(11) NOT NULL,
   `idcurso` int(11) NOT NULL,
-  PRIMARY KEY (`idusuario`,`idcurso`),
-  KEY `idcurso` (`idcurso`),
-  CONSTRAINT `usuariocurso_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`),
-  CONSTRAINT `usuariocurso_ibfk_2` FOREIGN KEY (`idcurso`) REFERENCES `curso` (`idcurso`)
+  `idusuario` int(11) NOT NULL,
+  PRIMARY KEY (`idcurso`,`idusuario`),
+  KEY `idusuario` (`idusuario`),
+  CONSTRAINT `usuariocurso_ibfk_1` FOREIGN KEY (`idcurso`) REFERENCES `curso` (`idcurso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `usuariocurso_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -255,4 +258,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-11 18:36:58
+-- Dump completed on 2018-05-13  1:08:44

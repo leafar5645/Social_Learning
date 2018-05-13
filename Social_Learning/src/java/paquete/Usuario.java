@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 //import Conexion_Base.java;
 /**
  *
@@ -22,7 +23,7 @@ public class Usuario {
    String tipo;
    Conexion_Base conexion;
    String foto;
-
+   ArrayList<Curso> cursos;
     public String getFoto() {
         return foto;
     }
@@ -76,6 +77,9 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    public ArrayList<Curso> getCursos() {
+        return cursos;
     }
     public int  loginR( String correos , String passs) throws SQLException{
         int res=0;
@@ -172,6 +176,37 @@ public class Usuario {
 
 
     return res;
+    }
+    
+    public boolean buscarCursos()
+    {
+        Statement sta =null;
+       String sql=null;
+       ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+        cursos= new ArrayList<Curso>();
+       try
+       {
+        sta=con.createStatement();
+        System.out.println("hola1");
+        resul=sta.executeQuery("select * from curso where idcreador="+id+";");
+        System.out.println("hola");
+        while(resul.next())
+        {
+            Curso aux = new Curso(resul.getInt("idcurso"),resul.getNString("nombre"),resul.getInt("numinscritos"),resul.getNString("descripcion"));
+            if(aux!=null)
+            cursos.add(aux);
+        }
+        return true;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Buqueda de Cursoso"+e);
+           return false;
+           
+       }
+        
     }
 
 

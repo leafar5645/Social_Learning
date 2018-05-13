@@ -23,9 +23,6 @@ public class NuevoCurso extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //comprobando que no se hay cancelado
-        System.out.println("Cacelar = "+request.getParameter("Cancelar"));
-        System.out.println("Limpiar = "+request.getParameter("Limpiar"));
-        System.out.println("Enviar = "+request.getParameter("Enviar"));
        if(request.getParameter("Cancelar")!=null)
            response.sendRedirect("subMenuR");
        else if(request.getParameter("limpiar")!=null)
