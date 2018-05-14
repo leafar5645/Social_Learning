@@ -116,7 +116,7 @@ public class Usuario {
 
         return res;
     }
-    public int AltaUR (String correos , String nombres , String contra ,String type, String foto )
+    public int AltaUR (String correos , String nombres , String contra ,String type )
     {
         int res=0;
         conexion = new Conexion_Base();
@@ -131,7 +131,8 @@ public class Usuario {
            if (resul.next()){
                int ids  =resul.getInt(1);
                ids=ids+1;
-            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+foto+"'  );");
+               this.id=ids;
+            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+ids+"'  );");
 
            }
         }

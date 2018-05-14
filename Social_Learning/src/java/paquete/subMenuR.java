@@ -65,14 +65,14 @@ public class subMenuR extends HttpServlet {
             out.println("<body class> <div id=\"wrapper\">");
             out.println("<h1>Bienvenido " +tipo + "</h1><br/>");
             out.println("<h2>Este es tu perfil</h2><br/>  <section id=\"main\">");
-            out.println("<img src='UsuariosFotosR/"+nomf+".jpg'> <br>");
+            out.println("<img src='UsuariosFotosR/"+nomf+".jpg' height=\"100\" width=\"100\"> <br>");
             out.println("<b>Id: </b> "+id+"<br/>");
             out.println("<b>Nombre: </b> "+ nomb+ "<br/>");
             out.println("<b>correo: </b> "+ correo+ "<br/>");
             out.println("<form action='subMenuR' method='get' >"
-                    + " <input type='submit' name='editR' value='Editar' />"
-                    + "<form/> ");
-            
+                    + " <input type='submit' name='editR' value='Editar Perfil' />"
+                    + "</form> ");
+            out.println("<br/><form action='editImg' method='get'> <input type='submit' value='Cambiar Imagen'/> </form> ");
             out.println("</section </div> </body>");
             out.println("</html>");
              }

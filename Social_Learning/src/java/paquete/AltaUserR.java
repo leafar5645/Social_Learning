@@ -59,20 +59,21 @@ public class AltaUserR extends HttpServlet {
    String path=request.getRealPath("/UsuariosFotosR");
  
 
-    Random r = new Random();
-int num = r.nextInt(1000000)+743;
- File file = new File(path+"/" +tipo + num+ ".jpg" ); //La clase file tiene 3 constructores  File (String path).  Crea una nueva instancia de tipo file  convirtiendo la cadena de nombre de ruta dada en una ruta de acceso abstracta.
+   
+
+       
+     
+     int res=0;
+     Usuario userA = new Usuario();
+     res=userA.AltaUR(Correo, nombre, contra, tipo );
+     if(res==1)
+     {
+          File file = new File(path+"/" + userA.getId()+ ".jpg" ); //La clase file tiene 3 constructores  File (String path).  Crea una nueva instancia de tipo file  convirtiendo la cadena de nombre de ruta dada en una ruta de acceso abstracta.
                        
       
     InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
         Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
-        String  fotod=(""+tipo+num+"");
-     
-     int res=0;
-     Usuario userA = new Usuario();
-     res=userA.AltaUR(Correo, nombre, contra, tipo, fotod );
-     if(res==1)
-     {
+         
           PrintWriter out = response.getWriter();
          response.setContentType("text/html;charset=UTF-8");
       out.println("<!DOCTYPE html>");
