@@ -27,7 +27,9 @@ public class verTema extends HttpServlet {
         int id =Integer.parseInt(sid);
         String sidcurso = request.getParameter("idcurso");
         int idcurso =Integer.parseInt(sidcurso);
-        Tema actual = temas.get(id);
+        Tema actual = temas.get(id); 
+        session.setAttribute("TemaR", actual);
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>\n" +
@@ -63,7 +65,7 @@ public class verTema extends HttpServlet {
             out.println(" <div style='background:white;' align='center'>\n" +
 "    <form action='verCurso?id="+idcurso+"'  method='post'>\n" +
 "        <input type='submit' name='fin' value='Volver a Curso'/>\n" +
-"    </form>\n" +
+"    </form>\n" + "<form action='subirPreguntasR' method='post'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  " +
 "    </div>\n" +
 "    </body>\n" +
 "</html>");

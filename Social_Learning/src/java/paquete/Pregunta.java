@@ -96,6 +96,30 @@ while(w<4)
         result.close();
         
     } 
+    public int insertPregunta(int idt , String pregunta , String respuesta, String a , String b , String c ) throws SQLException
+    {
+        int res=0;
+        int idp=0;
+         conexion = new Conexion_Base();
+      int z=0 , w =0, p =0;
+       int [] entero = new int [4];
+        Connection con = conexion.getConnection();
+        Statement st=null;
+             ResultSet resul=null;
+        st=con.createStatement();
+           resul=st.executeQuery("select max(idpregunta) from usuario where idt='"+idt+"';");
+           if (resul.next()){
+                idp  =resul.getInt(1);
+               idp=idp+1;
+               
+            res= st.executeUpdate("insert into usuario values('"+idp+"','" +idt+ "','" +pregunta+"','" + respuesta+"','"+a+"','"+b+"' , '"+c+"'  );");
+
+           }
+
+        
+        
+        return res;
+    }
     
 }
 

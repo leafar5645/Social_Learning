@@ -23,22 +23,13 @@ import javax.servlet.http.Part;
  *
  * @author Marcus
  */
-@MultipartConfig(maxFileSize = 16177215) 
+@MultipartConfig(maxFileSize = 8177215) 
 public class editImg2 extends HttpServlet {
 
    
     
     
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
