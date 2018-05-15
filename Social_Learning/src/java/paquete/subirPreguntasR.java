@@ -35,15 +35,19 @@ public class subirPreguntasR extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-                       
+            out.println("<meta charset=\"UTF-8\">\n" +
+"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
+"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
             out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Introduce los datos para subir tus preguntas</h1> <br/> <br/> <form action='subirPreguntasR' method='get'>  ");
+            out.println("<body class> <div id=\"wrapper\">");
+            out.println("<h1>Introduce los datos para subir tus preguntas</h1> <section id=\"main\"> <br/> <br/> <form action='subirPreguntasR' method='get'>  ");
             out.println("<input type='text' name='pregunta' placeholder='pregunta' required/> <br/> "
-                    + "<input type='text' name='respuesta' placeholder='Respuesta Correcta'><br/> <input type='text' name='a' placeholder='opcion 1'/> "
+                    + "<input type='text' name='respuesta' placeholder='Respuesta Correcta' /><br/> <input type='text' name='a' placeholder='opcion 1'/> "
                     + "<br/> <input type='text' name='b' placeholder='opcion 2'/> <br/> <input type='text' name='c' placeholder='opcion 3' /> <br/>"
                     + "<input type='submit' name='subirp' value='subir' ");
-            out.println("</body>");
+             out.println("</section </div> </body>");
+            out.println("</html>");
             out.println("</html>");
         }
         else 
@@ -55,7 +59,7 @@ public class subirPreguntasR extends HttpServlet {
                           int id = t.getId_tema(); 
                           int res=0;
                           String pregunta=request.getParameter("pregunta");
-                          String respuesta=request.getParameter("Respuesta");
+                          String respuesta=request.getParameter("respuesta");
                           String a= request.getParameter("a");
                           String b= request.getParameter("b");
                           String c = request.getParameter("c");
