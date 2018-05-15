@@ -107,12 +107,12 @@ while(w<4)
         Statement st=null;
              ResultSet resul=null;
         st=con.createStatement();
-           resul=st.executeQuery("select max(idpregunta) from usuario where idt='"+idt+"';");
+           resul=st.executeQuery("select max(idpregunta) from pregunta where idt='"+idt+"';");
            if (resul.next()){
                 idp  =resul.getInt(1);
                idp=idp+1;
                
-            res= st.executeUpdate("insert into usuario values('"+idp+"','" +idt+ "','" +pregunta+"','" + respuesta+"','"+a+"','"+b+"' , '"+c+"'  );");
+            res= st.executeUpdate("insert into pregunta values('"+idp+"','" +idt+ "','" +pregunta+"','" + respuesta+"','"+a+"','"+b+"' , '"+c+"'  );");
 
            }
 

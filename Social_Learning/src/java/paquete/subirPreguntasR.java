@@ -7,6 +7,9 @@ package paquete;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +27,7 @@ public class subirPreguntasR extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion = request.getSession();
-        Tema t= (Tema) sesion.getAttribute("TemaR");
-        int id = t.getId_tema();
+      
         if (request.getParameter("subirp").equalsIgnoreCase("registar pregunta") )
         {
         PrintWriter out = response.getWriter();
@@ -37,7 +38,7 @@ public class subirPreguntasR extends HttpServlet {
                        
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Introduce los datos para subir tus preguntas</h1> <br/> <br/> <form action='subirPreguntas' method='get'>  ");
+            out.println("<h1>Introduce los datos para subir tus preguntas</h1> <br/> <br/> <form action='subirPreguntasR' method='get'>  ");
             out.println("<input type='text' name='pregunta' placeholder='pregunta' required/> <br/> "
                     + "<input type='text' name='respuesta' placeholder='Respuesta Correcta'><br/> <input type='text' name='a' placeholder='opcion 1'/> "
                     + "<br/> <input type='text' name='b' placeholder='opcion 2'/> <br/> <input type='text' name='c' placeholder='opcion 3' /> <br/>"
@@ -45,8 +46,90 @@ public class subirPreguntasR extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-    }
+        else 
+        {
+            if (request.getParameter("subirp").equalsIgnoreCase("subir"))
+                    {
+                          HttpSession sesion = request.getSession();
+                          Tema t= (Tema) sesion.getAttribute("TemaR");
+                          int id = t.getId_tema(); 
+                          int res=0;
+                          String pregunta=request.getParameter("pregunta");
+                          String respuesta=request.getParameter("Respuesta");
+                          String a= request.getParameter("a");
+                          String b= request.getParameter("b");
+                          String c = request.getParameter("c");
+                          Pregunta p= new Pregunta();
+                try {
+                    res=p.insertPregunta(id, pregunta, respuesta, a, b, c);
+                } catch (SQLException ex) {
+                    Logger.getLogger(subirPreguntasR.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                        if(res==1)
+                        {
+                                  PrintWriter out = response.getWriter();
+         response.setContentType("text/html;charset=UTF-8");
+      out.println("<!DOCTYPE html>");
+            out.println("<html>");
+   out.println("<body bgcolor='#A2E375'>");
+out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
+     out.println("<script>");
+       out.println(" swal({\n" +
+"  title: 'exito',\n" +
+"  text: \"Alta exitosa !\",\n" +
+"  type: 'correct',\n" +
+"  showCancelButton: false,\n" +
+"  confirmButtonColor: '#d33',\n" +
+"  cancelButtonColor: '#d33',\n" +
+"  confirmButtonText: 'OK'\n" +
+"}).then(function (result) {\n" +
+"  if (result.value) {\n" +
+"   window.location.href=\"MisCursos\";"+
+"  }else{ window.location.href=\"MisCursos\";}\n" +
+"})");
+   
+       out.println("</script>");
+       
+       out.println("</body>");
+
+            out.println("</html>");
+                        }
+                        else
+                        {
+                            PrintWriter out = response.getWriter();
+         response.setContentType("text/html;charset=UTF-8");
+      out.println("<!DOCTYPE html>");
+            out.println("<html>");
+   out.println("<body bgcolor='#A2E375'>");
+out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
+     out.println("<script>");
+       out.println(" swal({\n" +
+"  title: 'Error',\n" +
+"  text: \"Error al registar intentelo mas tarde!\",\n" +
+"  type: 'error',\n" +
+"  showCancelButton: false,\n" +
+"  confirmButtonColor: '#d33',\n" +
+"  cancelButtonColor: '#d33',\n" +
+"  confirmButtonText: 'OK'\n" +
+"}).then(function (result) {\n" +
+"  if (result.value) {\n" +
+"   window.location.href=\"MisCursos\";"+
+"  }else{ window.location.href=\"MisCursos\";}\n" +
+"})");
+   
+       out.println("</script>");
+       
+       out.println("</body>");
+
+            out.println("</html>");  
+                            
+                        }
+                    }
+        }
+        }
+}
+    
 
   
 
-}
+
