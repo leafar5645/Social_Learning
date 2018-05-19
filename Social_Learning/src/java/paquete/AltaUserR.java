@@ -105,7 +105,7 @@ public class AltaUserR extends HttpServlet {
    String puertoEnvio = "587";
     String mailReceptor = Correo;
     String asunto = "Registro"; 
-    String cuerpo = "Bienvenido al sistema"; //mensaje que sera enviado en el correro
+    String cuerpo = "Bienvenido al sistema "+ nombre + " Tu registro ha sido exitoso  "; //mensaje que sera enviado en el correro
   
                Properties props = new Properties();
         props.put("mail.smtp.user", miCorreo);
