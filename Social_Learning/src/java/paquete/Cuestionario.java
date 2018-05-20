@@ -63,7 +63,7 @@ public class Cuestionario {
     {
         int res=0;
         this.idT=idt;
-        Pregunta [] pregs = new Pregunta[10];
+        Pregunta pregs = new Pregunta();
         int z=0 , w =0, p =0;
         int [] entero = new int [10];
         String [] pregun = new String [5];
@@ -78,7 +78,7 @@ public class Cuestionario {
            resul=st.executeQuery("select max(idpregunta) from pregunta where idt='"+idt+"';");
            if (resul.next()){
                int ids  =resul.getInt(1);
-              
+               System.out.println("ids= " + ids);
                if(ids>=10)
                {
                    
@@ -98,15 +98,17 @@ p = r.nextInt(ids)+1;
                z=z+1;
            }
            entero[w]=p;
+           System.out.println("pregunta= " + p);
            p = r.nextInt(ids)+1;
           z=0; 
          w=w+1;  
-         this.preguntas=entero;
+        
        }
+        this.preguntas=entero;
        for (int n =0; n<10 ;n++)
        {
-           pregs[n].ObtenerP(idt, entero[n]);
-          pregun=pregs[n].getPregunta();
+           pregun=pregs.ObtenerP(idt, entero[n]);
+         // pregun=pregs[n].getPregunta();
           for(int k=0; k<5 ; k++)
           {
               cuestionario[k][n] =pregun[k];
@@ -167,12 +169,11 @@ p = r.nextInt(ids)+1;
             System.out.println("e");
         }
         con.close();
-        st.close();
-        result.close();
+     
         
         return res2;
     }
-    public int califica (int idp , String resp)
+    public int califica (int idp , String resp) throws SQLException
     {
         int res=0;
          conexion = new Conexion_Base();
@@ -182,7 +183,7 @@ p = r.nextInt(ids)+1;
             try
             {
              st = con.createStatement();
-             result = st.executeQuery("select * from pregunta where ipregunta ='"+idp+"' and idt ='"+idT+"' and respuesta= '"+resp+"';");
+             result = st.executeQuery("select * from pregunta where idpregunta ='"+idp+"' and idt ='"+idT+"' and respuesta= '"+resp+"';");
              if(result.next())
              {
                  res=1;
@@ -192,8 +193,32 @@ p = r.nextInt(ids)+1;
                 System.out.println("" + e.getMessage());
             }
             
+            con.close();
+     
         
         return res;
+    }
+    public void MeterCal (int cal , int idU , int idt) throws SQLException
+    {
+   
+         conexion = new Conexion_Base();
+        Connection con=conexion.getConnection();
+           Statement st = null  ;
+          int result = 0;
+         
+            try
+            {
+             st = con.createStatement();
+             result = st.executeUpdate("update examen set calif= '"+cal+ "' where idalumno='"+idU+"' and idt='"+idt+"';");
+             
+            } catch(Exception e)
+            {
+                System.out.println("" + e.getMessage());
+            }
+            
+            con.close();
+     
+        
     }
     
 }

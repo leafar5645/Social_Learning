@@ -64,9 +64,11 @@ public class verTema extends HttpServlet {
 "        <br/>");
             out.println(" <div style='background:white;' align='center'>\n" +
 "    <form action='verCurso?id="+idcurso+"'  method='post'>\n" +
-"        <input type='submit' name='fin' value='Volver a Curso'/>\n" +
-"    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  " +
-"    </div>\n" +
+"        <input type='submit' name='fin' value='Volver a Curso'/>\n" );
+            
+out.println("    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
+out.println("</form>\n" + "<form action='Examen' method='get'><br/> <input type='submit' value='Cuestionario' name='examen'/> </form> ");
+out.println(" </div>\n" +
 "    </body>\n" +
 "</html>");
         }

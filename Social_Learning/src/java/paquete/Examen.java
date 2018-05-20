@@ -60,8 +60,10 @@ public class Examen extends HttpServlet {
              HttpSession sesion = request.getSession();
         Usuario user = new Usuario();
         user= (Usuario)sesion.getAttribute("AlumnoR");
+        Tema t= (Tema) sesion.getAttribute("TemaR");
+                          int idt = t.getId_tema();
         int idA=user.getId();
-        int idt=Integer.parseInt(request.getParameter("tema"));
+    
         Cuestionario c = new Cuestionario();
         int r=0;
         try {
@@ -71,7 +73,7 @@ public class Examen extends HttpServlet {
         }
         if(r==1)
         {
-            response.sendRedirect("index.html");
+            response.sendRedirect("MisCursos");
         }
         else
         {
@@ -104,7 +106,7 @@ public class Examen extends HttpServlet {
             out.println("<br>");
             out.println("<br>");
             }
-            out.println("     </form>\n" +
+            out.println(" <input type='submit' value='Califica'/>    </form>\n" +
 "                    </section>\n" +
 "            </div>\n" +
 "       \n" +

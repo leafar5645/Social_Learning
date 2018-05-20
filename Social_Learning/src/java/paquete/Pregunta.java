@@ -45,9 +45,9 @@ public class Pregunta {
         this.pregunta = pregunta;
     }
 
-    public void ObtenerP (int IDt , int IDp) throws SQLException   //puede necesitar booleano para desplegar error en caso de que exista
+    public String[] ObtenerP (int IDt , int IDp) throws SQLException   //puede necesitar booleano para desplegar error en caso de que exista
     {
-        
+        String retorno[]= new String [5];
       conexion = new Conexion_Base();
       int z=0 , w =0, p =0;
        int [] entero = new int [4];
@@ -68,6 +68,7 @@ while(w<4)
                z=z+1;
            }
            entero[w]=p;
+           System.out.println("preunta pregunta = " + p);
            p= r.nextInt(4)+1;
           z=0; 
          w=w+1;  
@@ -80,12 +81,13 @@ while(w<4)
             {
              this.idP=IDp;
              this.idT=IDt;
-             this.pregunta[0]=result.getString("pregunta");
-             this.pregunta[entero[0]]=result.getString("respuesta");
-             this.pregunta[entero[1]]=result.getString("a");
-             this.pregunta[entero[2]]=result.getString("b");
-             this.pregunta[entero[3]]=result.getString("c");
+             retorno[0]=result.getString("pregunta");
+             retorno[entero[0]]=result.getString("respuesta");
+             retorno[entero[1]]=result.getString("a");
+             retorno[entero[2]]=result.getString("b");
+             retorno[entero[3]]=result.getString("c");
                          }
+        
         }
         catch(SQLException e)
         {
@@ -94,7 +96,7 @@ while(w<4)
         con.close();
         st.close();
         result.close();
-        
+        return retorno;
     } 
     public int insertPregunta(int idt , String pregunta , String respuesta, String a , String b , String c ) throws SQLException
     {
@@ -115,8 +117,9 @@ while(w<4)
             res= st.executeUpdate("insert into pregunta values('"+idp+"','" +idt+ "','" +pregunta+"','" + respuesta+"','"+a+"','"+b+"' , '"+c+"'  );");
 
            }
-
-        
+           con.close();
+        st.close();
+                
         
         return res;
     }
