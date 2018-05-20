@@ -49,7 +49,11 @@ public class califica extends HttpServlet {
             Logger.getLogger(califica.class.getName()).log(Level.SEVERE, null, ex);
         }
            }
-           c.MeterCal(cal, idA, idt);
+        try {
+            c.MeterCal(cal, idA, idt);
+        } catch (SQLException ex) {
+            Logger.getLogger(califica.class.getName()).log(Level.SEVERE, null, ex);
+        }
            
             out.println("<!DOCTYPE html>");
             out.println("<html>");

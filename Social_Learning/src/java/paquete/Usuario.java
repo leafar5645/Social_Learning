@@ -132,7 +132,7 @@ public class Usuario {
                int ids  =resul.getInt(1);
                ids=ids+1;
                this.id=ids;
-            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+ids+"'  );");
+            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+ids+"' , 'no'  );");
 
            }
         }
@@ -175,7 +175,7 @@ public class Usuario {
             System.out.println("e");
         }
         con.close();
-        st.close();
+     
 
 
     return res;
@@ -201,6 +201,7 @@ public class Usuario {
             if(aux!=null)
             cursos.add(aux);
         }
+        con.close();
         return true;
        }
        catch(Exception e)
@@ -210,6 +211,29 @@ public class Usuario {
            
        }
         
+    }
+    public int forgot (String correo) throws SQLException
+    {
+        int res=0;
+        
+    conexion  = new Conexion_Base();
+    Connection con =conexion.getConnection();
+    Statement st = null  ;
+     st = con.createStatement();
+         res =st.executeUpdate("update usuario set olvidar='si' where correo='"+correo+"' ");
+       con.close();  
+        return res;
+    }
+    public int Recupera (String correo , String pass) throws SQLException
+    {
+        int res=0;
+        conexion  = new Conexion_Base();
+    Connection con =conexion.getConnection();
+    Statement st = null  ;
+     st = con.createStatement();
+         res =st.executeUpdate("update usuario set olvidar='no' , pass='"+pass+"' where correo='"+correo+"' ");
+       con.close();
+        return res;
     }
 
 
