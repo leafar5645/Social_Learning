@@ -212,7 +212,7 @@ public class Usuario {
        }
         
     }
-    public int forgot (String correo) throws SQLException
+    public int forgot (String correo , int p) throws SQLException
     {
         int res=0;
         
@@ -220,7 +220,7 @@ public class Usuario {
     Connection con =conexion.getConnection();
     Statement st = null  ;
      st = con.createStatement();
-         res =st.executeUpdate("update usuario set olvidar='si' where correo='"+correo+"' ");
+         res =st.executeUpdate("update usuario set olvidar='"+p+"' where correo='"+correo+"' ");
        con.close();  
         return res;
     }
@@ -231,7 +231,7 @@ public class Usuario {
     Connection con =conexion.getConnection();
     Statement st = null  ;
      st = con.createStatement();
-         res =st.executeUpdate("update usuario set olvidar='no' , pass='"+pass+"' where correo='"+correo+"' ");
+         res =st.executeUpdate("update usuario set olvidar='no' , pass='"+pass+"' where olvidar='"+correo+"' ");
        con.close();
         return res;
     }

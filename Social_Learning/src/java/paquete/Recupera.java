@@ -58,49 +58,7 @@ public class Recupera extends HttpServlet {
                 
                 //
                 
-                 final String miCorreo = "social.learning.2018@gmail.com"; //correo del administrador desde que seran enviados los mensajes
-    final String miContraseña = "Social9222"; //contraseña del correo
- 
-    String servidorSMTP = "smtp.gmail.com";
-   String puertoEnvio = "587";
-    String mailReceptor = correo;
-    String asunto = "Registro"; 
-    String cuerpo = "La actualizacion de tu contraseña ha sido exitosas la anexamos para que no la olvides '"+pass+"' "; //mensaje que sera enviado en el correro
-  
-               Properties props = new Properties();
-        props.put("mail.smtp.user", miCorreo);
-        props.put("mail.smtp.host", servidorSMTP);
-        props.put("mail.smtp.port", puertoEnvio);
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.socketFactory.port", puertoEnvio);
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback", "false");
-
-        try {
-
-            Session session;
-       session = Session.getInstance(props, 
-               new javax.mail.Authenticator() {
-                                    
-                   @Override
-                   protected PasswordAuthentication getPasswordAuthentication()  {                     
-                       
-                       return new PasswordAuthentication(miCorreo,miContraseña);         
-                                        }                   
-               });
-            session.setDebug(true);
-            MimeMessage msg = new MimeMessage(session);
-            msg.setText(cuerpo);
-            msg.setSubject(asunto);
-            msg.setFrom(new InternetAddress(miCorreo));
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-                    mailReceptor));                
-            Transport.send(msg, msg.getAllRecipients());
-            
-        } catch (Exception mex) {
-        }
+                
                 
                 //
                 out.println("<!DOCTYPE html>");
@@ -110,7 +68,7 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
      out.println("<script>");
        out.println(" swal({\n" +
 "  title: 'Error',\n" +
-"  text: \"Se actualizo tu contraseña revisa tu correo!\",\n" +
+"  text: \"Se actualizo tu contraseña :) !\",\n" +
 "  type: 'success',\n" +
 "  showCancelButton: false,\n" +
 "  confirmButtonColor: '#d33',\n" +
@@ -162,7 +120,7 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
         else
         {
             Conexion_Base conexion=null;
-            String correo = request.getParameter("correo");
+            String correo = request.getParameter("confirm");
             HttpSession sesion = request.getSession();
             sesion.setAttribute("olvida", correo);
             String olvidar="";
@@ -174,7 +132,7 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
         try
         {
          st = con.createStatement();
-             result = st.executeQuery("select * from usuario where correo ='"+correo+"';");
+             result = st.executeQuery("select * from usuario where olvidar ='"+correo+"';");
             if(result.next())
             {
                olvidar=result.getString("olvidar");
@@ -217,23 +175,9 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
             } catch (SQLException ex) {
                 Logger.getLogger(Recupera.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(olvidar.equalsIgnoreCase("si"))
+            if(olvidar.equalsIgnoreCase("no"))
             {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Recupera</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Introduce tu nueva contraseña </h1>");
-                       out.println("<br> <form action='Recupera' method='get' > <input type='password' name='pass' placeholder='Contraseña'/> <input type='submit' name='boton' value='Enviar'/> </form>");
-
-            out.println("</body>");
-            out.println("</html>");
-            }
-            else
-            {
-                out.println("<!DOCTYPE html>");
+                   out.println("<!DOCTYPE html>");
             out.println("<html>");
    out.println("<body bgcolor='#A2E375'>");
 out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
@@ -256,7 +200,23 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
        
        out.println("</body>");
 
-            out.println("</html>");  
+            out.println("</html>");
+          
+            }
+            else
+            {
+                        
+              out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Recupera</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Introduce tu nueva contraseña </h1>");
+                       out.println("<br> <form action='Recupera' method='get' > <input type='password' name='pass' placeholder='Contraseña'/> <input type='submit' name='boton' value='Enviar'/> </form>");
+
+            out.println("</body>");
+            out.println("</html>");
             }
         }
     }
