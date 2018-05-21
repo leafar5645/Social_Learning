@@ -1,6 +1,5 @@
 
 package paquete;
-
 import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +10,7 @@ import java.sql.Statement;
  *
  * @author betoj
  */
-public class Curso 
+public class Curso
 {
     private int id_curso;
     private String nombre;
@@ -23,7 +22,7 @@ public class Curso
        Statement sta =null;
        String sql=null;
        ResultSet resul=null;
-       Conexion_Base conexion = new Conexion_Base(); 
+       Conexion_Base conexion = new Conexion_Base();
        Connection con = conexion.getConnection();
        try
        {
@@ -32,12 +31,10 @@ public class Curso
         if(resul.next())
            id_curso=resul.getInt(1)+1;
         sta.executeUpdate("insert into curso values ('"+id_curso+"','"+nombre+"','"+user.getId()+"','0','"+descripcion+"');");
-
         this.nombre=nombre;
         this.descripcion=descripcion;
         inscritos=0;
         buscarTemas();
-        
        }
        catch(Exception e)
        {
@@ -45,7 +42,6 @@ public class Curso
            System.out.println("Error en Creacion Cursos " + e);
            return;
        }
-       
     }
     public Curso(int id, String nombre, int inscritos,String descripcion)
     {
@@ -60,7 +56,7 @@ public class Curso
        Statement sta =null;
        String sql=null;
        ResultSet resul=null;
-       Conexion_Base conexion = new Conexion_Base(); 
+       Conexion_Base conexion = new Conexion_Base();
        Connection con = conexion.getConnection();
        temas= new ArrayList<Tema>();
        try{
@@ -73,7 +69,6 @@ public class Curso
         {
             Tema aux = new Tema(resul.getInt("idt"),resul.getNString("nombre"),resul.getNString("texto"),resul.getInt("idcurso"),resul.getNString("recurso"));
             temas.add(aux);
-            
         }
         return true;
        }
@@ -94,31 +89,22 @@ public class Curso
     public int getId_curso() {
         return id_curso;
     }
-
-
     public void setId_curso(int id_curso) {
         this.id_curso = id_curso;
     }
     public ArrayList getTemas(){
         return this.temas;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-   
     public String getDescripcion() {
         return descripcion;
     }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
 }

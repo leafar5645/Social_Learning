@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package paquete;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,16 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 /**
  *
  * @author betoj
  */
 public class MisCursos extends HttpServlet {
-
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session= request.getSession();
         Usuario user =(Usuario) session.getAttribute("AlumnoR");
@@ -30,60 +26,60 @@ public class MisCursos extends HttpServlet {
             response.sendRedirect("error.html");
         session.setAttribute("AlumnoH",user );
         ArrayList<Curso> cursos = user.getCursos();
-        try (PrintWriter out = response.getWriter()) 
+        try (PrintWriter out = response.getWriter())
         {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>\n" +
-"    <head>\n" +
-"        <title>TODO supply a title</title>\n" +
-"              <meta charset='UTF-8'>\n" +
-"        <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n" +
-"     <link rel='stylesheet' href='assets/css/main.css'>\n" +
-"    <!-- <link rel='stylesheet' href='assets2/css/main.css'>-->\n" +
-"      \n" +
-"    </head>");
+                "    <head>\n" +
+                "        <title>TODO supply a title</title>\n" +
+                "        <meta charset='UTF-8'>\n" +
+                "        <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n" +
+                "        <link rel='stylesheet' href='assets/css/main.css'>\n" +
+                "       <link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+                "       <link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n"+
+                "        <!-- <link rel='stylesheet' href='assets2/css/main.css'>-->\n" +
+                "        \n" +
+                "    </head>");
             out.println("<body class>\n" +
-"        <div id='wrapper'>\n" +
-"        <h1>Usuario: '"+user.getNombre()+"'</h1>\n" +
-"        <br/>");
-            out.println("<br/>\n" +
-"        <h3>Tus Cursos Actuales Son:</h3>\n" +
-"        <br/>\n" +
-"        <br/>\n" +
-"        <section id='main' >\n" +
-"            <ul>");
+            "<header>\n"+
+                    "<nav>\n"+
+"                        <ul>\n"+
+"                        <li><a href=\"subMenuR\"><span><i class=\"icon icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+"                        <li><a href=\"#\"><span><i class=\"icon icon-search\"></i></span>Explorador</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n"+
+"                    </ul>\n"+
+"                </nav>\n"+
+            "</header>\n"+
+                "        <div id='wrapper'>\n" +
+                "        <h1>"+user.getNombre()+" estos son tus cursos</h1>");
+            out.println("        <section id='main' >\n" +
+                "            <ul>");
             for(int i=0; i<cursos.size();i++)
             {
-                out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>"); 
+                out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
             }
             out.println(" </ul>\n" +
-"        \n" +
-"        <br/>\n" +
-"        </section>\n" +
-"        </div>\n" +
-"    </body>\n" +
-"</html>");
-           
+                "        \n" +
+                "        <br/>\n" +
+                "        </section>\n" +
+                "        </div>\n" +
+                "    </body>\n" +
+                "</html>");
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
-
- 
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

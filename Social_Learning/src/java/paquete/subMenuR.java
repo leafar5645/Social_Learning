@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package paquete;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,13 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 /**
  *
  * @author Marcus
  */
 public class subMenuR extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,16 +30,13 @@ public class subMenuR extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession sesion=request.getSession();
-            
              Usuario user = (Usuario) sesion.getAttribute("AlumnoR");
              String nomb =user.getNombre();
              String tipo =user.getTipo();
              String correo=user.getCorreo();
              String nomf=user.getFoto();
              int id=user.getId();
-          
-            
-              if (tipo.equalsIgnoreCase("p")) 
+              if (tipo.equalsIgnoreCase("p"))
               {
                   tipo="Profesor";
               }
@@ -52,22 +46,31 @@ public class subMenuR extends HttpServlet {
               }
              if(request.getParameter("editR")==null || request.getParameter("editR").equalsIgnoreCase("cancelar"))
              {
-            
-             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
 "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
+"    <link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+"    <link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n"+
+"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");
             out.println("</head>");
             out.println("<body class> <div id=\"wrapper\">");
-            out.println("<h1>Bienvenido " +tipo + "</h1><br/>");
-            out.println("<h2>Este es tu perfil</h2><br/>  <section id=\"main\">");
-            out.println("<img src='UsuariosFotosR/"+nomf+".jpg' height=\"100\" width=\"100\"> <br>");
-            out.println("<b>Id: </b> "+id+"<br/>");
-            out.println("<b>Nombre: </b> "+ nomb+ "<br/>");
+                out.println("<header>\n"+
+                    "<nav>\n"+
+"                        <ul>\n"+
+"                        <li><a href=\"subMenuR\"><span><i class=\"icon icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+"                        <li><a href=\"#\"><span><i class=\"icon icon-search\"></i></span>Explorador</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n"+
+"                    </ul>\n"+
+"                </nav>\n"+
+            "</header>");
+            out.println("<div id='banner'><h1>Bienvenido " +tipo + "</h1></div><br/>");
+            out.println("<section id=\"main\">");
+            out.println("<b>Perfil de "+nomb+"</b><br/>");
+            out.println("<img src='UsuariosFotosR/"+nomf+".jpg' height=\"100\" width=\"100\" align=\"center\"> <br>");
             out.println("<b>correo: </b> "+ correo+ "<br/>");
             out.println("<form action='subMenuR' method='get' >"
                     + " <input type='submit' name='editR' value='Editar Perfil' />"
@@ -77,7 +80,6 @@ public class subMenuR extends HttpServlet {
             out.println("</html>");
              }
              else
-                 
              {
                   out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -85,7 +87,7 @@ public class subMenuR extends HttpServlet {
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
 "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");            
+"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");
             out.println("</head>");
            out.println("<body class> <div id=\"wrapper\">");
             out.println("<h1>Edite su perfil  " +tipo + "</h1><br/> <section id=\"main\">");
@@ -97,23 +99,16 @@ public class subMenuR extends HttpServlet {
             out.println("<b>Escribala de nuevo: </b> <input type='text' value='' name='conN2' /><br/>");
             out.println("<b><h3>*Requisito para cualquier cambio </b></h3>");
             out.println("<b>Contraseña actual: </b> <input type='text' value='' name='con' required /><br/>");
-            
                  out.println( " <input type='submit' value='Cambiar' />"
                     + "</form><br> ");
-                 
-                 
-                 
                out.println("<form action='subMenuR' method='get' >"
                     + " <input type='submit' name='editR' value='cancelar' />"
                     + "<form/> ");
-               
            out.println("</section </div> </body>");
             out.println("</html>");
              }
-             
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -128,7 +123,6 @@ public class subMenuR extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -142,7 +136,6 @@ public class subMenuR extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Returns a short description of the servlet.
      *
@@ -152,5 +145,4 @@ public class subMenuR extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
