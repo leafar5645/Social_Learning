@@ -184,6 +184,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(150) DEFAULT NULL,
   `tipo` varchar(1) DEFAULT NULL,
   `img` varchar(200) DEFAULT NULL,
+  `olvidar` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idusuario`),
   UNIQUE KEY `correo` (`correo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -193,7 +194,7 @@ CREATE TABLE `usuario` (
 --
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'humberto@gmail.com','beto','Humberto','P','1'),(2,'pepe@pepe.com','pepe','pepe','P','2');
+INSERT INTO `usuario` VALUES (1,'humberto@gmail.com','beto','Humberto','P','1'),(2,'pepe@pepe.com','pepe','pepe','P','2' , 'no');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 --

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
@@ -31,13 +32,20 @@ public class olvidar extends HttpServlet {
             throws ServletException, IOException {
          response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-     
+        int p=0;
+        int falso1=0;
+        int falso2=0;
+          Random r = new Random();
+p = r.nextInt(1999999)+1;
+ falso1=r.nextInt(199999)+1;
+  falso2=r.nextInt(199999)+1;
+ 
         if(request.getParameter("boton")!=null)
         {
          String correo =request.getParameter("correo");
          Usuario user = new Usuario();
              try {
-                 user.forgot(correo);
+                 user.forgot(correo , p);
              } catch (SQLException ex) {
                  Logger.getLogger(olvidar.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -48,7 +56,7 @@ public class olvidar extends HttpServlet {
    String puertoEnvio = "587";
     String mailReceptor = correo;
     String asunto = "Recuperar Contraseña"; 
-    String cuerpo = " http://localhost:8080/Social_Learning/Recupera?correo="+correo+" "; //mensaje que sera enviado en el correro
+    String cuerpo = " http://localhost:8080/Social_Learning/Recupera?autenticacion="+falso1+"&confirm="+p+"&user="+falso2+" "; //mensaje que sera enviado en el correro
   
                Properties props = new Properties();
         props.put("mail.smtp.user", miCorreo);
