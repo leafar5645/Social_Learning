@@ -28,16 +28,7 @@ public class BuscarCurso extends HttpServlet {
     Connection con=conexion.getConnection();
     ResultSet resul=null;
     ResultSet resul2=null;
-    
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -82,7 +73,7 @@ public class BuscarCurso extends HttpServlet {
                         out.println("creador "+resul2.getString("nombre")+"<br>");
                         out.println("nombre del curso "+resul.getString("nombre")+"<br>");
                         out.println("descripcion del curso "+resul.getString("descripcion")+"<br>");
-                        out.println(" <li><a href='verCurso?id="+resul.getInt("idcreador")+"'>Link</a></li>");
+                        out.println(" <li><a href='Inscribir?id="+resul.getInt("idcurso")+"'>Inscribir</a></li>");
                     }//falta modificar el link que manda a los datos del curso
 
                 }
@@ -124,7 +115,7 @@ public class BuscarCurso extends HttpServlet {
 
                             out.println("nombre del curso: "+resul.getString("nombre")+"<br>");
                             out.println("descripcion del curso: "+resul.getString("descripcion")+"<br>");
-                            out.println(" <li><a href='verCurso?id="+resul.getInt("idcreador")+"'>Link</a></li>");
+                            out.println(" <li><a href='Inscribir?id="+resul.getInt("idcurso")+"'>Inscribir</a></li>");
                         }
                     }
                     else

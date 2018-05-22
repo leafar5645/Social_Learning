@@ -56,6 +56,44 @@ public class MenuCreacionCurso extends HttpServlet {
 
             for(int i=0;i<temas.size();i++)
             {
+<<<<<<< HEAD
+=======
+                out.println("<html>\n" +
+"            <head> \n" +
+"                        <title>TODO supply a title</title> \n" +
+"                        <meta charset='UTF-8'> \n" +
+"                        <meta name='viewport' content='width=device-width, initial-scale=1.0'> \n" +
+"                        <link rel='stylesheet' href='assets/css/main.css'> \n" +
+"                       <link rel='stylesheet' type='text/css' href='estilos.css'/>\n" +
+"                       <link rel='stylesheet' type='text/css' href='iconos.css'/>\n" +
+"                        <!-- <link rel='stylesheet' href='assets2/css/main.css'>--> \n" +
+"                         \n" +
+"            </head>\n" +
+"            <body class> \n" +
+"           <header>\n" +
+"                    <nav>\n" +
+"                        <ul>\n" +
+"                        <li><a href='subMenuR'><span><i class='icon-home'></i></span>Pefil</a></li>\n" +
+"                        <li><a href='MisCursos'><span><i class='icon-briefcase'></i></span>Mis Cursos</a></li>\n" +
+"                        <li><a href='NuevoCurso.html'><span><i class='icon-search'></i></span>Crear Curso</a></li>\n" +
+"                        <li><a href='logout'><span><i class='icon-exit'></i></span>Log Out</a></li> \n" +
+"                    </ul>\n" +
+"                </nav>\n" +
+"            </header>");         
+                out.println("<div id='wrapper'>\n" +
+"        <h1>Curso: '"+curso.getNombre()+"'</h1>\n" +
+"        <h4>ID Curso: '"+curso.getId_curso()+"'</h4>\n" +
+"        <br/>\n" +
+"        <br/>\n" +
+"        <h3>Los Temas Actuales Son:</h3>\n" +
+"        <br/>\n" +
+"        <br/>");
+                out.println("<section id='main' >\n" +
+"            <ul>");
+                
+               for(int i=0;i<temas.size();i++)
+               {
+>>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
                 out.println("<li>\n" +
                     "                <a href='modificarTemas?id="+(temas.get(i)).getId_tema()+"'>"+(temas.get(i)).getNombre()+"</a>\n" +
                     "                </li>");
