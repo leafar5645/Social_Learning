@@ -194,7 +194,7 @@ CREATE TABLE `usuario` (
 --
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'humberto@gmail.com','beto','Humberto','P','1'),(2,'pepe@pepe.com','pepe','pepe','P','2' , 'no');
+INSERT INTO `usuario` VALUES (1,'humberto@gmail.com','beto','Humberto','P','1' ,'no'),(2,'pepe@pepe.com','pepe','pepe','P','2' , 'no');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 --
