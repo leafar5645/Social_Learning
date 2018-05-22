@@ -56,8 +56,7 @@ public class MenuCreacionCurso extends HttpServlet {
 
             for(int i=0;i<temas.size();i++)
             {
-<<<<<<< HEAD
-=======
+
                 out.println("<html>\n" +
 "            <head> \n" +
 "                        <title>TODO supply a title</title> \n" +
@@ -90,10 +89,10 @@ public class MenuCreacionCurso extends HttpServlet {
 "        <br/>");
                 out.println("<section id='main' >\n" +
 "            <ul>");
-                
-               for(int i=0;i<temas.size();i++)
+            }
+               for( int i=0;i<temas.size();i++)
                {
->>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
+//>>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
                 out.println("<li>\n" +
                     "                <a href='modificarTemas?id="+(temas.get(i)).getId_tema()+"'>"+(temas.get(i)).getNombre()+"</a>\n" +
                     "                </li>");

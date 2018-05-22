@@ -32,7 +32,8 @@ public class subMenuR extends HttpServlet {
             HttpSession sesion=request.getSession();
              Usuario user = (Usuario) sesion.getAttribute("AlumnoR");
              String nomb =user.getNombre();
-             String tipo =user.getTipo();
+             String tipo="";
+             tipo =user.getTipo();
              String correo=user.getCorreo();
              String nomf=user.getFoto();
              int id=user.getId();
@@ -57,15 +58,7 @@ public class subMenuR extends HttpServlet {
             out.println("</head>");
             out.println("<body class> <div id=\"wrapper\">");
                 out.println("<header>\n"+
-                    "<nav>\n"+
-<<<<<<< HEAD
-"                        <ul>\n"+
-"                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
-"                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-"                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
-=======
-"                        <ul>\n");
+                    "<nav><ul>\n");
 //<<<<<<< HEAD
                         if(tipo.equalsIgnoreCase("Profesor"))
                         {
@@ -78,14 +71,14 @@ public class subMenuR extends HttpServlet {
                         else
                         {
                             out.println(
-"                        <li><a href=\"subMenuR\"><span><i class=\"icon icon-home\"></i></span>Pefil</a></li>\n"+
-"                        <li><a href=\"MisCursos\"><span><i class=\"icon icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-"                        <li><a href=\"BuscarCurso\"><span><i class=\"icon icon-search\"></i></span>Explorador</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n");
+"                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+"                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
                         }
 //>>>>>>> 9d1a13e76061db988032b4d2fd5b6cd2e0d23304*/
 out.println(
->>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
+//>>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
 "                    </ul>\n"+
 "                </nav>\n"+
             "</header>");

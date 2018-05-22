@@ -64,7 +64,6 @@ public class verTema extends HttpServlet {
                 "        </section>\n" +
                 "          <br/>");
             if(!actual.getRecurso().equals("0"))
-<<<<<<< HEAD
                 out.println("<section id=\"main\">\n" +
                     "            <video width=\"320\" height=\"240\" controls>\n" +
                     "              <source src=\"RecursosTemas\\"+actual.getRecurso()+"\" type=\"video/mp4\">\n" +
@@ -76,28 +75,12 @@ public class verTema extends HttpServlet {
                 "    <form action='verCurso?id="+idcurso+"'  method='post'>\n" +
                 "        <input type='submit' name='fin' value='Volver a Curso'/>\n" );
 
-            out.println("    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
+       //     out.println("    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
             out.println("</form>\n" + "<form action='Examen' method='get'><br/> <input type='submit' value='Cuestionario' name='examen'/> </form> ");
             out.println(" </section>\n" +
                 "    </body>\n" +
                 "</html>");
-=======
-            out.println("<div style=\"background:white;\" align=\"Center\">\n" +
-"            <video width=\"320\" height=\"240\" controls>\n" +
-"              <source src=\"RecursosTemas\\"+actual.getRecurso()+"\" type=\"video/mp4\">\n" +
-"            Tu navegador No tiene Soporte Para el Video\n" +
-"            </video> \n" +
-"          </div>\n" +
-"        <br/>");
-            out.println(" <div style='background:white;' align='center'>\n" +
-"    <form action='verCurso?id="+idcurso+"'  method='post'>\n" +
-"        <input type='submit' name='fin' value='Volver a Curso'/>\n" );
-            
-out.println("</form>\n" + "<form action='Examen' method='get'><br/> <input type='submit' value='Cuestionario' name='examen'/> </form> ");
-out.println(" </div>\n" +
-"    </body>\n" +
-"</html>");
->>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
+       
         }
     }
 
