@@ -40,13 +40,23 @@ public class MisCursos extends HttpServlet {
             out.println("<body class><div id='wrapper'>\n" +
             "<header>\n"+
                     "<nav>\n"+
-"                        <ul>\n"+
-"                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
-"                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a> "
+"                        <ul>\n");
+if (user.getTipo().equals('P')){
+                         out.println("<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon-search\"></i></span>Mis Cursos</a> "
                     + "</li>\n"+
-"                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n" +
-"                    </ul>\n"+
+"                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-briefcase\"></i></span>Crear Curso</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
+}
+else
+{
+    out.println("<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a> "
+                        + "</li>\n"+
+"                        <li><a href=\"BuscarCursos\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
+}
+                 out.println("</ul>\n"+
 "                </nav>\n"+
             "</header>\n");
 

@@ -32,13 +32,13 @@ public class BuscarCurso extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BuscarCurso</title>");            
+            out.println("<title>Servlet BuscarCurso</title>");
             out.println("</head>");
             out.println("<body>");
            out.println("Criterio de busqueda: <form method='get' action='BuscarCurso'>");
@@ -59,12 +59,12 @@ public class BuscarCurso extends HttpServlet {
         String orden=request.getParameter("orden");
            try{
                Statement sta=con.createStatement();
-                  
-               
+
+
                 if(palabras==null)
                 {
 
-                    resul=sta.executeQuery("select * from curso;"); 
+                    resul=sta.executeQuery("select * from curso;");
                     while(resul.next())
                     {
                         Statement sta2=con.createStatement();
@@ -78,7 +78,7 @@ public class BuscarCurso extends HttpServlet {
 
                 }
                 else
-                {                    
+                {
                     String query="select * from curso where ";
                     if(criterio.equals("autor"))
                     {
@@ -87,7 +87,7 @@ public class BuscarCurso extends HttpServlet {
                             query+=" order by c.nombre;";
                         else
                             query+=" order by c.idcurso desc;";
-                    } 
+                    }
                     else if(criterio.equals("curso"))
                     {
                         query+="nombre like '%"+palabras+"%'";
@@ -103,7 +103,7 @@ public class BuscarCurso extends HttpServlet {
                         else
                             query+=" order by idcurso desc;";
                     }
-                    resul=sta.executeQuery(query); 
+                    resul=sta.executeQuery(query);
                     if(resul.isBeforeFirst())
                     {
                         while(resul.next())

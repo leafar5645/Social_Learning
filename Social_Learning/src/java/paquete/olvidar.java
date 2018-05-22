@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class olvidar extends HttpServlet {
 
-  
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class olvidar extends HttpServlet {
 p = r.nextInt(1999999)+1;
  falso1=r.nextInt(199999)+1;
   falso2=r.nextInt(199999)+1;
- 
+
         if(request.getParameter("boton")!=null)
         {
          String correo =request.getParameter("correo");
@@ -51,13 +51,13 @@ p = r.nextInt(1999999)+1;
              }
               final String miCorreo = "social.learning.2018@gmail.com"; //correo del administrador desde que seran enviados los mensajes
     final String miContraseña = "Social9222"; //contraseña del correo
- 
+
     String servidorSMTP = "smtp.gmail.com";
    String puertoEnvio = "587";
     String mailReceptor = correo;
-    String asunto = "Recuperar Contraseña"; 
+    String asunto = "Recuperar Contraseña";
     String cuerpo = " http://localhost:8080/Social_Learning/Recupera?autenticacion="+falso1+"&confirm="+p+"&user="+falso2+" "; //mensaje que sera enviado en el correro
-  
+
                Properties props = new Properties();
         props.put("mail.smtp.user", miCorreo);
         props.put("mail.smtp.host", servidorSMTP);
@@ -69,35 +69,35 @@ p = r.nextInt(1999999)+1;
                 "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
 
-     
+
         //SecurityManager security = System.getSecurityManager();
 
         try {
            // Authenticator auth = new autentificadorSMTP();
-            
-            
-            
+
+
+
             Session session;
-       session = Session.getInstance(props, 
+       session = Session.getInstance(props,
                new javax.mail.Authenticator() {
-                   
-                   
-                   
-                   
+
+
+
+
                    @Override
                    protected PasswordAuthentication getPasswordAuthentication()  {
-                       
-                       
-                       
+
+
+
                        return new PasswordAuthentication(miCorreo,miContraseña);
-                       
-                       
-                       
+
+
+
                    }
-                   
+
                });
 
- 
+
 
             session.setDebug(true);
 
@@ -107,10 +107,10 @@ p = r.nextInt(1999999)+1;
             msg.setFrom(new InternetAddress(miCorreo));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
                     mailReceptor));
-         
-            
+
+
             Transport.send(msg, msg.getAllRecipients());
-            
+
         } catch (Exception mex) {
         }
          out.println("<!DOCTYPE html>");
@@ -131,23 +131,28 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
 "   window.location.href=\"index.html\";"+
 "  }else{ window.location.href=\"index.html\";}\n" +
 "})");
-   
+
        out.println("</script>");
-       
+
        out.println("</body>");
 
-            out.println("</html>");   
-     
-             
+            out.println("</html>");
+
+
         }
         else
         {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet olvidar</title>");            
+            out.println("<title>Servlet olvidar</title>");
+            out.println("<meta charset=\"UTF-8\">\n" +
+"         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
             out.println("</head>");
-            out.println("<body>");
+            out.println("<body class>");
             out.println("<h1>Introduce la cuenta de correo con la que te registraste</h1>");
             out.println("<br> <form action='olvidar' method='get' > <input type='email' name='correo' placeholder='Correo'/> <input type='submit' name='boton' value='Enviar'/> </form>");
             out.println("</body>");
@@ -155,6 +160,6 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
         }
     }
 
-  
+
 
 }
