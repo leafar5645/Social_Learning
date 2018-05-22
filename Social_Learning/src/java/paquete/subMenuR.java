@@ -42,7 +42,7 @@ public class subMenuR extends HttpServlet {
               }
               else
               {
-              tipo="Alumno";
+                  tipo="Alumno";
               }
              if(request.getParameter("editR")==null || request.getParameter("editR").equalsIgnoreCase("cancelar"))
              {
@@ -59,18 +59,26 @@ public class subMenuR extends HttpServlet {
             out.println("<body class> <div id=\"wrapper\">");
                 out.println("<header>\n"+
                     "<nav>\n"+
-"                        <ul>\n"+
-<<<<<<< HEAD
+"                        <ul>\n");
+//<<<<<<< HEAD
+                        if(tipo.equalsIgnoreCase("Profesor"))
+                        {
+                            out.println(
 "                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
 "                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-"                        <li><a href=\"#\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
-=======
+"                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
+                        }
+                        else
+                        {
+                            out.println(
 "                        <li><a href=\"subMenuR\"><span><i class=\"icon icon-home\"></i></span>Pefil</a></li>\n"+
 "                        <li><a href=\"MisCursos\"><span><i class=\"icon icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
 "                        <li><a href=\"BuscarCurso\"><span><i class=\"icon icon-search\"></i></span>Explorador</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n"+
->>>>>>> 9d1a13e76061db988032b4d2fd5b6cd2e0d23304
+"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n");
+                        }
+//>>>>>>> 9d1a13e76061db988032b4d2fd5b6cd2e0d23304*/
+out.println(
 "                    </ul>\n"+
 "                </nav>\n"+
             "</header>");

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author betoj
  */
+//recibe una session de el usuario actual
 public class MisCursos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -44,15 +45,13 @@ public class MisCursos extends HttpServlet {
             "<header>\n"+
                     "<nav>\n"+
 "                        <ul>\n"+
-"                        <li><a href=\"subMenuR\"><span><i class=\"icon icon-home\"></i></span>Pefil</a></li>\n"+
-"                        <li><a href=\"MisCursos\"><span><i class=\"icon icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-"                        <li><a href=\"#\"><span><i class=\"icon icon-search\"></i></span>Explorador</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n"+
+"                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+"                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n" +
 "                    </ul>\n"+
 "                </nav>\n"+
-            "</header>\n"+
-                "        <div id='wrapper'>\n" +
-                "        <h1>"+user.getNombre()+" estos son tus cursos</h1>");
+            "</header>\n");
             out.println("        <section id='main' >\n" +
                 "            <ul>");
             for(int i=0; i<cursos.size();i++)

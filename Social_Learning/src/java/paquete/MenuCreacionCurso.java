@@ -27,17 +27,28 @@ public class MenuCreacionCurso extends HttpServlet {
         try (PrintWriter out = response.getWriter()) 
                //imprimimos el html para agregar temas
             {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>\n" +
-"        <title>TODO supply a title</title>\n" +
-"              <meta charset=\"UTF-8\">\n" +
-"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->\n" +
-"      \n" +
-"    </head>");
-                out.println("<body class>");            
+                out.println("<html>\n" +
+"            <head> \n" +
+"                        <title>TODO supply a title</title> \n" +
+"                        <meta charset='UTF-8'> \n" +
+"                        <meta name='viewport' content='width=device-width, initial-scale=1.0'> \n" +
+"                        <link rel='stylesheet' href='assets/css/main.css'> \n" +
+"                       <link rel='stylesheet' type='text/css' href='estilos.css'/>\n" +
+"                       <link rel='stylesheet' type='text/css' href='iconos.css'/>\n" +
+"                        <!-- <link rel='stylesheet' href='assets2/css/main.css'>--> \n" +
+"                         \n" +
+"            </head>\n" +
+"            <body class> \n" +
+"           <header>\n" +
+"                    <nav>\n" +
+"                        <ul>\n" +
+"                        <li><a href='subMenuR'><span><i class='icon-home'></i></span>Pefil</a></li>\n" +
+"                        <li><a href='MisCursos'><span><i class='icon-briefcase'></i></span>Mis Cursos</a></li>\n" +
+"                        <li><a href='NuevoCurso.html'><span><i class='icon-search'></i></span>Crear Curso</a></li>\n" +
+"                        <li><a href='logout'><span><i class='icon-exit'></i></span>Log Out</a></li> \n" +
+"                    </ul>\n" +
+"                </nav>\n" +
+"            </header>");         
                 out.println("<div id='wrapper'>\n" +
 "        <h1>Curso: '"+curso.getNombre()+"'</h1>\n" +
 "        <h4>ID Curso: '"+curso.getId_curso()+"'</h4>\n" +

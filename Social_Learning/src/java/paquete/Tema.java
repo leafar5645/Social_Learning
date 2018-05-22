@@ -65,23 +65,51 @@ public class Tema
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombre) 
+    {
+        Statement sta =null;
+       ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+       sta=con.createStatement();
+       String sql="update tema set nombre='"+nombre+"' where idt="+id_tema+";";
+       System.out.println(sql);
+       sta.executeUpdate(sql);    
+        this.nombre=nombre;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Modificacion Nombre: " + e);
+           return;
+       } 
     }
-
-    /**
-     * @return the id_tema
-     */
+    public void setInformacion(String informacion)
+    {
+        Statement sta =null;
+       ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+       sta=con.createStatement();
+       String sql="update tema set texto='"+informacion+"' where idt="+id_tema+";";
+       System.out.println(sql);
+       sta.executeUpdate(sql);    
+         this.informacion=informacion;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Modificacion Informacion: " + e);
+           return;
+       } 
+       
+    }
     public int getId_tema() {
         return id_tema;
     }
 
-    /**
-     * @param id_tema the id_tema to set
-     */
     public void setId_tema(int id_tema) {
         this.id_tema = id_tema;
     }

@@ -192,9 +192,11 @@ public class Usuario {
        try
        {
         sta=con.createStatement();
-        System.out.println("hola1");
-        resul=sta.executeQuery("select * from curso where idcreador="+id+";");
-        System.out.println("hola");
+        if((this.tipo).equalsIgnoreCase("P"))
+            sql="select * from curso where idcreador="+id+";";
+        else
+            sql="select c.idcurso, c.nombre, c.idcreador, c.numinscritos, c.descripcion from curso c, usuariocurso x, usuario u where c.idcurso=x.idcurso and x.idusuario=u.idusuario and u.idusuario="+this.id+";";
+        resul=sta.executeQuery(sql);
         while(resul.next())
         {
             Curso aux = new Curso(resul.getInt("idcurso"),resul.getNString("nombre"),resul.getInt("numinscritos"),resul.getNString("descripcion"));
@@ -206,11 +208,34 @@ public class Usuario {
        }
        catch(Exception e)
        {
-           System.out.println("Error en Buqueda de Cursoso"+e);
+           System.out.println("Error en Buqueda de Cursos"+e);
            return false;
            
        }
         
+    }
+    public boolean Inscribir(int idcurso)
+    {
+         Statement sta =null;
+       String sql=null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+        sta=con.createStatement();
+        if((this.tipo).equalsIgnoreCase("P"))
+            return false;
+        else
+            sql="insert into usuariocurso values('"+idcurso+"','"+this.id+"');";
+        sta.executeUpdate(sql);
+        con.close();
+        return true;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Inscripcion"+e);
+           return false;
+       }
     }
     public int forgot (String correo , int p) throws SQLException
     {
