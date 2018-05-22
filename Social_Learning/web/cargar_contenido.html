@@ -2,24 +2,34 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>TODO supply a title</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="assets/css/main.css">
-		<!-- <link rel="stylesheet" href="assets2/css/main.css">-->
-	</head>
-	<body class>
-		<div id="wrapper">
-			<h1>Elija los archivos que desee subir al tema</h1>
-			<section id="main" >
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-				<form action="CargarA" method ="get" enctype="multipart/form-data">
-					<input type="file" name="fcarga" value="Archivos a subir" multiple>
-					<br/>
-					<input type="submit">
-				</form>
-			</section>
-		</div>
-	</body>
+<head>
+	<title>TODO supply a title</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="estilos.css"/>
+	<link rel="stylesheet" type="text/css" href="iconos.css"/>
+</head>
+<body class> <div id="wrapper">
+	<header>
+		<nav>
+			<ul>
+				<li><a href="subMenuR"><span><i class="icon-home"></i></span>Pefil</a></li>
+				<li><a href="MisCursos"><span><i class="icon-briefcase"></i></span>Mis Cursos</a></li>
+				<li><a href="BuscarCurso"><span><i class="icon-search"></i></span>Explorador</a></li>
+				<li><a href="logout"><span><i class="icon-exit"></i></span>Log Out</a></li>
+			</ul>
+		</nav>
+	</header>
+	<h1>Elija los archivos que desee subir al tema</h1>
+	<section id="main" >
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<form action="CargarA" method ="get" enctype="multipart/form-data">
+			<input type="file" name="fcarga" value="Archivos a subir" multiple>
+			<br/>
+			<input type="submit">
+		</form>
+	</section>
+</div>
+</body>
 </html>

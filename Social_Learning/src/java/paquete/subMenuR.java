@@ -51,26 +51,18 @@ public class subMenuR extends HttpServlet {
             out.println("<head>");
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"    <link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
-"    <link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n"+
-"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
             out.println("</head>");
             out.println("<body class> <div id=\"wrapper\">");
                 out.println("<header>\n"+
                     "<nav>\n"+
 "                        <ul>\n"+
-<<<<<<< HEAD
 "                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
 "                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-"                        <li><a href=\"#\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+"                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
 "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
-=======
-"                        <li><a href=\"subMenuR\"><span><i class=\"icon icon-home\"></i></span>Pefil</a></li>\n"+
-"                        <li><a href=\"MisCursos\"><span><i class=\"icon icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-"                        <li><a href=\"BuscarCurso\"><span><i class=\"icon icon-search\"></i></span>Explorador</a></li>\n"+
-"                        <li><a href=\"logout\"><span><i class=\"icon icon-exit\"></i></span>Log Out</a></li>\n"+
->>>>>>> 9d1a13e76061db988032b4d2fd5b6cd2e0d23304
 "                    </ul>\n"+
 "                </nav>\n"+
             "</header>");
@@ -93,13 +85,24 @@ public class subMenuR extends HttpServlet {
             out.println("<head>");
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");
-            out.println("</head>");
-           out.println("<body class> <div id=\"wrapper\">");
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
+out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+    "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
+out.println("</head>");
+out.println("<body class> <div id=\"wrapper\">");
+out.println("<header>\n"+
+    "   <nav>\n"+
+    "       <ul>\n"+
+    "           <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+    "           <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+    "           <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+    "           <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
+    "       </ul>\n"+
+    "   </nav>\n"+
+    "</header>");
             out.println("<h1>Edite su perfil  " +tipo + "</h1><br/> <section id=\"main\">");
             out.println("<form action='editPR' method='get' >");
-            out.println("<b>Nombre: </b> <input type='text' value='"+ nomb+ "' name='nombre' /><br/>");
+            out.println("<p style=\"color:black\"><b>Nombre: </b></p> <input type='text' value='"+ nomb+ "' name='nombre' /><br/>");
             out.println("<b>correo: </b> <input type='text' value='"+ correo+ "' name='correo' /><br/>");
             out.println("<b><h3>*Si no escribe nada en estos campos no se cambiara la contraseña</b></h3>");
             out.println("<b>Nueva contraseña: </b> <input type='text' value='' name='conN' /><br/>");

@@ -34,8 +34,21 @@ public class editImg extends HttpServlet {
             out.println("<head>");
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"    <!-- <link rel=\"stylesheet\" href=\"assets2/css/main.css\">-->");
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
+            out.println("</head>");
+            out.println("<body class> <div id=\"wrapper\">");
+                out.println("<header>\n"+
+                    "<nav>\n"+
+"                        <ul>\n"+
+"                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+"                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+"                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+"                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
+"                    </ul>\n"+
+"                </nav>\n"+
+            "</header>");
             out.println("</head>");
             out.println("<body class> <div id=\"wrapper\"> ");
             out.println("<h1>Selecciona la nueva imagen </h1> <br/>  <section id=\"main\"> <form action='editImg2' method='post' enctype='multipart/form-data'>"

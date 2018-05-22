@@ -18,13 +18,13 @@ import javax.servlet.http.HttpSession;
 
 public class Examen extends HttpServlet {
 
- 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-          
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -55,15 +55,28 @@ public class Examen extends HttpServlet {
 "    }\n" +
 "   \n" +
 "\n" +
-"    </script>");            
-           out.println("</head>");
+"    </script>");
+                        out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
+                        out.println("</head>");
+                        out.println("<body class onload=\"carga()\"> <div id=\"wrapper\">");
+                            out.println("<header>\n"+
+                                "<nav>\n"+
+            "                        <ul>\n"+
+            "                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+            "                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
+            "                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+            "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
+            "                    </ul>\n"+
+            "                </nav>\n"+
+                        "</header>");
              HttpSession sesion = request.getSession();
         Usuario user = new Usuario();
         user= (Usuario)sesion.getAttribute("AlumnoR");
         Tema t= (Tema) sesion.getAttribute("TemaR");
                           int idt = t.getId_tema();
         int idA=user.getId();
-    
+
         Cuestionario c = new Cuestionario();
         int r=0;
         try {
@@ -79,11 +92,10 @@ public class Examen extends HttpServlet {
         {
           c.GeneraC(idt);
           String [][] cuestionario = new String[5][10];
-          cuestionario=c.getCuestionario(); 
+          cuestionario=c.getCuestionario();
           sesion.setAttribute("Cuestionario", c);
-          
-            out.println(" <body class onload=\"carga()\" >\n" +
-"   <center>\n" +
+
+            out.println("<center>\n" +
 "       <h1 class=\"style2\"><font color=\"white\">Examen  </font></h1></center>\n" +
 "            <div id=\"wrapper\">\n" +
 "            Del tema  \"nombre del tema\"</h1>\n" +
@@ -91,12 +103,12 @@ public class Examen extends HttpServlet {
 "                    <section id=\"main\">\n" +
 "            \n" +
 "                    <form action=\"califica\" method=\"get\" name=\"t\" id=\"t\">");
-            
-            
+
+
              for(int g=0 ; g<10 ; g++)
             {
-                
-            out.println(""+g+".-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + cuestionario[0][g]); 
+
+            out.println(""+g+".-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + cuestionario[0][g]);
             out.println("<br/>");
             out.print(" a)"+ cuestionario[1][g] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  b)" + cuestionario[2][g] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  c)" +  cuestionario[3][g] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  d)" + cuestionario[4][g]);
              out.println("<br/>");
@@ -113,8 +125,8 @@ public class Examen extends HttpServlet {
 "    </body>");
         }
             out.println("</html>");
-    
+
     }
 
-   
+
 }

@@ -5,26 +5,31 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-              <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="assets/css/main.css">
-    <!-- <link rel="stylesheet" href="assets2/css/main.css">-->
-      
-    </head>
-    <body class>
-        <div id="wrapper">
-        <h1>Bienvenido a nuestro sitio</h1>
-        <br/>
-        <br/>
-        <h3>Por favor registrate para tener acceso a todo el sitio</h3>
-        <br/>
-        <br/>
-        <section id="main" >
-             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-             <form action="AltaUserR" method ="post" enctype="multipart/form-data">
-            <input type="text" name="nombre" placeholder="Nombre" required/>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="estilos.css"/>
+    <link rel="stylesheet" type="text/css" href="iconos.css"/>
+</head>
+<body class> <div id="wrapper">
+   <header>
+       <nav>
+           <ul>
+               <li><a href="subMenuR"><span><i class="icon-home"></i></span>Pefil</a></li>
+               <li><a href="MisCursos"><span><i class="icon-briefcase"></i></span>Mis Cursos</a></li>
+               <li><a href="BuscarCurso"><span><i class="icon-search"></i></span>Explorador</a></li>
+               <li><a href="logout"><span><i class="icon-exit"></i></span>Log Out</a></li>
+           </ul>
+       </nav>
+   </header>
+   <h1>Bienvenido a nuestro sitio</h1>
+   <h3>Por favor registrate para tener acceso a todo el sitio</h3>
+   <section id="main" >
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <form action="AltaUserR" method ="post" enctype="multipart/form-data">
+        <input type="text" name="nombre" placeholder="Nombre" required/>
         <br/>
         <input type="email" name="correo" placeholder="Correo" required/>
         <br/>
@@ -40,8 +45,8 @@ and open the template in the editor.
         <br>
         <input type="submit">
         <ul class="icons"> <li> <a href="#" title="Registrar" onclick="$(this).closest('form').submit()" name="destroy" value="alta" class="fa-sign-in">Registar</a> </li></ul>
-            </form>
-        </section>
-        </div>
-    </body>
+    </form>
+</section>
+</div>
+</body>
 </html>
