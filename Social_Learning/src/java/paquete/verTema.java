@@ -31,17 +31,16 @@ public class verTema extends HttpServlet {
         session.setAttribute("TemaR", actual);
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
             out.println("<html>\n" +
                 "    <head>\n" +
-                "        <title>TODO supply a title</title>\n" +
                 "              <meta charset=\"UTF-8\">\n" +
                 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
             out.println("</head>");
-            out.println("<body class> <div id=\"wrapper\">");
+            out.println("<body class>");
             out.println("<header>\n"+
                 "   <nav>\n"+
                 "       <ul>\n"+
@@ -49,14 +48,13 @@ public class verTema extends HttpServlet {
                 "           <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a>");
             out.println(" <ul>");
             for(int i=0; i<temas.size();i++)
-                out.println("<li><a href='verTema?id="+i+"&idcurso="+id+"'>"+(temas.get(i)).getNombre()+"</a></li>");
-            out.println(" </ul>\n" +
-                "</li>\n"+
+                out.println("<li><a href='verTema?id="+i+"&idcurso="+idcurso+"'>"+(temas.get(i)).getNombre()+"</a></li>");
+            out.println(" </ul></li>\n" +
                 "           <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
                 "           <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
                 "       </ul>\n"+
                 "   </nav>\n"+
-                "</header>");
+                "</header><div id=\"wrapper\">");
             out.println("<h1>Curso: '"+curso.getNombre()+"'</h1>\n");
             out.println("<h2>Tema: "+actual.getNombre()+"</h2>\n");
             out.println("<section id=\"main\">\n" +
@@ -80,7 +78,7 @@ public class verTema extends HttpServlet {
             out.println(" </section>\n" +
                 "    </body>\n" +
                 "</html>");
-       
+
         }
     }
 

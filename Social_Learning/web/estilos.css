@@ -31,7 +31,7 @@ nav ul{
 	list-style: none;
 }
 
-nav ul{
+nav > ul{
 	display: table;
 	width: 100%;
 	background-color: #27B7B8;
@@ -79,6 +79,8 @@ nav > ul > li > a:hover >span{
 nav > ul > li > ul{
 	display: none;
 	position: absolute;
+	width: 100%;
+	background-color: #27B7B8;
 	left: 0;
 	right: 0;
 	height: 0%;
@@ -104,8 +106,13 @@ nav > ul > li > ul > li a:hover{
 	text-align: center;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3{
 	color: #1BDDD9;
+}
+
+h4,h5,h6{
+	display: inline;
+	color: #1B1B50;
 }
 
 p{
@@ -114,4 +121,27 @@ p{
 
 section ul{
 	list-style: none;
+}
+
+section a:hover{
+	background-color: #9E6CC4;
+	color: #000000;
+}
+
+section a{
+	background-color: #95DDBB;
+	color: #000000;
+}
+
+#wrapper{
+	display: block;
+	width: 75%;
+	text-align: center;
+	margin: auto;
+}
+
+#main{
+	display: block;
+	width: 100%;
+	background-color: #EAFBF8
 }

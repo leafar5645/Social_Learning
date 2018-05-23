@@ -51,7 +51,7 @@ public class subMenuR extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<meta charset=\"UTF-8\">\n" +
-"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"+
 "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
             "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
@@ -59,7 +59,6 @@ public class subMenuR extends HttpServlet {
             out.println("<body class> <div id=\"wrapper\">");
                 out.println("<header>\n"+
                     "<nav><ul>\n");
-//<<<<<<< HEAD
                         if(tipo.equalsIgnoreCase("Profesor"))
                         {
                             out.println(
@@ -76,10 +75,7 @@ public class subMenuR extends HttpServlet {
 "                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
 "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
                         }
-//>>>>>>> 9d1a13e76061db988032b4d2fd5b6cd2e0d23304*/
-out.println(
-//>>>>>>> 35c99622b92c533971c662999f5eeab9609c7091
-"                    </ul>\n"+
+out.println("                    </ul>\n"+
 "                </nav>\n"+
             "</header>");
             out.println("<div id='banner'><h1>Bienvenido " +tipo + "</h1></div><br/>");

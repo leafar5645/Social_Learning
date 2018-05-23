@@ -33,7 +33,7 @@ import javax.servlet.http.HttpSession;
 public class Recupera extends HttpServlet {
 
 
-   
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -55,11 +55,11 @@ public class Recupera extends HttpServlet {
             }
             if(res==1)
             {
-                
+
                 //
-                
-                
-                
+
+
+
                 //
                 out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -79,13 +79,13 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
 "   window.location.href=\"index.html\";"+
 "  }else{ window.location.href=\"index.html\";}\n" +
 "})");
-   
+
        out.println("</script>");
-       
+
        out.println("</body>");
 
-            out.println("</html>"); 
-                
+            out.println("</html>");
+
             }
             else
             {
@@ -107,15 +107,15 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
 "   window.location.href=\"index.html\";"+
 "  }else{ window.location.href=\"index.html\";}\n" +
 "})");
-   
+
        out.println("</script>");
-       
+
        out.println("</body>");
 
-            out.println("</html>"); 
-                
+            out.println("</html>");
+
             }
-            
+
         }
         else
         {
@@ -157,13 +157,13 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
 "   window.location.href=\"index.html\";"+
 "  }else{ window.location.href=\"index.html\";}\n" +
 "})");
-   
+
        out.println("</script>");
-       
+
        out.println("</body>");
 
-            out.println("</html>"); 
-                
+            out.println("</html>");
+
             }
         }
         catch(SQLException e)
@@ -195,26 +195,27 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
 "   window.location.href=\"index.html\";"+
 "  }else{ window.location.href=\"index.html\";}\n" +
 "})");
-   
+
        out.println("</script>");
-       
+
        out.println("</body>");
 
             out.println("</html>");
-          
+
             }
             else
             {
-                        
+
               out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Recupera</title>");            
+            out.println("<title>Servlet Recupera</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<section id='main'>");
             out.println("<h1>Introduce tu nueva contraseña </h1>");
                        out.println("<br> <form action='Recupera' method='get' > <input type='password' name='pass' placeholder='Contraseña'/> <input type='submit' name='boton' value='Enviar'/> </form>");
-
+            out.println("</section>");
             out.println("</body>");
             out.println("</html>");
             }

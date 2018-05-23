@@ -154,7 +154,9 @@ out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweeta
             out.println("</head>");
             out.println("<body class>");
             out.println("<h1>Introduce la cuenta de correo con la que te registraste</h1>");
+            out.println("<section id='main'>");
             out.println("<br> <form action='olvidar' method='get' > <input type='email' name='correo' placeholder='Correo'/> <input type='submit' name='boton' value='Enviar'/> </form>");
+            out.println("</section>");
             out.println("</body>");
             out.println("</html>");
         }
