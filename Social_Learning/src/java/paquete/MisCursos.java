@@ -63,7 +63,9 @@ public class MisCursos extends HttpServlet {
             "            <ul>");
         for(int i=0; i<cursos.size();i++)
         {
-            out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
+            out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a>)");
+            
+            out.println("</li>");
         }
         out.println(" </ul>\n" +
             "        \n" +

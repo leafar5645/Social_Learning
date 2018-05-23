@@ -35,7 +35,7 @@ public class NuevoTema extends HttpServlet {
        else
        {
             HttpSession session= request.getSession();
-            Curso curso =(Curso) session.getAttribute("CursoNH"); 
+            Curso curso =(Curso) session.getAttribute("CursoH"); 
             Tema nuevo = curso.agregarTema(nombre, informacion);
              //guardando archivo multimedia
             Part filePart = request.getPart("multimedia"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.

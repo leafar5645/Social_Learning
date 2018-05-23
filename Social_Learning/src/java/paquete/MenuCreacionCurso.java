@@ -22,7 +22,8 @@ public class MenuCreacionCurso extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session= request.getSession();
         Usuario user =(Usuario) session.getAttribute("AlumnoR");
-        Curso curso =(Curso) session.getAttribute("CursoNH");
+        Curso curso =(Curso) session.getAttribute("CursoH");
+        curso.buscarTemas();
         ArrayList<Tema> temas = curso.getTemas();
         try (PrintWriter out = response.getWriter())
                //imprimimos el html para agregar temas
@@ -56,7 +57,7 @@ public class MenuCreacionCurso extends HttpServlet {
                for( int i=0;i<temas.size();i++)
                {
                 out.println("<li>\n" +
-                    "                <a href='modificarTemas?id="+(temas.get(i)).getId_tema()+"'>"+(temas.get(i)).getNombre()+"</a>\n" +
+                    "                <a href='VerTemaProfesor?id="+i+"&idcurso="+curso.getId_curso()+"'>"+(temas.get(i)).getNombre()+"</a>\n" +
                     "                </li>");
             }
             if(temas.size()==0)

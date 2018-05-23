@@ -37,7 +37,7 @@ public class NuevoCurso extends HttpServlet {
            Curso nuevo = new Curso(nombre,descripcion,user);
            if(nuevo.getId_curso()!=-1)
            {
-               session.setAttribute("CursoNH", nuevo);
+               session.setAttribute("CursoH", nuevo);
                response.sendRedirect("MenuCreacionCurso");
            }
            else

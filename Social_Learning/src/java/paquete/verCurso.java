@@ -75,7 +75,12 @@ public class verCurso extends HttpServlet {
                 else
                     out.println("<li> <a href='verTema?id="+i+"&idcurso="+id+"'>"+(temas.get(i)).getNombre()+"</a></li>");
             }
-            out.println(" </ul>\n" +
+            out.println(" </ul>\n");
+            if(user.tipo.equalsIgnoreCase("P"))
+            out.println("<form action='NuevoTema.html' method='post'><input type='submit' value='Nuevo Tema'/> </form>");
+            out.println("<form action='ModificarCurso?mod=1' method='post'><input type='submit' value='Cambiar Nombre de Curso'/> </form>");
+            out.println("<form action='ModificarCurso?mod=0' method='post'><input type='submit' value='Eliminar Curso'/> </form>");
+            out.println(
                 "        </section>\n" +
                 "<br>\n"+
                 "        <h3>Los Recursos Actuales Son:</h3>\n" +

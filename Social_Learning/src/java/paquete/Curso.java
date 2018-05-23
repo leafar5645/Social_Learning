@@ -86,6 +86,23 @@ public class Curso
             temas.add(salida);
         return salida;
     }
+    public boolean Eliminar ()
+    {
+       Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       try{
+           //obteniendo temas del curso
+        sta=con.createStatement();
+        sta.executeUpdate("delete from curso where idcurso="+this.id_curso+"");
+        return true;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Eliminar Curso " + e);
+           return false;
+       }
+    }
     public int getId_curso() {
         return id_curso;
     }
