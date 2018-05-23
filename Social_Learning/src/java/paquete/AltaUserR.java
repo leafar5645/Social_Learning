@@ -73,22 +73,22 @@ public class AltaUserR extends HttpServlet {
      String contra = request.getParameter("contra");
      String tipo= request.getParameter("tipo");
         Part filePart = request.getPart("foto"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.
-     
+     String nom=filePart.getName();
    String path=request.getRealPath("/UsuariosFotosR");
  
-
+path=path+"/" + Correo + nom  ;
    
-
+String nomFot=Correo + nom  ;
       // MessageDigest md = null; 
 
      
      int res=0;
      Usuario userA = new Usuario();
-     res=userA.AltaUR(Correo, nombre, contra, tipo );
+     res=userA.AltaUR(Correo, nombre, contra, tipo , nomFot );
 
      if(res==1)
      {
-          File file = new File(path+"/" + userA.getId()+ ".jpg" ); //La clase file tiene 3 constructores  File (String path).  Crea una nueva instancia de tipo file  convirtiendo la cadena de nombre de ruta dada en una ruta de acceso abstracta.
+          File file = new File(path+".jpg"); //La clase file tiene 3 constructores  File (String path).  Crea una nueva instancia de tipo file  convirtiendo la cadena de nombre de ruta dada en una ruta de acceso abstracta.
                        
       
     InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream

@@ -116,7 +116,7 @@ public class Usuario {
 
         return res;
     }
-    public int AltaUR (String correos , String nombres , String contra ,String type )
+    public int AltaUR (String correos , String nombres , String contra ,String type , String nomfot )
     {
         int res=0;
         conexion = new Conexion_Base();
@@ -132,7 +132,7 @@ public class Usuario {
                int ids  =resul.getInt(1);
                ids=ids+1;
                this.id=ids;
-            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+ids+"' , 'no'  );");
+            res = st.executeUpdate("insert into usuario values('"+ids+"','" + correos+ "','" +contra+"','" + nombres+"','"+type+"','"+nomfot+"' , 'no'  );");
 
            }
         }
