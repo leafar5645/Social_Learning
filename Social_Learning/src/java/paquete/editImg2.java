@@ -38,6 +38,7 @@ Usuario a = (Usuario) sesion.getAttribute("AlumnoR");
          Part filePart = request.getPart("foto"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.
    String path=request.getRealPath("/UsuariosFotosR");
       Random r= new Random();
+      
  int p=0;
  p=r.nextInt(20000000)+1000;
    String foto= a.getCorreo() + p;
@@ -45,8 +46,15 @@ Usuario a = (Usuario) sesion.getAttribute("AlumnoR");
     InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
         Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
         int res=0;
-      
-
+        try
+        {
+      File fichero = new File(path + "/" + a.getFoto() + ".jpg");
+fichero.delete();
+        }
+        catch(Exception e)
+        {
+            System.out.println("" + e.getMessage());
+        }
         conexion  = new Conexion_Base();
     Connection con =conexion.getConnection();
     Statement st = null  ;
