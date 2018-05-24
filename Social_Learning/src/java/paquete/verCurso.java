@@ -89,6 +89,7 @@ public class verCurso extends HttpServlet {
                 "                <li>\n" +
                 "                <a href='R1'>Nombre Recurso1</a>\n" +
                 "                </li>\n" +
+                "                <form method='post' action='verForo'><input type='submit' value='New!! Foro'/> </form> \n" +
                 "            </ul>\n" +
                 "        </section>\n" +
                 "        </div>\n" +
