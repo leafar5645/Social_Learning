@@ -116,12 +116,42 @@ public class Curso
         return nombre;
     }
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+       sta=con.createStatement();
+       String sql="update curso set nombre='"+nombre+"' where idcurso="+this.id_curso+";";
+       System.out.println(sql);
+       sta.executeUpdate(sql);    
+        this.nombre=nombre;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Modificacion Nombre: " + e);
+           return;
+       } 
     }
     public String getDescripcion() {
         return descripcion;
     }
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+       sta=con.createStatement();
+       String sql="update curso set descripcion='"+descripcion+"' where idcurso="+this.id_curso+";";
+       System.out.println(sql);
+       sta.executeUpdate(sql);    
+        this.descripcion=descripcion;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Modificacion Descripcion: " + e);
+           return;
+       } 
     }
 }

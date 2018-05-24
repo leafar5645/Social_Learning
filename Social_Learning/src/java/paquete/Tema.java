@@ -140,6 +140,23 @@ public class Tema
        }
         
     }
+    public boolean Eliminar()
+    {
+        Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       try{
+           //obteniendo temas del curso
+        sta=con.createStatement();
+        sta.executeUpdate("delete from tema where idt="+this.id_tema+"");
+        return true;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Eliminar Curso " + e);
+           return false;
+       }
+    }
     
     
 }

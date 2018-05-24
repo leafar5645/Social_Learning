@@ -32,7 +32,7 @@ public class verCurso extends HttpServlet {
         String sid = request.getParameter("id");
         int id =Integer.parseInt(sid);
         Curso actual = cursos.get(id);
-        if(!actual.buscarTemas())
+        if(!actual.buscarTemas()) 
             response.sendRedirect("error.html");
         session.setAttribute("CursoH",actual);
         ArrayList<Tema> temas= actual.getTemas();
@@ -40,7 +40,7 @@ public class verCurso extends HttpServlet {
         {
             out.println("<html>\n" +
                 "    <head>\n" +
-                "        <title>TODO supply a title</title>\n" +
+                "        <title>Curso</title>\n" +
 //<<<<<<< HEAD
                 "              <meta charset=\"UTF-8\">\n" +
                 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
@@ -58,13 +58,23 @@ public class verCurso extends HttpServlet {
             for(int i=0; i<cursos.size();i++)
                         out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
             out.println(" </ul></li>\n" +
-                "                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+                "                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
                 "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
                 "                    </ul>\n"+
                 "                </nav>\n"+
-                "</header>\n"+
+                "</header>\n");
+            if(user.getTipo().equalsIgnoreCase("A"))
+            out.println(
                 "        <h1>Curso: '"+actual.getNombre()+"'</h1>\n" +
                 "        <h3>Descripción: '"+(actual.getDescripcion()).replaceAll("\n", "<br/>")+"'</h3>\n");
+            else
+            {
+                out.println("<form action='ModificarCurso' method='post'>");
+                out.println("<h1>Curso: "
+                        + "<input type='text' name='Nombre' value='"+actual.getNombre()+"'/>"
+                       + "<h3>Descripción:<textarea name='Descripcion' rows='5' cols='50'>"+actual.getDescripcion()+"</textarea></h3>"
+                        + "</h1>");
+            }
             out.println("       <h3>Los Temas Actuales Son:</h3>\n" +
                 "        <section id='main' >\n" +
                 "            <ul>");
@@ -77,9 +87,14 @@ public class verCurso extends HttpServlet {
             }
             out.println(" </ul>\n");
             if(user.tipo.equalsIgnoreCase("P"))
-            out.println("<form action='NuevoTema.html' method='post'><input type='submit' value='Nuevo Tema'/> </form>");
-            out.println("<form action='ModificarCurso?mod=1' method='post'><input type='submit' value='Cambiar Nombre de Curso'/> </form>");
-            out.println("<form action='ModificarCurso?mod=0' method='post'><input type='submit' value='Eliminar Curso'/> </form>");
+            {
+             out.println("<input type='submit' name='Cancelar' value='Cancelar'/>");
+             out.println("<input type='submit' name='Modificar' value='Guardar Cambios'/> <br/>");
+             out.println("<input type='submit' name='Eliminar' value='Eliminar Curso'/> </form>");
+             out.println("<form action='NuevoTema.html' method='post'><input type='submit' value='Nuevo Tema'/> </form>");
+            }
+             out.println("<form action='verForo' method='post'><input type='submit' value='New!! Foro'/> </form>");
+            //-----------------------------Recursos-------------------------------------------------------------------
             out.println(
                 "        </section>\n" +
                 "<br>\n"+
@@ -89,7 +104,6 @@ public class verCurso extends HttpServlet {
                 "                <li>\n" +
                 "                <a href='R1'>Nombre Recurso1</a>\n" +
                 "                </li>\n" +
-                "                <form method='post' action='verForo'><input type='submit' value='New!! Foro'/> </form> \n" +
                 "            </ul>\n" +
                 "        </section>\n" +
                 "        </div>\n" +

@@ -25,6 +25,8 @@ public class NuevoTema extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        response.setContentType("text/html;charset=UTF-8");
+       HttpSession session= request.getSession();
+       Usuario user =(Usuario) session.getAttribute("AlumnoH");
         String nombre=request.getParameter("nombre");
         String informacion= request.getParameter("info");
         //botones de cancelar y limpiar
@@ -34,7 +36,6 @@ public class NuevoTema extends HttpServlet {
          response.sendRedirect("NuevoTema.html");
        else
        {
-            HttpSession session= request.getSession();
             Curso curso =(Curso) session.getAttribute("CursoH"); 
             Tema nuevo = curso.agregarTema(nombre, informacion);
              //guardando archivo multimedia
@@ -51,7 +52,7 @@ public class NuevoTema extends HttpServlet {
             if(nuevo.getId_tema()!=-1)
             {
                 session.setAttribute("CursoNH", curso);
-                response.sendRedirect("MenuCreacionCurso");
+                response.sendRedirect("verCurso?id="+user.getIndiceCurso(curso.getId_curso())+"");
             }
             else
                response.sendRedirect("error.html");
