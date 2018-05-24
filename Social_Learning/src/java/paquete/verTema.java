@@ -3,6 +3,9 @@ package paquete;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -69,15 +72,42 @@ public class verTema extends HttpServlet {
                     "            </video> \n" +
                     "          </section>\n" +
                     "        <br/>");
+            
             out.println("<section id=\"main\">\n" +
                 "    <form action='verCurso?id="+idcurso+"'  method='post'>\n" +
                 "        <input type='submit' name='fin' value='Volver a Curso'/>\n" );
 
        //     out.println("    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
-            out.println("</form>\n" + "<form action='Examen' method='get'><br/> <input type='submit' value='Cuestionario' name='examen'/> </form> ");
+       int res=0;
+        
+       
+        
+     Conexion_Base conexion=new Conexion_Base();
+        conexion = new Conexion_Base();
+        Connection con = conexion.getConnection();
+        Statement st=null;
+        ResultSet resul=null;
+        
+        try
+        {
+            st=con.createStatement();
+           resul=st.executeQuery("select max(idpregunta) from pregunta where idt='"+actual.getId_tema()+"';");
+           if (resul.next()){
+               int ids  =resul.getInt(1);
+        
+               if(ids>=10)
+               {     
+       
+       out.println("</form>\n" + "<form action='Examen' method='get'><br/> <input type='submit' value='Cuestionario' name='examen'/> </form> ");
             out.println(" </section>\n" +
                 "    </body>\n" +
                 "</html>");
+               }
+           }}
+        catch(Exception e)
+        {
+            System.out.println(""+e.getMessage());
+        }
 
         }
     }

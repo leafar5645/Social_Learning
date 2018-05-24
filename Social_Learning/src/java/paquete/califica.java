@@ -55,17 +55,30 @@ public class califica extends HttpServlet {
             Logger.getLogger(califica.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-            out.println("<!DOCTYPE html>");
+               out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet califica</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet califica at " + cal + "</h1>");
-            out.println("</body>");
+   out.println("<body bgcolor='#A2E375'>");
+out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
+     out.println("<script>");
+       out.println(" swal({\n" +
+"  title: 'Listo',\n" +
+"  text: \"Tu calificacion "+cal+" !\",\n" +
+"  type: 'success',\n" +
+"  showCancelButton: false,\n" +
+"  confirmButtonColor: '#d33',\n" +
+"  cancelButtonColor: '#d33',\n" +
+"  confirmButtonText: 'OK'\n" +
+"}).then(function (result) {\n" +
+"  if (result.value) {\n" +
+"   window.location.href=\"MisCursos\";"+
+"  }else{ window.location.href=\"MisCursos\";}\n" +
+"})");
+       out.println("</script>");
+       out.println("</body>");
             out.println("</html>");
+        }
     }
 
 
   
-}
+

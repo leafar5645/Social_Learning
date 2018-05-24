@@ -31,7 +31,7 @@ public class Examen extends HttpServlet {
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
 "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n" +
-"          <script> \n" +
+"          <script type=\"text/javascript\">\n \n" +
 "   var cronometro;\n" +
 "    function detenerse()\n" +
 "    {\n" +
@@ -54,8 +54,32 @@ public class Examen extends HttpServlet {
 "        } ,1000);\n" +
 "    }\n" +
 "   \n" +
+"\n" );
+             out.println("  " +
 "\n" +
-"    </script>");
+"            window.onunload = sale;\n" +
+"            var valor;\n" +
+"            if (document.cookie) {\n" +
+"                galleta = unescape(document.cookie)\n" +
+"                galleta = galleta.split(';')\n" +
+"                for (m = 0; m < galleta.length; m++) {\n" +
+"                    if (galleta[m].split('=')[0] == \"recarga\") {\n" +
+"                        valor = galleta[m].split('=')[1]\n" +
+"                        break;\n" +
+"                    }\n" +
+"                }\n" +
+"                if (valor == \"sip\") {\n" +
+"                    document.cookie = \"recarga=nop\";\n" +
+"                    window.onunload = function () {};\n" +
+"                    document.location.reload()\n" +
+"                } else {\n" +
+"                    window.onunload = sale\n" +
+"                }\n" +
+"            }\n" +
+"            function sale() {\n" +
+"                document.cookie = \"recarga=sip\"\n" +
+"            }\n" +
+"        </script>");
                         out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
                         "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
                         out.println("</head>");
@@ -90,7 +114,8 @@ public class Examen extends HttpServlet {
         }
         else
         {
-          c.GeneraC(idt);
+        int p=  c.GeneraC(idt);
+        if(p==1){
           String [][] cuestionario = new String[5][10];
           cuestionario=c.getCuestionario();
           sesion.setAttribute("Cuestionario", c);
@@ -123,8 +148,35 @@ public class Examen extends HttpServlet {
 "            </div>\n" +
 "       \n" +
 "    </body>");
-        }
+        
+        
             out.println("</html>");
+        }
+        else
+        {
+                         out.println("<!DOCTYPE html>");
+            out.println("<html>");
+   out.println("<body bgcolor='#A2E375'>");
+out.println("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js\"></script>");
+     out.println("<script>");
+       out.println(" swal({\n" +
+"  title: 'Error',\n" +
+"  text: \"Preguntas insuficientes!\",\n" +
+"  type: 'error',\n" +
+"  showCancelButton: false,\n" +
+"  confirmButtonColor: '#d33',\n" +
+"  cancelButtonColor: '#d33',\n" +
+"  confirmButtonText: 'OK'\n" +
+"}).then(function (result) {\n" +
+"  if (result.value) {\n" +
+"   window.location.href=\"MisCursos\";"+
+"  }else{ window.location.href=\"MisCursos\";}\n" +
+"})");
+       out.println("</script>");
+       out.println("</body>");
+            out.println("</html>");
+        }
+        }
 
     }
 

@@ -145,3 +145,10 @@ section a{
 	width: 100%;
 	background-color: #EAFBF8
 }
+
+#form{
+	display: block;
+	width: 60%;
+	background-color: #EAFBF8
+	border-radius: 100px;
+}
