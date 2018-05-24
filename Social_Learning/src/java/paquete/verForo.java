@@ -58,7 +58,20 @@ public class verForo extends HttpServlet {
             if(hayPublicaciones)
             {
                 for(int i=0; i<publicaciones.size();i++)
-                    out.println("hay publicaciones");
+                {
+                    out.println("<fieldset>");
+                        out.println("<legend>"+(publicaciones.get(i)).getAutor()+"</legend>");
+                            out.println("<legend>Contenido</legend>");
+                            out.println((publicaciones.get(i)).getContenido());
+                        out.println("<form method='post' action='darLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Me gusta'></form>");
+                        out.println("<textarea rows=\"1\" cols=\"0.5\" name=\"responder\" form=\"comentar\"/>");
+                        out.println("</textarea>");
+                        out.println("<form method='post' action='Nuevocomentario' id='comentar'>");
+                            out.println("<input type='submit' value=Enviar comentario/>");
+                        out.println("</form>");   
+                        out.println("Me gusta: "+((publicaciones.get(i)).getLikes()));
+                }out.println("</fieldset>");
+                   
             }
             else
                 out.println("¡Eres el primero! <br> ¡Aprovecha para ingresar todas tus dudas!");
@@ -66,10 +79,10 @@ public class verForo extends HttpServlet {
             out.println(" <section id='main'>\n");
                     out.println("</br>");
                     out.println("<textarea rows=\"4\" cols=\"50\" name=\"comentario\" form=\"agregar\">");
-                        out.println("Ingrese la pregunta, alcaracion o comentario que tenga referente al curso");
+                        out.println("Ingrese la pregunta, aclaracion o comentario que tenga referente al curso");
                     out.println("</textarea>")    ;
                     out.println("<form method='post' action='NuevaPublicacion' id='agregar'>");
-                        out.println("<input type='submit' value=Enviar comentairio/>");
+                        out.println("<input type='submit' value=Enviar comentario/>");
                     out.println("</form>");
             
             out.println("</body>");

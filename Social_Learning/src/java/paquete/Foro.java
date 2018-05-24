@@ -39,7 +39,6 @@ public class Foro {
     public boolean buscarPublicaciones()
     {
         Statement sta =null;
-       String sql=null;
        ResultSet resul=null;
        Conexion_Base conexion = new Conexion_Base();
        Connection con = conexion.getConnection();

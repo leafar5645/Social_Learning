@@ -17,6 +17,7 @@ public class Publicacion {
     String contenido;
     String mediaURL;
     int validacion;
+            String autor="hola";
     
     public Publicacion(String contenido,Usuario user, Curso curso) //se ha agregado una nueva publicacion
     {
@@ -57,6 +58,34 @@ public class Publicacion {
         this.mediaURL=mediaURL;
         this.validacion=validacion;   
     }
+    public Publicacion(int idPubli)
+    {
+         Statement sta =null;
+         ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       try{
+           //obteniendo temas del curso
+        sta=con.createStatement();
+        resul=sta.executeQuery("select * from publicacion where idpubli="+idPubli+";");
+        if(resul.next())
+            {
+                this.idPubli=idPubli;
+                this.idUsuario=resul.getInt("idusuario");
+                this.idCurso=resul.getInt("idcurso");
+                this.contenido=resul.getString("contenido");
+                this.likes=resul.getInt("likes");
+                this.mediaURL=resul.getString("mediaUrl");
+                this.validacion=resul.getInt("validacion");
+
+            }
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Obtener la publicacion " + e);
+       }
+        
+    }
     
     public boolean Eliminar()
     {
@@ -91,7 +120,7 @@ public class Publicacion {
     {
         this.idCurso=idCurso;
     }
-    public int getIdUsusario()
+    public int getIdUsuario()
     {
         return idUsuario;
     }
@@ -132,5 +161,42 @@ public class Publicacion {
         this.validacion=validacion;
     }
     
+    public void darLike()
+    {
+        Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       try
+       {
+           sta=con.createStatement();
+           sta.executeUpdate("update publicacion set likes="+(likes+1)+" where idpubli="+idPubli+";");
+           
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error al dar Like " + e);
+       }
+    }
+    public String getAutor()
+    {
+        
+         Statement sta =null;
+         ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       try{
+           //obteniendo temas del curso
+        sta=con.createStatement();
+        resul=sta.executeQuery("select nombre from usuario where idusuario="+idUsuario+";");
+        resul.first();
+        autor= resul.getNString("nombre");
+         return autor;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Eliminar Curso " + e);
+           return "error";
+       }
+    }
     
 }
