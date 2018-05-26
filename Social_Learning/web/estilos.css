@@ -5,6 +5,8 @@ margin: 0
 
 body{
 	background-image: url("pizarron.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 header{
@@ -143,12 +145,11 @@ section a{
 #main{
 	display: block;
 	width: 100%;
-	background-color: #EAFBF8
+	background-color: rgba(255,255,255,.3);
+	border-radius: 3%;
 }
 
-#form{
-	display: block;
-	width: 60%;
-	background-color: #EAFBF8
-	border-radius: 100px;
+input[type="submit"].fit{
+	background-color: #CA8D18;
+	color: #FFFFFF;
 }
