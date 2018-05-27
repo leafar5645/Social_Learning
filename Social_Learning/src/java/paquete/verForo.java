@@ -37,6 +37,22 @@ public class verForo extends HttpServlet {
                 "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
+            out.println("<style>div.ex3 {\n" +
+                                 " overflow: auto;\n" +
+                                 "}");
+            out. println("fieldset {\n" +
+            "    margin: 8px;\n" +
+            "    border: 1px solid silver;\n" +
+            "    padding: 8px;    \n" +
+            "    border-radius: 4px;\n" +
+            "}\n" +
+            "\n" +
+            "legend {\n" +
+            "    padding: 2px;   } \n");
+            out.println("textarea.tipo1 {\n" +
+            "  width: 300px;\n" +
+            "  height: 150px;\n" +
+            "}"+"</style>");
             out.println("</head>");
             out.println("<body class> <div id=\"wrapper\">");
             out.println("<header>\n"+
@@ -59,18 +75,37 @@ public class verForo extends HttpServlet {
             {
                 for(int i=0; i<publicaciones.size();i++)
                 {
+                    boolean HayComentarios=(publicaciones.get(i)).buscarComentarios();
+                    ArrayList<Comentario> comentarios = (publicaciones.get(i)).getComentarios();
                     out.println("<fieldset>");
                         out.println("<legend>"+(publicaciones.get(i)).getAutor()+"</legend>");
                             out.println("<legend>Contenido</legend>");
                             out.println((publicaciones.get(i)).getContenido());
-                        out.println("<form method='post' action='darLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Me gusta'></form>");
-                        out.println("<textarea rows=\"1\" cols=\"0.5\" name=\"responder\" form=\"comentar\"/>");
-                        out.println("</textarea>");
-                        out.println("<form method='post' action='Nuevocomentario' id='comentar'>");
-                            out.println("<input type='submit' value=Enviar comentario/>");
-                        out.println("</form>");   
+                        out.println("<form method='post' action='darLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Me gusta'>");
                         out.println("Me gusta: "+((publicaciones.get(i)).getLikes()));
-                }out.println("</fieldset>");
+                        out.println("</form>");
+                    System.out.println("Respuesta: "+HayComentarios);
+                    if(HayComentarios)
+                    {
+                        for(int j=0; j<comentarios.size();j++)
+                        {
+                            out.println("<fieldset>");
+                            out.println("<legend>"+(comentarios.get(i)).getAutor()+"</legend>");
+                                out.println("<legend>Comentario:</legend>");
+                                out.println((comentarios.get(i)).getTexto());
+                        out.println("</fieldset>");
+                        }
+                    }
+                    else
+                        out.println("Sin comentarios<br/>");
+                        out.println("<textarea rows=\"1\" cols=\"0.5\" name=\"responder\" form=\"comentar\" class='tipo1'/>");
+                        out.println("</textarea>");
+                        out.println("<form method='post' action='NuevoComentario' id='comentar'>");
+                            out.println("<input type='hidden' value='"+(publicaciones.get(i)).getIdPubli()+"' name='publicacion'/>");
+                            out.println("<input type='submit' value=Enviar comentario/>");
+                        out.println("</form>");
+                        out.println("</fieldset>");
+                }
                    
             }
             else

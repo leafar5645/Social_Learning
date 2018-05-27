@@ -46,9 +46,7 @@ public class Foro {
        try{
            //obteniendo publicaciones para el foro
         sta=con.createStatement();
-        System.out.println("select * from publicacion where idcurso="+idCurso+";");
         resul=sta.executeQuery("select * from publicacion where idcurso="+idCurso+";");
-        System.out.println("hola2");
         if(resul.isBeforeFirst())
         {
             while(resul.next())

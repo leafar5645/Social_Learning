@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -24,10 +25,6 @@ import javax.servlet.http.HttpSession;
  * @author User
  */
 public class BuscarCurso extends HttpServlet {
-    Conexion_Base conexion= new Conexion_Base();
-    Connection con=conexion.getConnection();
-    ResultSet resul=null;
-    ResultSet resul2=null;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -75,70 +72,45 @@ public class BuscarCurso extends HttpServlet {
             String palabras=request.getParameter("palabras");
             String criterio=request.getParameter("criterio");
             String orden=request.getParameter("orden");
+            HttpSession sesion=request.getSession();
+            ResultSet resul;
+           Usuario us=(Usuario)sesion.getAttribute("AlumnoR");
+           us.buscarCursos();
+            Curso buscar=new Curso();
+            ArrayList<Curso> cursos = us.getCursos();
+           out.println(us.getId());
             try{
-                Statement sta=con.createStatement();
-
-
                 if(palabras==null)
-                {
-
-                    resul=sta.executeQuery("select * from curso;");
-                    while(resul.next())
-                    {
-                        Statement sta2=con.createStatement();
-                        resul2=sta2.executeQuery("select nombre from usuario where idusuario= "+resul.getInt("idcreador")+";");
-                        out.println("<section id='main'>");
-                        if(resul2.next())
-                            out.println("<h4>creador:</h4> "+resul2.getString("nombre")+"<br>");
-                        out.println("<h4>nombre del curso:</h4> "+resul.getString("nombre")+"<br>");
-                        out.println("<h4>descripcion del curso:</h4> "+resul.getString("descripcion")+"<br>");
-                        out.println("<a href='Inscribir?id="+resul.getInt("idcurso")+"'>Inscribir</a>");
-                        out.println("</section>");
-                        out.println("<br/>");
-                    }//falta modificar el link que manda a los datos del curso
+                {//si no se ingresó algún criterio
+                   resul=buscar.buscarCursos("","","");
                 }
-                else
-                {
-                    String query="select * from curso where ";
-                    if(criterio.equals("autor"))
+                else // se ingresaron datos
+                    resul=buscar.buscarCursos(palabras,criterio,orden);  
+                
+                if(resul.isBeforeFirst())
                     {
-                        query="select c.* from curso c, usuario u where u.idusuario=c.idcreador and u.nombre like '"+palabras+"'";
-                        if(orden.equals("alfabetico"))
-                            query+=" order by c.nombre;";
-                        else
-                            query+=" order by c.idcurso desc;";
-                    }
-                    else if(criterio.equals("curso"))
-                    {
-                        query+="nombre like '%"+palabras+"%'";
-                    }
-                    else
-                    {
-                        query+="descripcion like '%"+palabras+"%'";
-                    }
-                    if(!criterio.equals("autor"))
-                    {
-                        if(orden.equals("alfabetico"))
-                            query+=" order by nombre;";
-                        else
-                            query+=" order by idcurso desc;";
-                    }
-                    resul=sta.executeQuery(query);
-                    if(resul.isBeforeFirst())
-                    {
-                        while(resul.next())
-                        {
-                            Statement sta2=con.createStatement();
-                            resul2=sta2.executeQuery("select nombre from usuario where idusuario= "+resul.getInt("idcreador")+";");
-                            out.println("<section id='main'>");
-                            if(resul2.next())
-                                out.println("<h4>creador:</h4> "+resul2.getString("nombre")+"<br>");
-                            out.println("<h4>nombre del curso:</h4> "+resul.getString("nombre")+"<br>");
-                            out.println("<h4>descripcion del curso:</h4> "+resul.getString("descripcion")+"<br>");
-                            out.println(" <a href='Inscribir?id="+resul.getInt("idcurso")+"'>Inscribir</a>");
-                            out.println("</section>");
-                            out.println("<br/>");
-                        }
+                        int bandera=1;
+                            while(resul.next())
+                            {
+                               bandera=1;
+                                for(int i=0;i<cursos.size();i++)
+                                {
+                                    if(((cursos.get(i)).getId_curso())==resul.getInt("idcurso"))
+                                    bandera=0;
+                                }
+                                //out.println(cursos.size()); 
+
+                                out.println("<h4>creador:</h4> "+resul.getString("autor")+"<br>");
+                                out.println("<h4>nombre del curso:</h4> "+resul.getString("nombre")+"<br>");
+                                out.println("<h4>descripcion del curso:</h4> "+resul.getString("descripcion")+"<br>");
+                                if(bandera==0)
+                                out.println("YA INSCRITO");
+                                else
+                                out.println(" <a href='Inscribir?id="+resul.getInt("idcurso")+"'>Inscribir</a>");
+                                out.println("</section>");
+                                out.println("<br/>");
+                                
+                            }
                     }
                     else{
                         out.println("<section id='main'>");
@@ -146,11 +118,11 @@ public class BuscarCurso extends HttpServlet {
                         out.println("</section>");
                         out.println("<br/>");
                     }
-                }
             }
             catch(Exception e){
                 out.println("Error en:"+e);
             }
+            
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");

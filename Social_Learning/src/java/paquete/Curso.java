@@ -51,6 +51,9 @@ public class Curso
         this.inscritos=inscritos;
         buscarTemas();
     }
+    public Curso()
+    {
+    }
     public boolean buscarTemas()
     {
        Statement sta =null;
@@ -124,4 +127,44 @@ public class Curso
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    public ResultSet buscarCursos(String keywords, String criterio, String orden )
+    {
+         String query;
+        try
+        {
+            Conexion_Base conexion= new Conexion_Base();
+        Connection con=conexion.getConnection();
+        ResultSet resul;
+        Statement sta=con.createStatement();
+        if(keywords.equals("") || criterio.equals("") || orden.equals("") )
+            query="select c.*, u.nombre as 'autor' from curso c, usuario u where u.idusuario=c.idcreador;";
+        else{ 
+            query="select c.*, u.nombre as 'autor' from curso c, usuario u where u.idusuario=c.idcreador and  ";
+                    if(criterio.equals("autor"))
+                    {
+                        query+="u.nombre like '"+keywords+"'";
+                    }
+                    else if(criterio.equals("curso"))
+                    {
+                        query+="c.nombre like '%"+keywords+"%'";
+                    }
+                    else
+                    {
+                        query+="c.descripcion like '%"+keywords+"%'";
+                    }
+                    if(orden.equals("alfabetico"))
+                            query+=" order by c.nombre;";
+                    else
+                            query+=" order by c.idcurso desc;";
+                    }
+                    resul=sta.executeQuery(query);
+                    return resul;
+        }
+        catch(Exception e){
+               System.out.println("Error en:"+e);
+               return null;
+            }
+    }
+
 }

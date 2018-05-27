@@ -17,6 +17,7 @@ public class Publicacion {
     String contenido;
     String mediaURL;
     int validacion;
+     private ArrayList <Comentario> comentarios;
             String autor="hola";
     
     public Publicacion(String contenido,Usuario user, Curso curso) //se ha agregado una nueva publicacion
@@ -197,6 +198,42 @@ public class Publicacion {
            System.out.println("Error en Eliminar Curso " + e);
            return "error";
        }
+    }
+    
+    public Boolean buscarComentarios()
+    {
+        Statement sta =null;
+       ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       comentarios=new ArrayList<Comentario>();
+       try{
+           //obteniendo publicaciones para el foro
+        sta=con.createStatement();
+        resul=sta.executeQuery("select * from comentarios where idpubli="+idPubli+";");
+           System.out.println("está buscando en:"+idPubli);
+        if(resul.isBeforeFirst())
+        {
+            while(resul.next())
+            {
+                Comentario aux = new Comentario(resul.getInt("idcomen"), resul.getString("texto"), resul.getInt("idusuario"), resul.getInt("idpubli"));
+                comentarios.add(aux);
+            }
+            return true;
+        }
+        else 
+            return false;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en buscar comentarios " + e);
+           return false;
+       }
+    }
+    
+    public ArrayList getComentarios()
+    {
+        return comentarios;
     }
     
 }
