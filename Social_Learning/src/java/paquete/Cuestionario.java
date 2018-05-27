@@ -150,7 +150,7 @@ p = r.nextInt(ids)+1;
              result = st.executeQuery("select * from examen where idalumno ='"+idA+"' and idt ='"+idt+"';");
             if(result.next())
             {
-                res2=1;
+                return 0;
               
             }
             else

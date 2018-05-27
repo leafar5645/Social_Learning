@@ -37,7 +37,7 @@ public class VerTemaProfesor extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>\n" +
                 "    <head>\n" +
-                "        <title>TODO supply a title</title>\n" +
+                "        <title>Tema</title>\n" +
                 "        <meta charset='UTF-8'>\n" +
                 "        <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n" +
                 "        <link rel='stylesheet' href='assets/css/main.css'>\n" +
@@ -72,6 +72,7 @@ public class VerTemaProfesor extends HttpServlet {
             out.println("<h3>Contenido</h3>");
             out.println(" <textarea name='descripcion' placeholder='Descripción' rows='10' cols='50' required>"+actual.getInformacion()+"</textarea>\n" +
                 "</section><br/>");
+            if(!actual.getRecurso().equals("0"))
             out.println("<section id='main'>\n"+
                 "<h3>Recurso audiovisual</h3>\n"+
             "            <video width=\"320\" height=\"240\" controls>\n" +
@@ -84,8 +85,10 @@ out.println("          <br/>Recurso de Apoyo(video): "+actual.getRecurso()+"\n" 
     "        </section><br/>\n");
 out.println("<section id='main'>\n"+
     "            <input type='submit' name='Cancelar' value='Cancelar'/>\n" +
-    "            <br/><br/>\n" +
-    "            <input type='submit' name='Enviar' value ='Enviar'>\n" +
+    "            <input type='submit' name='Enviar' value ='Guardar'>\n"
+        
+        + "         <br/>\n"
+        + " <input type='submit' name='Eliminar' value ='Eliminar Tema'>\n" +
     "        </form>\n");
 out.println("    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
 out.println(

@@ -31,7 +31,14 @@ public class ModificarTema extends HttpServlet {
         int idcurso =Integer.parseInt(sidcurso);
         //botones de cancelar y limpiar
         if(request.getParameter("Cancelar")!=null)
-           response.sendRedirect("MisCursos?id="+idcurso+"");
+           response.sendRedirect("verCurso?id="+idcurso+"");
+        else if(request.getParameter("Eliminar")!=null)
+        {
+            if(!tema.Eliminar())
+                response.sendRedirect("error.html");
+            session.setAttribute("TemaR", null);
+            response.sendRedirect("verCurso?id="+idcurso+"");
+        }
         else
         {
            String nombre = request.getParameter("NombreTema");
@@ -47,7 +54,7 @@ public class ModificarTema extends HttpServlet {
                 Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
             } 
             
-             response.sendRedirect("MisCursos?id="+idcurso+"");
+             response.sendRedirect("verCurso?id="+idcurso+"");
         }
 
     }

@@ -25,6 +25,8 @@ public class NuevoTema extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        response.setContentType("text/html;charset=UTF-8");
+       HttpSession session= request.getSession();
+       Usuario user =(Usuario) session.getAttribute("AlumnoR");
         String nombre=request.getParameter("nombre");
         String informacion= request.getParameter("info");
         //botones de cancelar y limpiar
@@ -34,9 +36,9 @@ public class NuevoTema extends HttpServlet {
          response.sendRedirect("NuevoTema.html");
        else
        {
-            HttpSession session= request.getSession();
             Curso curso =(Curso) session.getAttribute("CursoH"); 
             Tema nuevo = curso.agregarTema(nombre, informacion);
+            user.getId();
              //guardando archivo multimedia
             Part filePart = request.getPart("multimedia"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.
             if(filePart.getSize()>0)
@@ -50,8 +52,8 @@ public class NuevoTema extends HttpServlet {
             // System.out.println("archivo:" + filePart.getSubmittedFileName());
             if(nuevo.getId_tema()!=-1)
             {
-                session.setAttribute("CursoNH", curso);
-                response.sendRedirect("MenuCreacionCurso");
+                session.setAttribute("CursoH", curso);
+                response.sendRedirect("verCurso?id="+user.getIndiceCurso(curso.getId_curso())+"");
             }
             else
                response.sendRedirect("error.html");

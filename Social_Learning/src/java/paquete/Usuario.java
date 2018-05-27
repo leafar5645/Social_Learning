@@ -237,6 +237,17 @@ public class Usuario {
            return false;
        }
     }
+    public int getIndiceCurso(int idcurso)
+    {
+        if(!this.buscarCursos())
+            return -1;
+        for(int i=0; i<cursos.size();i++)
+        {
+            if(cursos.get(i).getId_curso()==idcurso)
+                return i;
+        }
+        return -1;
+    }
     public int forgot (String correo , int p) throws SQLException
     {
         int res=0;

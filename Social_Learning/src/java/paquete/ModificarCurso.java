@@ -22,18 +22,29 @@ public class ModificarCurso extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String opcion = request.getParameter("mod");
         HttpSession session= request.getSession();
        Curso curso =(Curso) session.getAttribute("CursoH");
-        if(opcion.equalsIgnoreCase("0"))
+        if(request.getParameter("Eliminar")!=null)
         {
             curso.Eliminar();
             session.setAttribute("CursoH",null);
-            session.invalidate();
             response.sendRedirect("MisCursos");
         }
-        
-        
+        else if(request.getParameter("Cancelar")!=null)
+        {
+             response.sendRedirect("MisCursos");
+        }
+        else if(request.getParameter("Modificar")!=null)
+        {
+            String nombre=request.getParameter("Nombre");
+            String descripcion=request.getParameter("Nombre");
+            curso.setDescripcion(descripcion);
+            curso.setNombre(nombre);
+            session.setAttribute("CursoH",curso);
+            response.sendRedirect("MisCursos");
+        }
+        else
+            response.sendRedirect("error.html");
             
     }
 

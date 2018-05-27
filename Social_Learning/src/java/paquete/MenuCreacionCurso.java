@@ -57,9 +57,10 @@ public class MenuCreacionCurso extends HttpServlet {
                for( int i=0;i<temas.size();i++)
                {
                 out.println("<li>\n" +
-                    "                <a href='VerTemaProfesor?id="+i+"&idcurso="+curso.getId_curso()+"'>"+(temas.get(i)).getNombre()+"</a>\n" +
+                    "                <a href='VerTemaProfesor?id="+i+"&idcurso="+user.getIndiceCurso(curso.getId_curso())+"'>"+(temas.get(i)).getNombre()+"</a>\n" +
                     "                </li>");
-            }
+               }
+            
             if(temas.size()==0)
              out.println("<li>Actualmente no tienes Temas<li/>");
          out.println("</ul><br/>");

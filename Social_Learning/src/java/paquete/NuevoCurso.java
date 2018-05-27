@@ -35,6 +35,7 @@ public class NuevoCurso extends HttpServlet {
            String descripcion= request.getParameter("descripcion");
            //crea el objeto curso y lo subimnos a sesion
            Curso nuevo = new Curso(nombre,descripcion,user);
+          
            if(nuevo.getId_curso()!=-1)
            {
                session.setAttribute("CursoH", nuevo);
