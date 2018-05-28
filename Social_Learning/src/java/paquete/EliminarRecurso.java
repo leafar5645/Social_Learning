@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package paquete;
 
 import java.io.IOException;
@@ -17,35 +13,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author betoj
  */
-public class ModificarCurso extends HttpServlet {
+public class EliminarRecurso extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String nombre = request.getParameter("nombre");
         HttpSession session= request.getSession();
-       Curso curso =(Curso) session.getAttribute("CursoH");
-        if(request.getParameter("Eliminar")!=null)
-        {
-            curso.Eliminar(request.getRealPath("/RecursosCursos")); 
-            session.setAttribute("CursoH",null);
-            response.sendRedirect("MisCursos");
-        }
-        else if(request.getParameter("Cancelar")!=null)
-        {
-             response.sendRedirect("MisCursos");
-        }
-        else if(request.getParameter("Modificar")!=null)
-        {
-            String nombre=request.getParameter("Nombre");
-            String descripcion=request.getParameter("Descripcion");
-            curso.setDescripcion(descripcion);
-            curso.setNombre(nombre);
-            session.setAttribute("CursoH",curso);
-            response.sendRedirect("MisCursos");
-        }
-        else
-            response.sendRedirect("error.html");
-            
+        Curso curso = (Curso)session.getAttribute("CursoH");
+        curso.eliminarRecurso(request.getRealPath("/RecursosCursos"), nombre);
+        response.sendRedirect("verCurso");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

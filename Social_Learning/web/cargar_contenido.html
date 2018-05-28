@@ -24,11 +24,13 @@
 	<h1>Elija los archivos que desee subir al tema</h1>
 	<section id="main" >
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<form action="CargarA" method ="get" enctype="multipart/form-data">
-			<input type="file" name="fcarga" value="Archivos a subir" multiple>
-			<br/>
-			<input type="submit">
-		</form>
+		<form action='CargarArchivo' method ='post' enctype="multipart/form-data">
+                    
+                   Selecciona Archivo:
+                    <input type='file' name='multimedia'/>
+                    <input type='submit' name='Enviar' value ='Aceptar'>
+                    <!--<ul class='icons'> <li> <a href='#' title='Registrar' onclick='$(this).closest('form').submit()' name='destroy' value='alta' class='fa-sign-in'>Registar</a> </li></ul>-->
+                </form>
 	</section>
 </div>
 </body>

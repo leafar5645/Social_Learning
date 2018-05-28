@@ -29,16 +29,29 @@ public class verCurso extends HttpServlet {
         HttpSession session= request.getSession();
         Usuario user =(Usuario) session.getAttribute("AlumnoH");
         ArrayList<Curso> cursos = user.getCursos();
-        String sid = request.getParameter("id");
-        int id =Integer.parseInt(sid);
-        Curso actual = cursos.get(id);
+        String sid;
+        sid = request.getParameter("id");
+        Curso actual;
+         int id;
+        if(sid==null)
+        {
+           actual = (Curso)session.getAttribute("CursoH");
+           id=user.getIndiceCurso(actual.getId_curso());
+        }
+        else
+        {
+            id =Integer.parseInt(sid);
+            actual = cursos.get(id);
+        }
         if(!actual.buscarTemas()) 
             response.sendRedirect("error.html");
         session.setAttribute("CursoH",actual);
+        ArrayList<String> recursos = actual.getRecursos(request.getRealPath("/RecursosCursos"));
         ArrayList<Tema> temas= actual.getTemas();
         try (PrintWriter out = response.getWriter())
         {
-            out.println("<html>\n" +
+            out.println("<!DOCTYPE html>"
+                    + "<html>\n" +
                 "    <head>\n" +
                 "        <title>Curso</title>\n" +
 //<<<<<<< HEAD
@@ -101,11 +114,19 @@ public class verCurso extends HttpServlet {
                 "        <h3>Los Recursos Actuales Son:</h3>\n" +
                 "        <section id='main' >\n" +
                 "            <ul>\n" +
-                "                <li>\n" +
-                "                <a href='R1'>Nombre Recurso1</a>\n" +
-                "                </li>\n" +
-                "            </ul>\n" +
-                "        </section>\n" +
+                "               \n");
+            for(int i=0;i<recursos.size();i++)
+            {
+                if(user.getTipo().equalsIgnoreCase("A")) 
+                    out.println(" <li><a href='"+"RecursosCursos/"+actual.getNombre()+"/"+recursos.get(i)+"' download>"+recursos.get(i)+"</a>\n</li>");
+                else
+                    out.println(" <li>"+recursos.get(i)+"<a href='EliminarRecurso?nombre="+recursos.get(i)+"'>Eliminar</a>\n</li>"); 
+            }
+            out.println("\n" +
+                "            </ul>\n");
+             if(user.getTipo().equalsIgnoreCase("P"))
+             out.println("<form action='cargar_contenido.html' method='post'><input type='submit' value=Nuevo Archivo/> </form>");
+             out.println(" </section>\n" +
                 "        </div>\n" +
                 "    </body>\n" +
                 "</html>");

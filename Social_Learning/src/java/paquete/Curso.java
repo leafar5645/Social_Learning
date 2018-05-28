@@ -1,5 +1,6 @@
 
 package paquete;
+import java.io.File;
 import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,9 +17,15 @@ public class Curso
     private String nombre;
     private String descripcion;
     private ArrayList <Tema> temas;
+    private ArrayList <String> recursos;
     int inscritos;
+    public Curso()
+    {
+        
+    }
     public Curso(String nombre, String descripcion, Usuario user)
     {
+       recursos=null;
        Statement sta =null;
        String sql=null;
        ResultSet resul=null;
@@ -45,14 +52,12 @@ public class Curso
     }
     public Curso(int id, String nombre, int inscritos,String descripcion)
     {
+        recursos=null;
         this.id_curso=id;
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.inscritos=inscritos;
         buscarTemas();
-    }
-    public Curso()
-    {
     }
     public boolean buscarTemas()
     {
@@ -89,22 +94,48 @@ public class Curso
             temas.add(salida);
         return salida;
     }
-    public boolean Eliminar ()
+    public boolean Eliminar (String path)
     {
        Statement sta =null;
        Conexion_Base conexion = new Conexion_Base();
        Connection con = conexion.getConnection();
-       try{
+       try
+       {
            //obteniendo temas del curso
         sta=con.createStatement();
         sta.executeUpdate("delete from curso where idcurso="+this.id_curso+"");
-        return true;
+            //eliminando recursos
+            File directorio = new File(path+"/"+this.getNombre());//ruta del directorio
+            if(!directorio.exists())//si no existe
+                return true;
+            for(File archivo: directorio.listFiles())
+            {
+              archivo.delete();
+            }
+            directorio.delete();
+             return true;
        }
+       
        catch(Exception e)
        {
            System.out.println("Error en Eliminar Curso " + e);
            return false;
        }
+    }
+    public boolean eliminarRecurso(String path, String nombre)
+    {
+        File directorio = new File(path+"/"+this.getNombre());//ruta del directorio
+        if(!directorio.exists())//si no existe
+            return false;
+        for(File archivo: directorio.listFiles())
+        {
+          if(archivo.getName().equals(nombre))
+          {
+            archivo.delete();
+            return true;
+          }
+        }
+        return false;
     }
     public int getId_curso() {
         return id_curso;
@@ -195,6 +226,31 @@ public class Curso
                System.out.println("Error en:"+e);
                return null;
             }
+    }
+    public ArrayList<String> getRecursos(String path)
+    {
+        recursos= new ArrayList<String>(); 
+        File directorio = new File(path+"/"+this.getNombre());//ruta del directorio
+        if(!directorio.exists())//si no existe lo creamos
+                    directorio.mkdir();
+        for(File archivo: directorio.listFiles())
+        {
+            recursos.add(archivo.getName());
+           // System.out.println(archivo.getName());
+        }
+        return recursos;
+    }
+    public File buscaRecurso(String path, String narchivo)
+    {
+        File directorio = new File(path+"/"+this.getNombre());//ruta del directorio
+        if(!directorio.exists())//si no existe lo creamos
+            return null;
+        for(File archivo: directorio.listFiles())
+        {
+          if(archivo.getName().equals(narchivo))
+            return archivo;
+        }
+        return null;
     }
 
 }

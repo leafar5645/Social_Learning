@@ -1,51 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package paquete;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-/**
- *
- * @author betoj
- */
-public class ModificarCurso extends HttpServlet {
+import javax.servlet.http.Part;
+@MultipartConfig
+public class CargarArchivo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session= request.getSession();
-       Curso curso =(Curso) session.getAttribute("CursoH");
-        if(request.getParameter("Eliminar")!=null)
-        {
-            curso.Eliminar(request.getRealPath("/RecursosCursos")); 
-            session.setAttribute("CursoH",null);
-            response.sendRedirect("MisCursos");
-        }
-        else if(request.getParameter("Cancelar")!=null)
-        {
-             response.sendRedirect("MisCursos");
-        }
-        else if(request.getParameter("Modificar")!=null)
-        {
-            String nombre=request.getParameter("Nombre");
-            String descripcion=request.getParameter("Descripcion");
-            curso.setDescripcion(descripcion);
-            curso.setNombre(nombre);
-            session.setAttribute("CursoH",curso);
-            response.sendRedirect("MisCursos");
-        }
-        else
-            response.sendRedirect("error.html");
-            
+        HttpSession session = request.getSession();
+        Curso curso =(Curso) session.getAttribute("CursoH"); 
+         //guardando archivo multimedia
+            Part filePart = request.getPart("multimedia"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.
+            if(filePart.getSize()>0)
+            {
+                String path=request.getRealPath("/RecursosCursos");
+                InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
+                File directorio = new File(path+"/"+curso.getNombre());//ruta del directorio
+                if(!directorio.exists())//si no existe lo creamos
+                    directorio.mkdir();
+                File file=null;
+                int i=0;
+                do
+                {
+                    file = new File(path+"/" +curso.getNombre()+"/"+"("+i+")"+filePart.getSubmittedFileName());
+                    i++;
+                }
+                while(file.exists());
+                Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
+            }
+            response.sendRedirect("verCurso");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
