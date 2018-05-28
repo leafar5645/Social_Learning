@@ -232,7 +232,8 @@ public class Curso
         recursos= new ArrayList<String>(); 
         File directorio = new File(path+"/"+this.getNombre());//ruta del directorio
         if(!directorio.exists())//si no existe lo creamos
-                    directorio.mkdir();
+                    directorio.mkdirs();
+        directorio.listFiles();
         for(File archivo: directorio.listFiles())
         {
             recursos.add(archivo.getName());

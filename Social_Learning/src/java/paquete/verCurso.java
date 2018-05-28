@@ -43,7 +43,7 @@ public class verCurso extends HttpServlet {
             id =Integer.parseInt(sid);
             actual = cursos.get(id);
         }
-        if(!actual.buscarTemas()) 
+        if(!actual.buscarTemas())
             response.sendRedirect("error.html");
         session.setAttribute("CursoH",actual);
         ArrayList<String> recursos = actual.getRecursos(request.getRealPath("/RecursosCursos"));
@@ -117,10 +117,10 @@ public class verCurso extends HttpServlet {
                 "               \n");
             for(int i=0;i<recursos.size();i++)
             {
-                if(user.getTipo().equalsIgnoreCase("A")) 
+                if(user.getTipo().equalsIgnoreCase("A"))
                     out.println(" <li><a href='"+"RecursosCursos/"+actual.getNombre()+"/"+recursos.get(i)+"' download>"+recursos.get(i)+"</a>\n</li>");
                 else
-                    out.println(" <li>"+recursos.get(i)+"<a href='EliminarRecurso?nombre="+recursos.get(i)+"'>Eliminar</a>\n</li>"); 
+                    out.println(" <li>"+recursos.get(i)+"<a href='EliminarRecurso?nombre="+recursos.get(i)+"'>Eliminar</a>\n</li>");
             }
             out.println("\n" +
                 "            </ul>\n");
