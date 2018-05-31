@@ -99,7 +99,7 @@ public class BuscarCurso extends HttpServlet {
                                     bandera=0;
                                 }
                                 //out.println(cursos.size()); 
-
+                                out.println("<section id='main'>");
                                 out.println("<h4>creador:</h4> "+resul.getString("autor")+"<br>");
                                 out.println("<h4>nombre del curso:</h4> "+resul.getString("nombre")+"<br>");
                                 out.println("<h4>descripcion del curso:</h4> "+resul.getString("descripcion")+"<br>");

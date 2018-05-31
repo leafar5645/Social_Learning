@@ -31,7 +31,7 @@ public class CargarArchivo extends HttpServlet {
                 InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
                 File directorio = new File(path+"/"+curso.getNombre());//ruta del directorio
                 if(!directorio.exists())//si no existe lo creamos
-                    directorio.mkdir();
+                    directorio.mkdirs();
                 File file=null;
                 int i=0;
                 do

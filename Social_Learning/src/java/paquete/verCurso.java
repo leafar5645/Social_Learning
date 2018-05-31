@@ -82,7 +82,7 @@ public class verCurso extends HttpServlet {
             out.println("<h1>Curso:</h1> "
                         + "<section id='main'><input type='text' name='Nombre' value='"+actual.getNombre()+"'/><br>"
                         + "<h3>Descripción:<textarea name='Descripcion' rows='5' cols='50'>"+actual.getDescripcion()+"</textarea></h3>"
-                        + "<input type='submit' name='Modificar' value='Guardar Cambios'/><form></section><br>");
+                        + "<input type='submit' name='Modificar' value='Guardar Cambios'/></form></section><br>");
         }
         out.println("       <h3>Los Temas Actuales Son:</h3>\n" +
                     "        <section id='main' >\n" +
@@ -111,7 +111,7 @@ public class verCurso extends HttpServlet {
         out.println("\n" +
                     "            </ul>\n");
         if(user.getTipo().equalsIgnoreCase("P"))
-           out.println("<form action='cargar_contenido.html' method='post'><input type='submit' value=Nuevo Archivo/> </form>");
+           out.println("<form action='cargar_contenido.html' method='post'><input type='submit' value='Nuevo Archivo'/> </form>");
        out.println(" </section>\n"+
                    "<br>\n");
        out.println("<section id='main'>");
