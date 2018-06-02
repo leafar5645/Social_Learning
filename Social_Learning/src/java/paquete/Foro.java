@@ -51,9 +51,10 @@ public class Foro {
         {
             while(resul.next())
             {
-                Publicacion aux = new Publicacion(resul.getInt("idpubli"), resul.getInt("idcurso"), resul.getInt("idusuario"), resul.getInt("likes"), resul.getNString("contenido"), resul.getNString("mediaUrl"), resul.getInt("validacion"));
+                Publicacion aux = new Publicacion(resul.getInt("idpubli"), resul.getInt("idcurso"), resul.getInt("idusuario"), resul.getNString("contenido"), resul.getNString("mediaUrl"), resul.getInt("validacion"));
                 publicaciones.add(aux);
             }
+            sta.close();
             return true;
         }
         else 

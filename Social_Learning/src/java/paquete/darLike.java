@@ -7,17 +7,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class darLike extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession sesion=request.getSession();
         PrintWriter out = response.getWriter();
+        Usuario User=(Usuario)sesion.getAttribute("AlumnoH");
+        
         String Sid=request.getParameter("id");
         int id=Integer.parseInt(Sid);
-        Publicacion publicacion=new Publicacion(id);
-        publicacion.darLike();
+        like Like=new like(id, User.getId());
+        Like.darLike();
        response.sendRedirect("verForo");    
     }
 

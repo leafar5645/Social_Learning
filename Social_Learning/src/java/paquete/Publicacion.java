@@ -13,10 +13,10 @@ public class Publicacion {
     int idPubli;
     int idCurso;
     int idUsuario;
-    int likes;
     String contenido;
     String mediaURL;
     int validacion;
+    like Like;
      private ArrayList <Comentario> comentarios;
             String autor="hola";
     
@@ -35,26 +35,27 @@ public class Publicacion {
            idPubli=resul.getInt(1)+1;
         else
             idPubli=1;
-        sta.executeUpdate("insert into publicacion (idpubli, idcurso, idusuario, likes, contenido, validacion) values ("+idPubli+", "+curso.getId_curso()+", "+user.getId()+", 0, '"+contenido+"', 0);");
+           System.out.println("insert into publicacion (idpubli, idcurso, idusuario, contenido, validacion) values ("+idPubli+", "+curso.getId_curso()+", "+user.getId()+", '"+contenido+"', 0);");
+        sta.executeUpdate("insert into publicacion (idpubli, idcurso, idusuario, contenido, validacion) values ("+idPubli+", "+curso.getId_curso()+", "+user.getId()+", '"+contenido+"', 0);");
         this.contenido=contenido;
         this.idCurso=curso.getId_curso();
         this.idUsuario=user.getId();
-        likes=0;
         validacion=0;
         mediaURL=null;
+        sta=null;
+        sta.close();      
        }
        catch(Exception e)
        {
-           System.out.println("Error en Creacion publicacion " + e);
+           System.out.println("Error en Creacion publicacion2 " + e);
        }
     }
     
-    public Publicacion(int idPubli, int idCurso, int idUsuario, int likes, String contenido, String mediaURL, int validacion)
+    public Publicacion(int idPubli, int idCurso, int idUsuario,String contenido, String mediaURL, int validacion)
     {
         this.idPubli=idPubli;
         this.idUsuario=idUsuario;
         this.idCurso=idCurso;
-        this.likes=likes;
         this.contenido=contenido;
         this.mediaURL=mediaURL;
         this.validacion=validacion;   
@@ -75,7 +76,6 @@ public class Publicacion {
                 this.idUsuario=resul.getInt("idusuario");
                 this.idCurso=resul.getInt("idcurso");
                 this.contenido=resul.getString("contenido");
-                this.likes=resul.getInt("likes");
                 this.mediaURL=resul.getString("mediaUrl");
                 this.validacion=resul.getInt("validacion");
 
@@ -105,6 +105,26 @@ public class Publicacion {
            return false;
        }
     }
+    
+    public int getLikes() 
+    {
+       Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       ResultSet resul=null;
+       try{
+           //obteniendo temas del curso
+        sta=con.createStatement();
+        resul=sta.executeQuery("select * from megusta where idpubli="+idPubli+" and megusta=1;");
+        resul.last();
+            return resul.getRow();
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Eliminar Curso " + e);
+           return 0;
+       }
+    }
     public int getIdPubli()
     {
         return idPubli;
@@ -128,14 +148,6 @@ public class Publicacion {
     public void setIdUsuario(int idUsuario)
     {
         this.idUsuario=idUsuario;
-    }
-    public int getLikes()
-    {
-        return likes;
-    }
-    public void setLikes(int likes)
-    {
-        this.likes=likes;
     }
     public String getContenido()
     {
@@ -162,7 +174,7 @@ public class Publicacion {
         this.validacion=validacion;
     }
     
-    public void darLike()
+   /* public void darLike()
     {
         Statement sta =null;
        Conexion_Base conexion = new Conexion_Base();
@@ -177,7 +189,7 @@ public class Publicacion {
        {
            System.out.println("Error al dar Like " + e);
        }
-    }
+    }*/
     public String getAutor()
     {
         
