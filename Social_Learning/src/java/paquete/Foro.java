@@ -57,8 +57,12 @@ public class Foro {
             sta.close();
             return true;
         }
-        else 
+        else
+        {   
+            sta.close();
             return false;
+        }
+            
        }
        catch(Exception e)
        {

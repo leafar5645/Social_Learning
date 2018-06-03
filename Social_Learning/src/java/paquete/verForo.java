@@ -62,6 +62,7 @@ public class verForo extends HttpServlet {
             out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
         out.println(" </ul></li>\n" +
             "                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+            "                        <li><a href='misPublicaciones'><span><i class='icon-briefcase'></i></span>Mis publicaciones</a></li>\n"+
             "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
             "                    </ul>\n"+
             "                </nav>\n"+
@@ -78,27 +79,42 @@ public class verForo extends HttpServlet {
                 out.println("<legend>"+(publicaciones.get(i)).getAutor()+"</legend>");
                 out.println("<legend>Contenido</legend>");
                 out.println((publicaciones.get(i)).getContenido());
-                out.println("<form method='post' action='darLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Me gusta'>");
+                if(user.getTipo().equalsIgnoreCase("P"))
+                {
+                    if(publicaciones.get(i).getValidacion()==0)
+                    out.println("<form method='post' action='Validar?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Validar'>");
+                    else
+                    out.println("<form method='post' action='Validar?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Quitar validacion'>");
+                }
+                
+                else
+                {
+                    if((publicaciones.get(i)).estadoLike(user.getId()))
+                        out.println("<form method='post' action='darLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Me gusta'>");
+                    else
+                        out.println("<form method='post' action='quitarLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Ya no me gusta'>");
+                }
+                
                 out.println("Me gusta: "+((publicaciones.get(i)).getLikes()));
+                if((publicaciones.get(i)).getValidacion()==1)
+                out.println("<br>VALIADO!!");
                 out.println("</form>");
-                System.out.println("Respuesta: "+HayComentarios);
                 if(HayComentarios)
                 {
                     for(int j=0; j<comentarios.size();j++)
                     {
                         out.println("<fieldset>");
-                        out.println("<legend>"+(comentarios.get(i)).getAutor()+"</legend>");
+                        out.println("<legend>"+(comentarios.get(j)).getAutor()+"</legend>");
                         out.println("<legend>Comentario:</legend>");
-                        out.println((comentarios.get(i)).getTexto());
+                        out.println((comentarios.get(j)).getTexto());
                         out.println("</fieldset>");
                     }
                 }
                 else
                     out.println("Sin comentarios<br/>");
-                out.println("<textarea placeholder='Pon tu comentario aquí' name=\"responder\" form=\"comentar\" class='comentario'>");
+                out.println("<textarea placeholder='Pon tu comentario aquí' name='responder"+i+"' form=\"comentar"+i+"\" class='comentario'>");
                 out.println("</textarea><br>");
-                out.println("<form method='post' action='NuevoComentario' id='comentar'>");
-                out.println("<input type='hidden' value='"+(publicaciones.get(i)).getIdPubli()+"' name='publicacion'/>");
+                out.println("<form method='post' action='NuevoComentario?publicacion="+((publicaciones.get(i)).getIdPubli())+"&numero="+i+"&' id='comentar"+i+"'>");
                 out.println("<input type='submit' value='Comentar'>");
                 out.println("</form>");
                 out.println("</fieldset>");

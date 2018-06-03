@@ -31,17 +31,20 @@ public class like {
             this.idPubli=idPubli;
             this.idUsuario=idUsuario;
             like=resul.getInt("megusta");
-            sta.close();
+            resul.close();
+        sta.close();  
+        con.close();
         }
         else
         {
          sta=con.createStatement();
-        System.out.println("insert into meGusta values ("+idPubli+", "+idUsuario+", 0);");
         sta.executeUpdate("insert into meGusta values ("+idPubli+", "+idUsuario+", 0);");
         this.idPubli=idPubli;
         this.idUsuario=idUsuario;
         like=0;
-        sta.close();   
+        resul.close();
+        sta.close();  
+        con.close();  
         }
        }
        catch(Exception e)
@@ -65,7 +68,8 @@ public class like {
            sta=con.createStatement();
            sta.executeUpdate("update meGusta set megusta="+1+" where idpubli="+idPubli+" and idusuario="+idUsuario+";");
           like=1;
-          sta.close();
+        sta.close();  
+        con.close();
            
        }
        catch(Exception e)
@@ -82,9 +86,10 @@ public class like {
        try
        {
            sta=con.createStatement();
-           sta.executeUpdate("update meGusta set megusta="+1+" where idpubli="+idPubli+" and idusuario="+idUsuario+";");
+           sta.executeUpdate("update meGusta set megusta="+0+" where idpubli="+idPubli+" and idusuario="+idUsuario+";");
           like=0;
-           sta.close();
+        sta.close();  
+        con.close();
        }
        catch(Exception e)
        {

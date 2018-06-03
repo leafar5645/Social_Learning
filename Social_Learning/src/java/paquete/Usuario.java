@@ -26,6 +26,8 @@ public class Usuario {
    Conexion_Base conexion;
    String foto;
    ArrayList<Curso> cursos;
+   private ArrayList <Publicacion> publicacionesMias;
+   private ArrayList <Publicacion> publicacionesComentadas;
     public String getFoto() {
         return foto;
     }
@@ -271,6 +273,87 @@ public class Usuario {
        con.close();
         return res;
     }
-
+    public boolean buscarPublicacionesMias()
+    {
+        Statement sta =null;
+            ResultSet resul=null;
+            Conexion_Base conexion = new Conexion_Base();
+            Connection con = conexion.getConnection();
+            publicacionesMias=new ArrayList<Publicacion>();
+        try
+        {
+            sta=con.createStatement();
+            resul=sta.executeQuery("select * from publicacion where idusuario="+id+";");
+            if(resul.isBeforeFirst())
+            {
+                while(resul.next())
+                {
+                    Publicacion aux = new Publicacion(resul.getInt("idpubli"), resul.getInt("idcurso"), resul.getInt("idusuario"), resul.getString("contenido"), resul.getString("mediaurl"), resul.getInt("validacion"));
+                    publicacionesMias.add(aux);
+                }
+                resul.close();
+                sta.close();
+                con.close();
+                return true;
+            }
+            else 
+            {
+                sta.close();
+                return false;
+            }
+            
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error al buscar las publicaciones del usuario:"+e);
+        }
+        return true;
+    }
+    
+    public boolean buscarPublicacionesComentadas()
+    {
+         Statement sta =null;
+            ResultSet resul=null;
+            Conexion_Base conexion = new Conexion_Base();
+            Connection con = conexion.getConnection();
+            publicacionesComentadas=new ArrayList<Publicacion>();
+        try
+        {
+            sta=con.createStatement();
+            resul=sta.executeQuery("select p.* from publicacion p, comentarios c where p.idpubli=c.idpubli and c.idusuario="+id+" and p.idusuario not in ("+id+")");
+            if(resul.isBeforeFirst())
+            {
+                while(resul.next())
+                {
+                    Publicacion aux = new Publicacion(resul.getInt("idpubli"), resul.getInt("idcurso"), resul.getInt("idusuario"), resul.getString("contenido"), resul.getString("mediaurl"), resul.getInt("validacion"));
+                    publicacionesComentadas.add(aux);
+                }
+                resul.close();
+                sta.close();
+                con.close();
+                return true;
+            }
+            else 
+            {
+                sta.close();
+                return false;
+            }
+            
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error al buscar las publicaciones comentadas por el usuario:"+e);
+        }
+        return true;
+    }
+    
+    public ArrayList getPublicacionesMias()
+    {
+        return publicacionesMias;
+    }
+    public ArrayList getPublicacionesComentadas()
+    {
+        return publicacionesComentadas;
+    }
 
 }

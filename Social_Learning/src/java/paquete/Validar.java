@@ -9,25 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author User
- */
-public class NuevoComentario extends HttpServlet {
+public class Validar extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         HttpSession sesion=request.getSession();
-        Usuario autor=(Usuario)sesion.getAttribute("AlumnoH");
-        String publicacion=request.getParameter("publicacion");
-        String numero=request.getParameter("numero");
-        String respuesta=request.getParameter("responder"+numero);
-        Publicacion padre=new Publicacion(Integer.parseInt(request.getParameter("publicacion")));
-        Comentario nueva=new Comentario(autor, padre, respuesta);
-        response.sendRedirect("verForo");
-
+        PrintWriter out = response.getWriter();
+        String Sid=request.getParameter("id");
+        int id=Integer.parseInt(Sid);
+        Publicacion aValidar= new Publicacion(id);
+        aValidar.setValidacion();
+       response.sendRedirect("verForo");    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

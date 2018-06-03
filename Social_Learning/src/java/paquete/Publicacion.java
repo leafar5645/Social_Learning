@@ -35,15 +35,15 @@ public class Publicacion {
            idPubli=resul.getInt(1)+1;
         else
             idPubli=1;
-           System.out.println("insert into publicacion (idpubli, idcurso, idusuario, contenido, validacion) values ("+idPubli+", "+curso.getId_curso()+", "+user.getId()+", '"+contenido+"', 0);");
         sta.executeUpdate("insert into publicacion (idpubli, idcurso, idusuario, contenido, validacion) values ("+idPubli+", "+curso.getId_curso()+", "+user.getId()+", '"+contenido+"', 0);");
         this.contenido=contenido;
         this.idCurso=curso.getId_curso();
         this.idUsuario=user.getId();
         validacion=0;
         mediaURL=null;
-        sta=null;
-        sta.close();      
+        resul.close();
+        sta.close();  
+        con.close();
        }
        catch(Exception e)
        {
@@ -80,6 +80,9 @@ public class Publicacion {
                 this.validacion=resul.getInt("validacion");
 
             }
+        resul.close();
+        sta.close();  
+        con.close();
        }
        catch(Exception e)
        {
@@ -87,7 +90,7 @@ public class Publicacion {
        }
         
     }
-    
+
     public boolean Eliminar()
     {
         Statement sta =null;
@@ -97,7 +100,10 @@ public class Publicacion {
            //obteniendo temas del curso
         sta=con.createStatement();
         sta.executeUpdate("delete from publicacion where idpubli="+idPubli+"");
+        sta.close();  
+        con.close();
         return true;
+        
        }
        catch(Exception e)
        {
@@ -117,12 +123,51 @@ public class Publicacion {
         sta=con.createStatement();
         resul=sta.executeQuery("select * from megusta where idpubli="+idPubli+" and megusta=1;");
         resul.last();
-            return resul.getRow();
+        int valor=resul.getRow();
+        resul.close();
+        sta.close();  
+        con.close();
+            return valor;
        }
+       
        catch(Exception e)
        {
            System.out.println("Error en Eliminar Curso " + e);
            return 0;
+       }
+    }
+    
+    public boolean estadoLike(int idUsuario)
+    {
+       Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       ResultSet resul=null;
+       try{
+           //se desea saber si un alumno ya dío like a la publicación
+        sta=con.createStatement();
+        resul=sta.executeQuery("select * from megusta where idpubli="+idPubli+" and idusuario="+idUsuario+";");
+        if(resul.next())
+        {
+            int estado=resul.getInt("megusta");
+            resul.close();
+        sta.close();  
+        con.close();
+            if(estado==1)
+                return false;
+            else 
+                return true;
+        }
+        resul.close();
+        sta.close();  
+        con.close();
+        return true;
+            
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Estado like " + e);
+           return false;
        }
     }
     public int getIdPubli()
@@ -169,27 +214,42 @@ public class Publicacion {
     {
         return validacion;
     }
-    public void setValidacion(int validacion)
-    {
-        this.validacion=validacion;
-    }
-    
-   /* public void darLike()
+    public void setValidacion()
     {
         Statement sta =null;
        Conexion_Base conexion = new Conexion_Base();
        Connection con = conexion.getConnection();
+       ResultSet resul=null;
        try
        {
-           sta=con.createStatement();
-           sta.executeUpdate("update publicacion set likes="+(likes+1)+" where idpubli="+idPubli+";");
-           
+          sta=con.createStatement();
+          resul=sta.executeQuery("select * from publicacion where idpubli="+idPubli+";");
+          resul.next();
+          int val=resul.getInt("validacion");
+          resul.close();
+          sta.close();
+              sta=con.createStatement();
+          if(val==0)
+          {
+          sta.executeUpdate("update publicacion set validacion="+1+" where idpubli="+idPubli+";");
+          validacion=1;
+          }
+          else
+          {
+              sta.executeUpdate("update publicacion set validacion="+0+" where idpubli="+idPubli+";");
+              validacion=0;
+          }
+          sta.close();
+          con.close();
+             
        }
        catch(Exception e)
        {
-           System.out.println("Error al dar Like " + e);
+           System.out.println("Error al validar " + e);
        }
-    }*/
+       
+    }
+    
     public String getAutor()
     {
         
@@ -223,7 +283,6 @@ public class Publicacion {
            //obteniendo publicaciones para el foro
         sta=con.createStatement();
         resul=sta.executeQuery("select * from comentarios where idpubli="+idPubli+";");
-           System.out.println("está buscando en:"+idPubli);
         if(resul.isBeforeFirst())
         {
             while(resul.next())
@@ -231,10 +290,15 @@ public class Publicacion {
                 Comentario aux = new Comentario(resul.getInt("idcomen"), resul.getString("texto"), resul.getInt("idusuario"), resul.getInt("idpubli"));
                 comentarios.add(aux);
             }
+            sta.close();
             return true;
         }
         else 
+        {
+            sta.close();
             return false;
+        }
+            
        }
        catch(Exception e)
        {

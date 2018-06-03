@@ -68,6 +68,7 @@ public class verCurso extends HttpServlet {
             out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
         out.println(" </ul></li>\n" +
                     "                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
+                    "                        <li><a href=\"verForo\"><span><i class=\"icon-menu\"></i></span>Foro</a></li>\n"+
                     "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
                     "                    </ul>\n"+
                     "                </nav>\n"+

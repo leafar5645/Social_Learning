@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package paquete;
 
 import java.sql.Connection;
@@ -56,12 +52,13 @@ public class Comentario {
            idComen=resul.getInt(1)+1;
         else
             idComen=1;
-        System.out.println(idComen);
-        System.out.println("insert into comentarios values ("+idComen+", '"+texto+"', "+creador.getId()+", "+padre.getIdPubli()+");");
         sta.executeUpdate("insert into comentarios values ("+idComen+", '"+texto+"', "+creador.getId()+", "+padre.getIdPubli()+");");
         this.idPubli=padre.getIdPubli();
         this.idUsuario=creador.getId();
         this.texto=texto;
+        resul.close();
+        sta.close();  
+        con.close();
        }
        catch(Exception e)
        {
@@ -75,7 +72,6 @@ public class Comentario {
         this.texto=texto;
         this.idUsuario=idUsuario;
         this.idPubli=idPubli;
-        System.out.println("Lo logramos");
     }
         public String getAutor()
     {
@@ -90,6 +86,9 @@ public class Comentario {
         resul=sta.executeQuery("select nombre from usuario where idusuario="+idUsuario+";");
         resul.first();
         autor= resul.getNString("nombre");
+        resul.close();
+        sta.close();  
+        con.close();
          return autor;
        }
        catch(Exception e)
