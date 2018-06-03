@@ -23,7 +23,7 @@ public class verCurso extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session= request.getSession();
-        Usuario user =(Usuario) session.getAttribute("AlumnoH");
+        Usuario user =(Usuario) session.getAttribute("AlumnoR");
         ArrayList<Curso> cursos = user.getCursos();
         String sid;
         sid = request.getParameter("id");
