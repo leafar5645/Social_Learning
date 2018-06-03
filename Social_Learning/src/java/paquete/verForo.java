@@ -28,7 +28,6 @@ public class verForo extends HttpServlet {
         out.println("<html>\n" +
             "    <head>\n" +
             "        <title>TODO supply a title</title>\n" +
-//<<<<<<< HEAD
             "              <meta charset=\"UTF-8\">\n" +
             "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
             "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
@@ -86,7 +85,6 @@ public class verForo extends HttpServlet {
                     else
                     out.println("<form method='post' action='Validar?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Quitar validacion'>");
                 }
-                
                 else
                 {
                     if((publicaciones.get(i)).estadoLike(user.getId()))
@@ -94,10 +92,9 @@ public class verForo extends HttpServlet {
                     else
                         out.println("<form method='post' action='quitarLike?id="+(publicaciones.get(i)).getIdPubli()+"'><input type='submit' value='Ya no me gusta'>");
                 }
-                
                 out.println("Me gusta: "+((publicaciones.get(i)).getLikes()));
                 if((publicaciones.get(i)).getValidacion()==1)
-                out.println("<br>VALIADO!!");
+                out.println("<br>VALIDADO!!");
                 out.println("</form>");
                 if(HayComentarios)
                 {

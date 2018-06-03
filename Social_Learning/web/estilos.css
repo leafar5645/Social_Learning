@@ -139,3 +139,6 @@ input[type="submit"]:hover{
 	width: 70%;
 	float: right;
 }
+input, textarea{
+	text-transform: none;
+}
