@@ -22,7 +22,7 @@ public class NuevaPublicacion extends HttpServlet {
         HttpSession sesion=request.getSession();
         Usuario autor=(Usuario)sesion.getAttribute("AlumnoH");
         Curso destino=(Curso)sesion.getAttribute("CursoH");
-        String comentario=request.getParameter("comentario");
+        String comentario=new String(request.getParameter("comentario").getBytes("ISO-8859-1"),"UTF-8");
         Publicacion nueva=new Publicacion(comentario,autor,destino);
         response.sendRedirect("verForo");
     }

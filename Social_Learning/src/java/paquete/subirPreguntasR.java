@@ -47,7 +47,7 @@ public class subirPreguntasR extends HttpServlet {
         "                        <ul>\n"+
         "                        <li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
         "                        <li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-        "                        <li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+        "                        <li><a href=\"NuevoCurso\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
         "                        <li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n"+
         "                    </ul>\n"+
         "                </nav>\n"+

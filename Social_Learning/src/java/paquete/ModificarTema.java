@@ -52,8 +52,8 @@ public class ModificarTema extends HttpServlet {
                 InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
                 File file = new File(path+"/" +tema.getRecurso());
                 Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
-            } 
-            
+            }
+
              response.sendRedirect("verCurso?id="+idcurso+"");
         }
 

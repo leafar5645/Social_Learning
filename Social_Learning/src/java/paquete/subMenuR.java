@@ -62,7 +62,7 @@ public class subMenuR extends HttpServlet {
             if(tipo.equalsIgnoreCase("Profesor"))
             {
                 out.println(
-                    "<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
+                    "<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Perfil</a></li>\n"+
                     "<li><a href=\"MisCursos\"><span><i class=\"icon-search\"></i></span>Mis Cursos</a></li>\n"+
                     "<li><a href=\"NuevoCurso.html\"><span><i class=\"icon-briefcase\"></i></span>Crear Curso</a></li>\n"+
                     "<li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");

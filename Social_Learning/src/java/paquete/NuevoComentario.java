@@ -21,9 +21,9 @@ public class NuevoComentario extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession sesion=request.getSession();
         Usuario autor=(Usuario)sesion.getAttribute("AlumnoH");
-        String publicacion=request.getParameter("publicacion");
+        String publicacion=new String(request.getParameter("publicacion").getBytes("ISO-8859-1"),"UTF-8");
         String numero=request.getParameter("numero");
-        String respuesta=request.getParameter("responder"+numero);
+        String respuesta=new String(request.getParameter("responder"+numero).getBytes("ISO-8859-1"),"UTF-8");
         Publicacion padre=new Publicacion(Integer.parseInt(request.getParameter("publicacion")));
         Comentario nueva=new Comentario(autor, padre, respuesta);
         response.sendRedirect("verForo");
