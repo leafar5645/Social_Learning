@@ -69,11 +69,11 @@ public class subirPreguntasR extends HttpServlet {
         Tema t= (Tema) sesion.getAttribute("TemaR");
         int id = t.getId_tema();
         int res=0;
-        String pregunta=request.getParameter("pregunta");
-        String respuesta=request.getParameter("respuesta");
-        String a= request.getParameter("a");
-        String b= request.getParameter("b");
-        String c = request.getParameter("c");
+        String pregunta=new String(request.getParameter("pregunta").getBytes("ISO-8859-1"),"UTF-8");
+        String respuesta=new String(request.getParameter("respuesta").getBytes("ISO-8859-1"),"UTF-8");
+        String a=new String(request.getParameter("a").getBytes("ISO-8859-1"),"UTF-8");
+        String b=new String(request.getParameter("b").getBytes("ISO-8859-1"),"UTF-8");
+        String c=new String(request.getParameter("c").getBytes("ISO-8859-1"),"UTF-8");
         Pregunta p= new Pregunta();
         try {
           res=p.insertPregunta(id, pregunta, respuesta, a, b, c);

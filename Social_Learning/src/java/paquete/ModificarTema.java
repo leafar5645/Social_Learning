@@ -27,7 +27,7 @@ public class ModificarTema extends HttpServlet {
        HttpSession session= request.getSession();
         Curso curso =(Curso) session.getAttribute("CursoH");
         Tema tema = (Tema)session.getAttribute("TemaR");
-        String sidcurso = request.getParameter("idcurso");
+        String sidcurso=new String(request.getParameter("idcurso").getBytes("ISO-8859-1"),"UTF-8");
         int idcurso =Integer.parseInt(sidcurso);
         //botones de cancelar y limpiar
         if(request.getParameter("Cancelar")!=null)
@@ -41,8 +41,8 @@ public class ModificarTema extends HttpServlet {
         }
         else
         {
-           String nombre = request.getParameter("NombreTema");
-           String info = request.getParameter("descripcion");
+           String nombre=new String(request.getParameter("NombreTema").getBytes("ISO-8859-1"),"UTF-8");
+           String info=new String(request.getParameter("descripcion").getBytes("ISO-8859-1"),"UTF-8");
            tema.setNombre(nombre);
            tema.setInformacion(info);
            Part filePart = request.getPart("multimedia"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.

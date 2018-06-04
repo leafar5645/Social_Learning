@@ -27,8 +27,8 @@ public class NuevoTema extends HttpServlet {
        response.setContentType("text/html;charset=UTF-8");
        HttpSession session= request.getSession();
        Usuario user =(Usuario) session.getAttribute("AlumnoR");
-        String nombre=request.getParameter("nombre");
-        String informacion= request.getParameter("info");
+         String nombre=new String(request.getParameter("nombre").getBytes("ISO-8859-1"),"UTF-8");
+         String informacion=new String(request.getParameter("info").getBytes("ISO-8859-1"),"UTF-8");
         //botones de cancelar y limpiar
         if(request.getParameter("Cancelar")!=null)
            response.sendRedirect("MenuCreacioCursos");

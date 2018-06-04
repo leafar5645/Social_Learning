@@ -70,9 +70,9 @@ public class Curso
        try{
            //obteniendo temas del curso
         sta=con.createStatement();
-        System.out.println("select * from tema where idcurso="+id_curso+";");
+        //System.out.println("select * from tema where idcurso="+id_curso+";");
         resul=sta.executeQuery("select * from tema where idcurso="+id_curso+";");
-        System.out.println("hola2");
+        //System.out.println("hola2");
         while(resul.next())
         {
             Tema aux = new Tema(resul.getInt("idt"),resul.getNString("nombre"),resul.getNString("texto"),resul.getInt("idcurso"),resul.getNString("recurso"));

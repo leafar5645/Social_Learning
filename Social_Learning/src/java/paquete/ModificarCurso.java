@@ -36,8 +36,8 @@ public class ModificarCurso extends HttpServlet {
         }
         else if(request.getParameter("Modificar")!=null)
         {
-            String nombre=request.getParameter("Nombre");
-            String descripcion=request.getParameter("Descripcion");
+            String nombre=new String(request.getParameter("Nombre").getBytes("ISO-8859-1"),"UTF-8");
+            String descripcion=new String(request.getParameter("Descripcion").getBytes("ISO-8859-1"),"UTF-8");
             curso.setDescripcion(descripcion);
             curso.setNombre(nombre);
             session.setAttribute("CursoH",curso);

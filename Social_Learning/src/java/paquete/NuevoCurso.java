@@ -27,8 +27,8 @@ public class NuevoCurso extends HttpServlet {
        {
            HttpSession session= request.getSession();
            Usuario user =(Usuario) session.getAttribute("AlumnoR");
-           String nombre=request.getParameter("NombreCurso");
-           String descripcion= request.getParameter("descripcion");
+           String nombre=new String(request.getParameter("NombreCurso").getBytes("ISO-8859-1"),"UTF-8");
+           String descripcion=new String(request.getParameter("descripcion").getBytes("ISO-8859-1"),"UTF-8");
            //crea el objeto curso y lo subimnos a sesion
            Curso nuevo = new Curso(nombre,descripcion,user);
           

@@ -74,7 +74,9 @@ public class VerTemaProfesor extends HttpServlet {
             if(!actual.getRecurso().equals("0"))
             {
                 out.println("            <video width=\"320\" height=\"240\" controls>\n" +
-                    "              <source src=\"RecursosTemas\\"+actual.getRecurso()+"\" type=\"video/mp4\">\n" +
+                    "              <source src=\"RecursosTemas\\"+actual.getRecurso()+"\" type=\"video/mp4\">\n"
+                                + "<source src=\"RecursosTemas\\"+actual.getRecurso()+"\" type=\"video/ogg\" />\n" +
+                                    "<source src=\"RecursosTemas\\"+actual.getRecurso()+"\" type=\"video/webm\" />" +
                     "            Tu navegador No tiene Soporte Para el Video\n" +
                     "            </video> \n");
             }
