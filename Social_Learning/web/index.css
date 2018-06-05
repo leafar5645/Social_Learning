@@ -3,7 +3,7 @@
 	margin: 0
 }
 body{
-	background-image: url("pizarron.jpg");
+	background-image: url("inicio.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -13,7 +13,7 @@ header{
 	height: 150px;
 	overflow: hidden;
 	position: relative;
-	background-image: url("crearcurso.jpg");
+	background-image: url("fractales.jpg");
 	background-size: cover;
 }
 nav{
@@ -32,7 +32,7 @@ nav ul{
 nav > ul{
 	display: table;
 	width: 100%;
-	background-color: hsla(37, 84%, 41%, .803921568627451);
+	background-color: #A7700F;
 	position: relative;
 }
 nav > ul li{
@@ -126,20 +126,20 @@ section a{
 #main{
 	display: block;
 	width: 100%;
-	background-color:  hsla(37, 84%, 41%, 1);
+	background-color: rgba(37, 141, 182, 1);
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 	text-align: center;
-	color: #000000;
 }
 input[type="submit"]:hover{
-	background-color: #2C7B39;
+	background-color: #246E41;
 	color: #000000;
 }
 input[type="submit"]{
-	background-color: #BEF;
-	color: #000000;
+	background-color: #77ccff;
+	color: black;
+	width: 50%
 }
 .comentario{
 	width: 70%;
@@ -147,9 +147,11 @@ input[type="submit"]{
 }
 input, textarea, select{
 	text-transform: none;
-	background-color: #BEF;
+	background-color: #77ccff;
+	color: #000000;
 }
 input:focus, textarea:focus, select:focus{
 	text-transform: none;
 	background-color: #8BE3BE;
+	color: #000000;
 }

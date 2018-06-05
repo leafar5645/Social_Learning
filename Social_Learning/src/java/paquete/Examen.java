@@ -135,10 +135,10 @@ public class Examen extends HttpServlet {
 
             out.println(""+g+".-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + cuestionario[0][g]);
             out.println("<br/>");
-            out.print(" a)"+ cuestionario[1][g] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  b)" + cuestionario[2][g] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  c)" +  cuestionario[3][g] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  d)" + cuestionario[4][g]);
-             out.println("<br/>");
-              out.println("<br/>");
-            out.println("<input type='text' name='R"+g+"' value=''/>");
+            out.println("<select name='R"+g+"'> <option value='null'>Selecciona una respuesta </option> ");
+            out.print("<option value='"+ cuestionario[1][g] + "'>"+ cuestionario[1][g]  +"</option><option value='" + cuestionario[2][g] + "'>" + cuestionario[2][g] +"</option> <option value='" +  cuestionario[3][g] + "'>"+  cuestionario[3][g] +"</option><option value='" + cuestionario[4][g]+"'>"+ cuestionario[4][g]+"</option> ");
+          
+            out.println("</select>");
             out.println("<br>");
             out.println("<br>");
             out.println("<br>");

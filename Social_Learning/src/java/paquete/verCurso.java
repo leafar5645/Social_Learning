@@ -64,22 +64,28 @@ public class verCurso extends HttpServlet {
             {
                 out.println(
                     "<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
-                    "<li><a href=\"MisCursos\"><span><i class=\"icon-search\"></i></span>Mis Cursos</a></li>\n"+
-                    "<li><a href=\"NuevoCurso.html\"><span><i class=\"icon-briefcase\"></i></span>Crear Curso</a></li>\n"+
+                    "<li><a href=\"MisCursos\"><span><i class=\"icon-search\"></i></span>Mis Cursos</a>\n"
+                             + "<ul>\n");
+                    for(int i=0; i<cursos.size();i++)
+                    out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
+                    out.println("</ul></li><li><a href=\"NuevoCurso.html\"><span><i class=\"icon-briefcase\"></i></span>Crear Curso</a></li>\n"+
                     "<li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
             }
             else
             {
                 out.println(
                     "<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
-                    "<li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a></li>\n"+
-                    "<li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
+                    "<li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a>"
+                            
+                            + "<ul>\n");
+                    for(int i=0; i<cursos.size();i++)
+                    out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
+                    out.println("</ul></li><li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
                     "<li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
             }
                   
-        out.println(" </ul><ul>");
-        for(int i=0; i<cursos.size();i++)
-            out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
+        out.println(" </ul>");
+        
         out.println(" </ul></li>\n" +
                     "                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
                     "                        <li><a href=\"verForo\"><span><i class=\"icon-menu\"></i></span>Foro</a></li>\n"+
