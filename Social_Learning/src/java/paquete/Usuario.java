@@ -197,11 +197,11 @@ public class Usuario {
         if((this.tipo).equalsIgnoreCase("P"))
             sql="select * from curso where idcreador="+id+";";
         else
-            sql="select c.idcurso, c.nombre, c.idcreador, c.numinscritos, c.descripcion from curso c, usuariocurso x, usuario u where c.idcurso=x.idcurso and x.idusuario=u.idusuario and u.idusuario="+this.id+";";
+            sql="select c.idcurso, c.nombre, c.idcreador, c.numinscritos, c.descripcion, c.tipo, c.pass from curso c, usuariocurso x, usuario u where c.idcurso=x.idcurso and x.idusuario=u.idusuario and u.idusuario="+this.id+";";
         resul=sta.executeQuery(sql);
         while(resul.next())
         {
-            Curso aux = new Curso(resul.getInt("idcurso"),resul.getNString("nombre"),resul.getInt("numinscritos"),resul.getNString("descripcion"));
+            Curso aux = new Curso(resul.getInt("idcurso"),resul.getNString("nombre"),resul.getInt("numinscritos"),resul.getNString("descripcion"), resul.getInt("tipo"), resul.getString("pass"));
             if(aux!=null)
             cursos.add(aux);
         }

@@ -29,12 +29,20 @@ and open the template in the editor.
         <form action="NuevoCurso" method ="post">
             <input type="text" name="NombreCurso" placeholder="Nombre de Curso" required/>
             <br/>
+            <select name="tipo">
+                <option value="1">Privado</option>
+                <option value="0">Publico</option>
+            </select>
+            <br/>
+            <input type="text" pattern=".{5,10}" name="pass" placeholder="Escribir en caso de ser privado (5-10 caracteres)"/>
+            <br/>
             <textarea name="descripcion" placeholder="Descripción" required></textarea>
             <br/>
             <input type="submit" name="limpiar" value="Limpiar"/>
             <input type="submit" name="Cancelar" value="Cancelar"/>
             <br/><br/>
             <input type="submit" name="Enviar" value="Enviar"/>
+            
             <!--<ul class="icons"> <li> <a href="#" title="Registrar" onclick="$(this).closest('form').submit()" name="destroy" value="alta" class="fa-sign-in">Registar</a> </li></ul>-->
         </form>
         <

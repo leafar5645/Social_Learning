@@ -29,8 +29,15 @@ public class NuevoCurso extends HttpServlet {
            Usuario user =(Usuario) session.getAttribute("AlumnoR");
            String nombre=new String(request.getParameter("NombreCurso").getBytes("ISO-8859-1"),"UTF-8");
            String descripcion=new String(request.getParameter("descripcion").getBytes("ISO-8859-1"),"UTF-8");
+           String Stipo=new String(request.getParameter("tipo").getBytes("ISO-8859-1"),"UTF-8");
+           String pass=new String(request.getParameter("pass").getBytes("ISO-8859-1"),"UTF-8");
+           int tipo = Integer.parseInt(Stipo);
+           Curso nuevo;
            //crea el objeto curso y lo subimnos a sesion
-           Curso nuevo = new Curso(nombre,descripcion,user);
+           if((pass.length())>0)
+            nuevo = new Curso(nombre,descripcion,user,tipo,pass);
+           else
+               nuevo = new Curso(nombre,descripcion,user,tipo,"1");
           
            if(nuevo.getId_curso()!=-1)
            {

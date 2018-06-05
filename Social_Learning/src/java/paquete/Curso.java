@@ -16,6 +16,8 @@ public class Curso
     private int id_curso;
     private String nombre;
     private String descripcion;
+    private int tipo;
+    private String pass;
     private ArrayList <Tema> temas;
     private ArrayList <String> recursos;
     int inscritos;
@@ -23,7 +25,7 @@ public class Curso
     {
         
     }
-    public Curso(String nombre, String descripcion, Usuario user)
+    public Curso(String nombre, String descripcion, Usuario user,int tipo,String pass)
     {
        recursos=null;
        Statement sta =null;
@@ -37,9 +39,11 @@ public class Curso
         resul=sta.executeQuery("select max(idcurso) from curso;");
         if(resul.next())
            id_curso=resul.getInt(1)+1;
-        sta.executeUpdate("insert into curso values ('"+id_curso+"','"+nombre+"','"+user.getId()+"','0','"+descripcion+"');");
+        sta.executeUpdate("insert into curso values ('"+id_curso+"','"+nombre+"','"+user.getId()+"','0','"+descripcion+"', '"+tipo+"', '"+pass+"');");
         this.nombre=nombre;
         this.descripcion=descripcion;
+        this.tipo=tipo;
+        this.pass=pass;
         inscritos=0;
         buscarTemas();
        }
@@ -50,14 +54,45 @@ public class Curso
            return;
        }
     }
-    public Curso(int id, String nombre, int inscritos,String descripcion)
+    public Curso(int id, String nombre, int inscritos,String descripcion, int tipo, String pass)
     {
         recursos=null;
         this.id_curso=id;
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.inscritos=inscritos;
+        this.tipo=tipo;
+        this.pass=pass;
         buscarTemas();
+    }
+    public Curso(int id_curso)
+    {
+          Statement sta =null;
+         ResultSet resul=null;
+       Conexion_Base conexion = new Conexion_Base();
+       Connection con = conexion.getConnection();
+       try{
+           //obteniendo temas del curso
+        sta=con.createStatement();
+        resul=sta.executeQuery("select * from curso where idcurso="+id_curso+";");
+        if(resul.next())
+            {
+                this.id_curso=id_curso;
+                this.nombre=resul.getString("nombre");
+                this.inscritos=resul.getInt("numinscritos");
+                this.descripcion=resul.getString("descripcion");
+                this.tipo=resul.getInt("tipo");
+                this.pass=resul.getString("pass");
+
+            }
+        resul.close();
+        sta.close();  
+        con.close();
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Obtener la publicacion " + e);
+       }
     }
     public boolean buscarTemas()
     {
@@ -167,6 +202,54 @@ public class Curso
            return;
        } 
     }
+    public void setTipo(int tipo) {
+        Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+       sta=con.createStatement();
+       String sql="update curso set tipo="+tipo+" where idcurso="+this.id_curso+";";
+       System.out.println(sql);
+       sta.executeUpdate(sql);    
+        this.tipo=tipo;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Modificacion Nombre: " + e);
+           return;
+       } 
+    }
+    
+    public int getTipo()
+    {
+       return tipo;
+    }
+    
+    public void setPass(String pass) {
+        Statement sta =null;
+       Conexion_Base conexion = new Conexion_Base(); 
+       Connection con = conexion.getConnection();
+       try
+       {
+       sta=con.createStatement();
+       String sql="update curso set pass='"+pass+"' where idcurso="+this.id_curso+";";
+       System.out.println(sql);
+       sta.executeUpdate(sql);    
+        this.pass=pass;
+       }
+       catch(Exception e)
+       {
+           System.out.println("Error en Modificacion Nombre: " + e);
+           return;
+       } 
+    }
+    
+    public String getPass()
+    {
+        return pass;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }

@@ -22,10 +22,36 @@ public class Inscribir extends HttpServlet {
         Usuario user =(Usuario) session.getAttribute("AlumnoR");
         String Sidcurso = request.getParameter("id");
         int idcurso= Integer.parseInt(Sidcurso);
-        if(!user.Inscribir(idcurso))
-            response.sendRedirect("error.html");
+        PrintWriter out = response.getWriter();
+        Curso revisar=new Curso(idcurso);
+        if(revisar.getTipo()==1)
+        {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet olvidar</title>");
+            out.println("<meta charset=\"UTF-8\">\n" +
+"         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
+            out.println("</head>");
+            out.println("<body class>");
+            out.println("<h1>Introduce la contraseña del curso: "+revisar.getNombre()+"</h1>");
+            out.println("<section id='main'>");
+            out.println("<br> <form action='inscribirPass?id="+Sidcurso+"&' method='post' > <input type='password' name='pass' placeholder='Contraseña'/> <input type='submit' name='boton' value='Inscribirse'/> </form>");
+            out.println("</section>");
+            out.println("</body>");
+            out.println("</html>");
+        }
         else
+        {
+            if(!user.Inscribir(idcurso))
+            response.sendRedirect("error.html");
+            else
             response.sendRedirect("MisCursos");
+        }
+        
         
     }
 

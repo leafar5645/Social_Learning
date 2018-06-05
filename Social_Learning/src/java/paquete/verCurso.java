@@ -96,6 +96,19 @@ public class verCurso extends HttpServlet {
             out.println("<form action='ModificarCurso' method='post'>");
             out.println("<h1>Curso:</h1> "
                         + "<section id='main'><input type='text' name='Nombre' value='"+actual.getNombre()+"'/><br>"
+                        + "<br/>\n" +
+                        "            <select name=\"tipo\">\n" +
+                        "                <option value=\"1\">Privado</option>\n" +
+                        "                <option value=\"0\">Publico</option>\n" +
+                        "            </select>\n<br/>" +
+                        " Tipo actual:");
+                    if(actual.getTipo()==1)
+                        out.println("Privado");
+                    else
+                        out.println("Publico");
+out.println("            <br/>\n" +
+"            <input type=\"text\" pattern=\".{5,10}\" name=\"pass\" placeholder=\"Escribir en caso de ser privado (5-10 caracteres)\"/>\n" +
+"            <br/>"
                         + "<h3>Descripción:<textarea name='Descripcion' rows='5' cols='50'>"+actual.getDescripcion()+"</textarea></h3>"
                         + "<input type='submit' name='Modificar' value='Guardar Cambios'/></form></section><br>");
         }

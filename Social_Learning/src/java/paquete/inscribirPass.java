@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package paquete;
 
 import java.io.IOException;
@@ -17,44 +13,45 @@ import javax.servlet.http.HttpSession;
  *
  * @author betoj
  */
-public class ModificarCurso extends HttpServlet {
+public class inscribirPass extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session= request.getSession();
-       Curso curso =(Curso) session.getAttribute("CursoH");
-        if(request.getParameter("Eliminar")!=null)
+        Usuario user =(Usuario) session.getAttribute("AlumnoR");
+        String Sidcurso = request.getParameter("id");
+        PrintWriter out = response.getWriter();
+        int idcurso= Integer.parseInt(Sidcurso);
+        Curso revisar=new Curso(idcurso);
+        if((revisar.getPass()).equals(request.getParameter("pass")))
         {
-            curso.Eliminar(request.getRealPath("/RecursosCursos")); 
-            session.setAttribute("CursoH",null);
-            response.sendRedirect("MisCursos");
-        }
-        else if(request.getParameter("Cancelar")!=null)
-        {
-             response.sendRedirect("MisCursos");
-        }
-        else if(request.getParameter("Modificar")!=null)
-        {
-            String nombre=new String(request.getParameter("Nombre").getBytes("ISO-8859-1"),"UTF-8");
-            String descripcion=new String(request.getParameter("Descripcion").getBytes("ISO-8859-1"),"UTF-8");
-            String Stipo=new String(request.getParameter("tipo").getBytes("ISO-8859-1"),"UTF-8");
-            String pass=new String(request.getParameter("pass").getBytes("ISO-8859-1"),"UTF-8");
-            int tipo = Integer.parseInt(Stipo);
-            curso.setDescripcion(descripcion);
-            curso.setNombre(nombre);
-            curso.setTipo(tipo);
-            if(tipo==1)
-                curso.setPass(pass);
+            if(!user.Inscribir(idcurso))
+            response.sendRedirect("error.html");
             else
-                curso.setPass("1");
-            
-            session.setAttribute("CursoH",curso);
             response.sendRedirect("MisCursos");
         }
         else
-            response.sendRedirect("error.html");
-            
+        {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Contraseña Equivocada</title>");
+            out.println(" <meta http-equiv=\"refresh\" content=\"3;url=BuscarCurso\" />");
+            out.println("<meta charset=\"UTF-8\">\n" +
+            "         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+            "     <link rel=\"stylesheet\" href=\"assets/css/main.css\">\n");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\"/>\n"+
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"iconos.css\"/>\n");
+            out.println("</head>");
+            out.println("<body class>");
+            out.println("<h1>Contraseña equivocada</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
