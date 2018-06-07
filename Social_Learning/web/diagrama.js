@@ -100,13 +100,12 @@ var canvas = new fabric.Canvas('canvas');
         function AgregarTitulo()
         {
             //var titulo = document.getElementById('titulo');
-            var texto = new fabric.IText('SubTitulo',{
+            var texto = new fabric.Textbox('SubTitulo',{
                 fontWeight: 'bold',
                 fontSize: 40,
-                hasControls: false,
                 textAlign : 'center',
-                editable :true
-
+                width: 200,
+                height: 100
             });
             canvas.add(texto);
         }
@@ -114,14 +113,14 @@ var canvas = new fabric.Canvas('canvas');
          function AgregarContenido()
         {
            
-            var texto = new fabric.IText('contenido',{
+            var texto = new fabric.Textbox('contenido',{
                 fontSize: 20,
                 textAlign: 'center',
                 left: 300,
                 top: 100,
-                hasControls: false,
-                textAlign : 'center'
-               
+                textAlign : 'center',
+                width: 200,
+                height: 100
             });
             canvas.add(texto);
         }
