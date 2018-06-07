@@ -42,7 +42,7 @@ public class ModificarTema extends HttpServlet {
         else
         {
            String nombre=new String(request.getParameter("NombreTema").getBytes("ISO-8859-1"),"UTF-8");
-           String info=new String(request.getParameter("descripcion").getBytes("ISO-8859-1"),"UTF-8");
+           String info=new String(request.getParameter("info").getBytes("ISO-8859-1"),"UTF-8");
            tema.setNombre(nombre);
            tema.setInformacion(info);
            Part filePart = request.getPart("multimedia"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.

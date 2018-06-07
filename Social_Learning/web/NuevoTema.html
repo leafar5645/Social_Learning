@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 <head>
-    <title>TODO supply a title</title>
+    <title>Nuevo Tema</title>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='assets/css/main.css'>
     <link rel="stylesheet" type="text/css" href="estilos.css"/>
     <link rel="stylesheet" type="text/css" href="iconos.css"/>
+   
 </head>
 <body class> <div id="wrapper">
    <header>
@@ -27,21 +23,39 @@ and open the template in the editor.
    <h1>Nuevo Tema</h1>
    <h3>Por favor Ingresa Los Datos Para Su Nuevo Tema</h3>
 <section id='main' >
-    <form action='NuevoTema' method ='post' enctype="multipart/form-data">
-        <input type='text' style='width:500px;' name='nombre' placeholder='Nombre de Tema' required />
+    <form action='NuevoTema' id="diag" method ='post' enctype="multipart/form-data">    
+
+        <input type='text' style='width:500px;' name='nombre' id="nombre" placeholder='Nombre de Tema' required />
         <br/>
-        <textarea name='info' placeholder='Informacion Deseada' rows='10' cols='50' required></textarea>
+   <input type="file" id="img" accept=".jpg" onchange="AgregarImagen()"/>
+
+   <button type="button" onclick="AgregarImagen()">Agregar imagen</button>
+
+   <button type="button" onclick="AgregarTitulo()">Agregar Titulo</button>
+
+   <button type="button" onclick="AgregarContenido()">Agregar Contenido</button>
+    
+   <button type="button" onclick="Eliminar()">Eliminar</button>
+    <br/>
+    <canvas id="canvas" width="800" height="800" style='border:1px solid black;'></canvas>
+ 
+
+
+
         <br/>
         Recurso de Apoyo(video):
-        <input type='file' name='multimedia' accept=".mp4"/>
+        <input type='file' name='multimedia' id="mul" accept=".mp4"/>
         <br/>
-        <input type='submit' name='limpiar' value='Limpiar'/>
-        <input type='submit' name='Cancelar' value='Cancelar'/>
+        <input type='submit' name='limpiar' id="lim" value='Limpiar'/>
+        <input type='submit' name='Cancelar' id="can" value='Cancelar'/>
         <br/>
-        <input type='submit' name='Enviar' value ='Enviar'>
         <!--<ul class='icons'> <li> <a href='#' title='Registrar' onclick='$(this).closest('form').submit()' name='destroy' value='alta' class='fa-sign-in'>Registar</a> </li></ul>-->
-    </form>
+
+        <button type="button" name='Enviar' onclick='Finalizar()'>Enviar</button>
+</form>
 </section>
 </div>
+     <script type="text/javascript" src="fabric.js"></script>
+    <script type="text/javascript" src="diagrama.js"></script>
 </body>
 </html>

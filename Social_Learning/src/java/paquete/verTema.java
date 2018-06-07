@@ -61,7 +61,7 @@ public class verTema extends HttpServlet {
             out.println("<h1>Curso: '"+curso.getNombre()+"'</h1>\n");
             out.println("<h2>Tema: "+actual.getNombre()+"</h2>\n");
             out.println("<section id=\"main\">\n" +
-                "             Informacion:<br/>"+(actual.getInformacion()).replaceAll("\n", "<br/>")+"\n" +
+                "             Informacion:<br/>"+(actual.getInformacion()).replaceAll("\n", "<br/>")+"\n" +//aqui va el canvas t el script ue descerializa
                 "        </section>\n" +
                 "          <br/>");
             if(!actual.getRecurso().equals("0"))

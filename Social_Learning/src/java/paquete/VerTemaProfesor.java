@@ -31,7 +31,8 @@ public class VerTemaProfesor extends HttpServlet {
         session.setAttribute("TemaR", actual);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<html>\n" +
+            out.println("<!DOCTYPE html>"
+                    + "<html>\n" +
                 "    <head>\n" +
                 "        <title>Tema</title>\n" +
                 "        <meta charset='UTF-8'>\n" +
@@ -59,15 +60,30 @@ public class VerTemaProfesor extends HttpServlet {
                 "        <div id='wrapper'>\n" +
                 "        <h1>Modificar Tema</h1>\n" +
                 "        <h3>Por favor Modifique los datos que quiera cambiar</h3>\n");
-            out.println("<form action='ModificarTema?idcurso="+idcurso+"' method ='post' enctype=\"multipart/form-data\">");
             out.println("<section id='main'>");
             out.println("<h3>Tema</h3>");
-            out.println("<input type='text' name='NombreTema' placeholder='Nombre de Tema' value='"+actual.getNombre()+"' required></input>\n" +
+            out.println("<form action='ModificarTema?idcurso="+idcurso+"' id=\"diag\" method ='post' enctype=\"multipart/form-data\">"
+                    + "<input type='text' name='NombreTema' placeholder='Nombre de Tema' value='"+actual.getNombre()+"' required />\n" +
                 "</section>");
             out.println("<br/>");
-            out.println("<section id='main'>");
             out.println("<h3>Contenido</h3>");
-            out.println(" <textarea name='descripcion' placeholder='Descripción' rows='10' cols='50' required>"+actual.getInformacion()+"</textarea>\n" +
+            out.println("     \n" +
+                "<section id='main'>"+
+                    "   <input type='hidden' id='serie' value='"+actual.getInformacion()+"' />     <br/>\n" +
+"   <input type=\"file\" id=\"img\" accept=\".jpg\" onchange=\"AgregarImagen()\"/>\n" +
+"\n" +
+"    <button type=\"button\" value=\"Agregar Imagen\" onclick=\"AgregarImagen()\">Agregar Imagen</button>\n" +
+"\n" +
+"    <button type=\"button\" value=\"Agregar Titulo\" onclick=\"AgregarTitulo()\">Agregar Subtitulo</button>\n" +
+"\n" +
+"    <button type=\"button\" value=\"Agregar Contenido\" onclick=\"AgregarContenido()\">Agregar Contenido</button>\n" +
+"    \n" +
+"    <button type=\"button\" value=\"Eliminar\" onclick=\"borrar()\">Eliminar</button>\n" +
+"    <br/>\n" +
+"    <canvas id=\"canvas\" width=\"800\" height=\"800\" style='border:1px solid black;'></canvas>\n" +
+" \n" +
+"\n" +
+
                 "</section><br/>");
             out.println("<section id='main'>\n"+
                 "<h3>Recurso audiovisual</h3>\n");
@@ -86,15 +102,21 @@ public class VerTemaProfesor extends HttpServlet {
                 "        </section><br/>\n");
             out.println("<section id='main'>\n"+
                 "            <input type='submit' name='Cancelar' value='Cancelar'/>\n" +
-                "            <input type='submit' name='Enviar' value ='Guardar'>\n"
+                "            <button type=\"button\" name='Enviar' value ='Guardar' onclick='Finalizar()'>Guardar</button>\n"
                 + "         <br/>\n"
-                + " <input type='submit' name='Eliminar' value ='Eliminar Tema'>\n" +
-                "        </form>\n");
-            out.println("    </form>\n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
+                + " <input type='submit' name='Eliminar' value ='Eliminar Tema'/>\n" +
+                                    "        </section>\n" +
+                " </form>       \n");
+            out.println("   \n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
             out.println(
-                "        </section>\n" +
+
                 "          </div>\n" +
-                "    </body>\n" +
+                " <script type=\"text/javascript\" src=\"fabric.js\"></script>\n" +
+                "    <script type=\"text/javascript\" src=\"verdiagrama.js\"></script>"
+                        + "<script type=\"text/javascript\">"
+                        + "iniciar();"
+                        + "</script>"
+                        + "    </body>\n" +
                 "</html>\n" +
                 "");
         }
