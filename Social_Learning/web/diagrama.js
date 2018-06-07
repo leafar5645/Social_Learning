@@ -15,7 +15,7 @@ function teclas(evObject)
                 else(activo)
                 {
                      var seleccion = canvas.getActiveObject();
-                     if(seleccion.left+seleccion.width>=canvas.width-20||seleccion.top+seleccion.height>=canvas.height-20)
+                     if(seleccion.left+seleccion.width>=canvas.width||seleccion.top+seleccion.height>=canvas.height)
                      {
                         //var enter = new KeyboardEvent("keydown", {which:13,code:'enter',keyCode:13, charCode:13});
                         //document.dispatchEvent(enter);

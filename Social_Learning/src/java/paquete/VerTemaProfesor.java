@@ -60,15 +60,14 @@ public class VerTemaProfesor extends HttpServlet {
                 "        <div id='wrapper'>\n" +
                 "        <h1>Modificar Tema</h1>\n" +
                 "        <h3>Por favor Modifique los datos que quiera cambiar</h3>\n");
+            out.println("<form action='ModificarTema?idcurso="+idcurso+"' id=\"diag\" method ='post' enctype=\"multipart/form-data\">");
             out.println("<section id='main'>");
-            out.println("<h3>Tema</h3>");
-            out.println("<form action='ModificarTema?idcurso="+idcurso+"' id=\"diag\" method ='post' enctype=\"multipart/form-data\">"
+            out.println("<h3>Tema</h3>\n"+
                     + "<input type='text' name='NombreTema' placeholder='Nombre de Tema' value='"+actual.getNombre()+"' required />\n" +
                 "</section>");
             out.println("<br/>");
             out.println("<h3>Contenido</h3>");
-            out.println("     \n" +
-                "<section id='main'>"+
+            out.println("<section id='main'>"+
                     "   <input type='hidden' id='serie' value='"+(actual.getInformacion().replaceAll("\\n","\\\\n"))+"' />     <br/>\n" +
 "   <input type=\"file\" id=\"img\" accept=\".jpg\" onchange=\"AgregarImagen()\"/>\n" +
 "\n" +
@@ -115,8 +114,7 @@ public class VerTemaProfesor extends HttpServlet {
                         + "iniciar();"
                         + "</script>"
                         + "    </body>\n" +
-                "</html>\n" +
-                "");
+                "</html>\n");
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

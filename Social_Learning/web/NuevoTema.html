@@ -7,7 +7,7 @@
     <link rel='stylesheet' href='assets/css/main.css'>
     <link rel="stylesheet" type="text/css" href="estilos.css"/>
     <link rel="stylesheet" type="text/css" href="iconos.css"/>
-   
+
 </head>
 <body class> <div id="wrapper">
    <header>
@@ -23,7 +23,7 @@
    <h1>Nuevo Tema</h1>
    <h3>Por favor Ingresa Los Datos Para Su Nuevo Tema</h3>
 <section id='main' >
-    <form action='NuevoTema' id="diag" method ='post' enctype="multipart/form-data">    
+    <form action='NuevoTema' id="diag" method ='post' enctype="multipart/form-data">
 
         <input type='text' style='width:500px;' name='nombre' id="nombre" placeholder='Nombre de Tema' required />
         <br/>
@@ -34,14 +34,10 @@
    <button type="button" onclick="AgregarTitulo()">Agregar Titulo</button>
 
    <button type="button" onclick="AgregarContenido()">Agregar Contenido</button>
-    
+
    <button type="button" onclick="Eliminar()">Eliminar</button>
     <br/>
-    <canvas id="canvas" width="800" height="800" style='border:1px solid black;'></canvas>
- 
-
-
-
+    <canvas id="canvas" width="750" height="800" style='border:1px solid black;'></canvas>
         <br/>
         Recurso de Apoyo(video):
         <input type='file' name='multimedia' id="mul" accept=".mp4"/>

@@ -29,12 +29,28 @@ and open the template in the editor.
         <form action="NuevoCurso" method ="post">
             <input type="text" name="NombreCurso" placeholder="Nombre de Curso" required/>
             <br/>
-            <select name="tipo">
-                <option value="1">Privado</option>
+            <select id='tipo' name="tipo" onchange="restringir()">
                 <option value="0">Publico</option>
+                <option value="1">Privado</option>
             </select>
             <br/>
-            <input type="text" pattern=".{5,10}" name="pass" placeholder="Escribir en caso de ser privado (5-10 caracteres)"/>
+            <input id='pass' type="hidden" pattern="{5,10}" name="pass" placeholder="(5-10 caracteres)" use=""/>
+            <script>
+                function restringir(){
+                    var tipo = document.getElementById("tipo").value;
+                    var pass = document.getElementById("pass");
+                    if(tipo==1)
+                    {
+                        pass.setAttribute("type","text");
+                        pass.setAttribute("use","required");
+                    }
+                    else
+                    {
+                        pass.setAttribute("type","hidden");
+                        pass.setAttribute("use","");
+                    }
+                }
+            </script>
             <br/>
             <textarea name="descripcion" placeholder="Descripción" required></textarea>
             <br/>
@@ -42,10 +58,9 @@ and open the template in the editor.
             <input type="submit" name="Cancelar" value="Cancelar"/>
             <br/><br/>
             <input type="submit" name="Enviar" value="Enviar"/>
-            
+
             <!--<ul class="icons"> <li> <a href="#" title="Registrar" onclick="$(this).closest('form').submit()" name="destroy" value="alta" class="fa-sign-in">Registar</a> </li></ul>-->
         </form>
-        <
     </section>
 </div>
 </body>

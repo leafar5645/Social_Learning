@@ -76,16 +76,16 @@ public class verCurso extends HttpServlet {
                 out.println(
                     "<li><a href=\"subMenuR\"><span><i class=\"icon-home\"></i></span>Pefil</a></li>\n"+
                     "<li><a href=\"MisCursos\"><span><i class=\"icon-briefcase\"></i></span>Mis Cursos</a>"
-                            
+
                             + "<ul>\n");
                     for(int i=0; i<cursos.size();i++)
                     out.println(" <li><a href='verCurso?id="+i+"'>"+(cursos.get(i)).getNombre()+"</a></li>");
                     out.println("</ul></li><li><a href=\"BuscarCurso\"><span><i class=\"icon-search\"></i></span>Explorador</a></li>\n"+
                     "<li><a href=\"logout\"><span><i class=\"icon-exit\"></i></span>Log Out</a></li>\n");
             }
-                  
+
         out.println(" </ul>");
-        
+
         out.println(" </ul></li>\n" +
                     "                        <li><a href=\"NuevoCurso.html\"><span><i class=\"icon-search\"></i></span>Crear Curso</a></li>\n"+
                     "                        <li><a href=\"verForo\"><span><i class=\"icon-menu\"></i></span>Foro</a></li>\n"+
@@ -96,16 +96,16 @@ public class verCurso extends HttpServlet {
         if(user.getTipo().equalsIgnoreCase("A"))
             out.println(
                         "        <h1>Curso: '"+actual.getNombre()+"'</h1>\n" +
-                        "<section id='main'>\n<h2>Modificar</h2>\n<br>\n<h3>Descripción: '"+(actual.getDescripcion()).replaceAll("\n", "<br/>")+"'</h3>\n</section>");
+                        "<section id='main'><br>\n<h3>Descripción: '"+(actual.getDescripcion()).replaceAll("\n", "<br/>")+"'</h3>\n</section>");
         else
         {
             out.println("<form action='ModificarCurso' method='post'>");
             out.println("<h1>Curso:</h1> "
                         + "<section id='main'><input type='text' name='Nombre' value='"+actual.getNombre()+"'/><br>"
                         + "<br/>\n" +
-                        "            <select name=\"tipo\">\n" +
-                        "                <option value=\"1\">Privado</option>\n" +
+                        "            <select id='tipo' name=\"tipo\" onchange='restringir()'>\n" +
                         "                <option value=\"0\">Publico</option>\n" +
+                        "                <option value=\"1\">Privado</option>\n" +
                         "            </select>\n<br/>" +
                         " Tipo actual:");
                     if(actual.getTipo()==1)
@@ -113,7 +113,20 @@ public class verCurso extends HttpServlet {
                     else
                         out.println("Publico");
 out.println("            <br/>\n" +
-"            <input type=\"text\" pattern=\".{5,10}\" name=\"pass\" placeholder=\"Escribir en caso de ser privado (5-10 caracteres)\"/>\n" +
+"            <input id='pass' type=\"hidden\" pattern=\"{5,10}\" name=\"pass\" placeholder=\"(5-10 caracteres)\" use=''/>\n" +
+"<script>\n"+
+"function restringir(){"+
+"var tipo = document.getElementById('tipo').value;\n"+
+"var pass = document.getElementById('pass');\n"+
+"if(tipo==1)\n{"+
+"pass.setAttribute('type','text');\n"+
+"pass.setAttribute('use','required');\n"+
+"}\n"+
+"else{\n"+
+"pass.setAttribute('type','hidden');\n"+
+"pass.setAttribute('use','');\n"+
+"}}\n"+
+"</script>\n"+
 "            <br/>"
                         + "<h3>Descripción:<textarea name='Descripcion' rows='5' cols='50'>"+actual.getDescripcion()+"</textarea></h3>"
                         + "<input type='submit' name='Modificar' value='Guardar Cambios'/></form></section><br>");

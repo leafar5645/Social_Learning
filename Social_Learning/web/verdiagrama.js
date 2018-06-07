@@ -20,13 +20,13 @@ function teclas(evObject)
                 {
                      var seleccion = canvas.getActiveObject();
                      //aqui se dispara cuando salga del canvas
-                     if(seleccion.left+seleccion.width>=canvas.width-20||seleccion.top+seleccion.height>=canvas.height-20)
+                     if(seleccion.left+seleccion.width>=canvas.width||seleccion.top+seleccion.height>=canvas.height)
                      {
                         //var enter = new KeyboardEvent('keydown', {which:13,code:'enter',keyCode:13, charCode:13});
                         //document.dispatchEvent(enter);
                         canvas.discardActiveObject();
                         //canvas.renderAll();
-                       alert('Por favor no salga del limite:\n -Arrastre el cuadro a una posicion dentro del recuadro de Trabajo\n -presione la tecla Enter para agregar otra linea');
+                       alert('Por favor no salga del limite:\n -Arrastre el   a una posicion dentro del recuadro de Trabajo\n -presione la tecla Enter para agregar otra linea');
                      }
                      else if(seleccion.left<0||seleccion.top<0)
                      {
