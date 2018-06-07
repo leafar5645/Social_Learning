@@ -63,7 +63,7 @@ public class VerTemaProfesor extends HttpServlet {
             out.println("<form action='ModificarTema?idcurso="+idcurso+"' id=\"diag\" method ='post' enctype=\"multipart/form-data\">");
             out.println("<section id='main'>");
             out.println("<h3>Tema</h3>\n"+
-                    + "<input type='text' name='NombreTema' placeholder='Nombre de Tema' value='"+actual.getNombre()+"' required />\n" +
+                     "<input type='text' name='NombreTema' placeholder='Nombre de Tema' value='"+actual.getNombre()+"' required />\n" +
                 "</section>");
             out.println("<br/>");
             out.println("<h3>Contenido</h3>");
@@ -79,7 +79,7 @@ public class VerTemaProfesor extends HttpServlet {
 "    \n" +
 "    <button type=\"button\" value=\"Eliminar\" onclick=\"borrar()\">Eliminar</button>\n" +
 "    <br/>\n" +
-"    <canvas id=\"canvas\" width=\"750\" height=\"800\" style='border:1px solid black;'></canvas>\n" +
+"    <canvas id=\"canvas\" width=\"1200\" height=\"800\" ></canvas>\n" +
 " \n" +
 "\n" +
                 "</section><br/>");

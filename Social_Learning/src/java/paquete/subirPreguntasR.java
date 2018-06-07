@@ -54,8 +54,8 @@ public class subirPreguntasR extends HttpServlet {
         "</header>");
       out.println("<h1>Introduce los datos para subir tus preguntas</h1> <section id=\"main\"> <br/> <br/> <form action='subirPreguntasR' method='get'>  ");
       out.println("<input type='text' name='pregunta' placeholder='pregunta' required/> <br/> "
-        + "<input type='text' name='respuesta' placeholder='Respuesta Correcta' /><br/> <input type='text' name='a' placeholder='opcion 1'/> "
-        + "<br/> <input type='text' name='b' placeholder='opcion 2'/> <br/> <input type='text' name='c' placeholder='opcion 3' /> <br/>"
+        + "<input type='text' name='respuesta' placeholder='Respuesta Correcta' required /><br/> <input type='text' name='a' placeholder='opcion 1' required/> "
+        + "<br/> <input type='text' name='b' placeholder='opcion 2' required/> <br/> <input type='text' name='c' placeholder='opcion 3' required /> <br/>"
         + "<input type='submit' name='subirp' value='subir' ");
       out.println("</section </div> </body>");
       out.println("</html>");

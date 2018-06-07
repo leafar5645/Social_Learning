@@ -58,7 +58,7 @@ public class verTema extends HttpServlet {
             out.println("<section id=\"main\">\n");
             out.println("<h2>Tema: "+actual.getNombre()+"</h2>\n"+
                 "   <input type='hidden' id='serie' value='"+(actual.getInformacion().replaceAll("\\n","\\\\n"))+"' />     <br/>\n" +
-                "    <canvas id=\"canvas\" width=\"750\" height=\"800\" style='border:1px solid black;'></canvas>\n" +
+                "    <canvas id=\"canvas\" width=\"1200\" height=\"800\"></canvas>\n" +
                 "    <script>\n"+
                 "    var canvas = new fabric.StaticCanvas ('canvas');\n"+
                 "    canvas.loadFromJSON(document.getElementById('serie').value);\n"+
