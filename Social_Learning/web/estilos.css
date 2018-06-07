@@ -153,3 +153,8 @@ input:focus, textarea:focus, select:focus{
 	text-transform: none;
 	background-color: #8BE3BE;
 }
+#canvas{
+	border: 2px;
+	border-color: black;
+	background-color: #BFFFA8FF;
+}

@@ -69,7 +69,7 @@ public class VerTemaProfesor extends HttpServlet {
             out.println("<h3>Contenido</h3>");
             out.println("     \n" +
                 "<section id='main'>"+
-                    "   <input type='hidden' id='serie' value='"+actual.getInformacion()+"' />     <br/>\n" +
+                    "   <input type='hidden' id='serie' value='"+(actual.getInformacion().replaceAll("\\n","\\\\n"))+"' />     <br/>\n" +
 "   <input type=\"file\" id=\"img\" accept=\".jpg\" onchange=\"AgregarImagen()\"/>\n" +
 "\n" +
 "    <button type=\"button\" value=\"Agregar Imagen\" onclick=\"AgregarImagen()\">Agregar Imagen</button>\n" +
@@ -80,10 +80,9 @@ public class VerTemaProfesor extends HttpServlet {
 "    \n" +
 "    <button type=\"button\" value=\"Eliminar\" onclick=\"borrar()\">Eliminar</button>\n" +
 "    <br/>\n" +
-"    <canvas id=\"canvas\" width=\"800\" height=\"800\" style='border:1px solid black;'></canvas>\n" +
+"    <canvas id=\"canvas\" width=\"750\" height=\"800\" style='border:1px solid black;'></canvas>\n" +
 " \n" +
 "\n" +
-
                 "</section><br/>");
             out.println("<section id='main'>\n"+
                 "<h3>Recurso audiovisual</h3>\n");
@@ -109,7 +108,6 @@ public class VerTemaProfesor extends HttpServlet {
                 " </form>       \n");
             out.println("   \n" + "<form action='subirPreguntasR' method='get'><br/> <input type='submit' value='registar pregunta' name='subirp'/> </form>  ");
             out.println(
-
                 "          </div>\n" +
                 " <script type=\"text/javascript\" src=\"fabric.js\"></script>\n" +
                 "    <script type=\"text/javascript\" src=\"verdiagrama.js\"></script>"

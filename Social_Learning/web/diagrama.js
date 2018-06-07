@@ -1,23 +1,17 @@
 
-
-
-window.onload = function() 
-{ 
-
-document.onkeyup = teclas; 
+window.onload = function()
+{
+document.onkeyup = teclas;
 document.onclick=ajuste;
 }
-
-function teclas(evObject) 
+function teclas(evObject)
 {
-
                 var teclaPulsada = evObject.keyCode;
                 console.log("\ntecla:"+ teclaPulsada);
                 var activo=canvas.getActiveObject();
                 if(!activo)
                     if(teclaPulsada==8||teclaPulsada==46)//borrado de elementos
                         Eliminar();
- 
                 else(activo)
                 {
                      var seleccion = canvas.getActiveObject();
@@ -25,8 +19,8 @@ function teclas(evObject)
                      {
                         //var enter = new KeyboardEvent("keydown", {which:13,code:'enter',keyCode:13, charCode:13});
                         //document.dispatchEvent(enter);
-                        canvas.discardActiveObject(); 
-                        //canvas.renderAll(); 
+                        canvas.discardActiveObject();
+                        //canvas.renderAll();
                        alert("Por favor no salga del limite:\n -Arrastre el cuadro a una posicion dentro del recuadro de Trabajo\n -presione la tecla Enter para agregar otra linea");
                      }
                      else if(seleccion.left<0||seleccion.top<0)
@@ -34,27 +28,23 @@ function teclas(evObject)
                       //  seleccion.top=20;
                         //seleccion.left=50;
                         seleccion.set('selectable', true);
-                        canvas.renderAll(); 
+                        canvas.renderAll();
                        alert("Por favor no salga del limite");
                      }
-
                 }
-                     
 }
-
 function ajuste (evObject)
 {
                 var activo=canvas.getActiveObject();
                 if(activo)
                 {
-
                      var seleccion = canvas.getActiveObject();
                      if(seleccion.left+seleccion.width>=canvas.width-20||seleccion.top+seleccion.height>=canvas.height-20)
                      {
                         //var enter = new KeyboardEvent("keydown", {which:13,code:'enter',keyCode:13, charCode:13});
                         //document.dispatchEvent(enter);
-                        canvas.discardActiveObject(); 
-                        canvas.renderAll(); 
+                        canvas.discardActiveObject();
+                        canvas.renderAll();
                        alert("Por favor no salga del limite:\n -presione la tecla Enter para agregar otra linea");
                      }
                      else if(seleccion.left<0||seleccion.top<0)
@@ -63,19 +53,17 @@ function ajuste (evObject)
                         //seleccion.left=0;
                        alert("Por favor no salga del limite");
                      }
-
                 }
 }
 //funciones del Canvas
-
 var canvas = new fabric.Canvas('canvas');
         function AgregarImagen()
         {
-            if (window.File && window.FileReader && window.FileList) 
+            if (window.File && window.FileReader && window.FileList)
             {
                 var archivo = document.getElementById('img').files[0];
                 var lector = new FileReader();
-                lector.onload = function (e) 
+                lector.onload = function (e)
                 {
                 // Cuando éste evento se dispara, los datos están ya disponibles.
                     var foto=new Image();
@@ -87,16 +75,13 @@ var canvas = new fabric.Canvas('canvas');
                     canvas.add(imagen);
                 };
                 lector.readAsDataURL(archivo);
-                
-            } 
-            else 
+            }
+            else
             {
                 alert('Tu navegador no Soporta las API necesarias');
                 return;
             }
-
         }
-        
         function AgregarTitulo()
         {
             //var titulo = document.getElementById('titulo');
@@ -109,10 +94,8 @@ var canvas = new fabric.Canvas('canvas');
             });
             canvas.add(texto);
         }
-	
          function AgregarContenido()
         {
-           
             var texto = new fabric.Textbox('contenido',{
                 fontSize: 20,
                 textAlign: 'center',
@@ -129,7 +112,7 @@ var canvas = new fabric.Canvas('canvas');
             var seleccion = canvas.getActiveObject();
             if (seleccion) //si un objeto esta activado
             {
-                if (confirm('¿Estas seguro que deseas eliminar esto?')) 
+                if (confirm('¿Estas seguro que deseas eliminar esto?'))
                 {
                     canvas.remove(seleccion);
                 }
@@ -146,6 +129,3 @@ var canvas = new fabric.Canvas('canvas');
             formulario.appendChild(enviar);
             formulario.submit();
         }
-            
-        
-
