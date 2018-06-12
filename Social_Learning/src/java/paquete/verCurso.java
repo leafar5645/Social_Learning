@@ -24,7 +24,8 @@ public class verCurso extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session= request.getSession();
         Usuario user =(Usuario) session.getAttribute("AlumnoR");
-        ArrayList<Curso> cursos = user.getCursos();
+        user.buscarCursos();
+            ArrayList<Curso> cursos = user.getCursos();
         String sid;
         sid = request.getParameter("id");
         Curso actual;

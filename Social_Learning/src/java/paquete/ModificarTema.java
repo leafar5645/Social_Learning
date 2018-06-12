@@ -48,12 +48,23 @@ public class ModificarTema extends HttpServlet {
            Part filePart = request.getPart("multimedia"); //Devuelve una parte especifica del request. Part Esta clase representa una pieza o elemento de formulario que se recibió dentro de una multipart/form-datas en solicitud POST.
             if(filePart.getSize()>0)
             {
+                if(!tema.getRecurso().equalsIgnoreCase("0"))
+                {
                 String path=request.getRealPath("/RecursosTemas");
                 InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
                 File file = new File(path+"/" +tema.getRecurso());
                 Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
+            
+                }
+                else
+                {
+                    String path=request.getRealPath("/RecursosTemas");
+                InputStream input = filePart.getInputStream(); //Obtener el contenido de la parte en un inputStream
+                File file = new File(path+"/" +"apoyo"+tema.getId_tema()+".mp4" );
+                Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING );
+                tema.setRecurso("apoyo"+tema.getId_tema()+".mp4");
+                }
             }
-
              response.sendRedirect("verCurso?id="+idcurso+"");
         }
 
